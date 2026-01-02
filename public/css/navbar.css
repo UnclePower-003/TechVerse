@@ -1,0 +1,41 @@
+/* Mobile Submenu (Unchanged) */
+.mobile-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    opacity: 0;
+}
+.mobile-submenu.open {
+    max-height: 500px;
+    opacity: 1;
+}
+
+/* Desktop Dropdown Animation */
+.desktop-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 50; /* Ensure it sits on top */
+}
+
+/* 
+   Open on Hover (.group:hover) 
+   OR 
+   Open on Click (.active) 
+*/
+.group:hover .desktop-dropdown,
+.desktop-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Chevron Rotation on Hover or Active */
+.chevron-icon {
+    transition: transform 0.3s ease;
+}
+.group:hover .chevron-icon,
+.group.active .chevron-icon {
+    transform: rotate(180deg);
+}
