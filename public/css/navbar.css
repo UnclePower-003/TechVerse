@@ -1,41 +1,75 @@
-/* Mobile Submenu (Unchanged) */
-.mobile-submenu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    opacity: 0;
-}
-.mobile-submenu.open {
-    max-height: 500px;
-    opacity: 1;
-}
 
-/* Desktop Dropdown Animation */
-.desktop-dropdown {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 50; /* Ensure it sits on top */
-}
+        /* Custom CSS - Organized by section */
+        /* ====== 1. Navbar Scroll Behavior ====== */
+        #navbar {
+            transition: all 0.3s ease;
+        }
 
-/* 
-   Open on Hover (.group:hover) 
-   OR 
-   Open on Click (.active) 
-*/
-.group:hover .desktop-dropdown,
-.desktop-dropdown.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+        /* Scrolled State */
+        .nav-scrolled {
+            background-color: rgba(209, 226, 246, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
 
-/* Chevron Rotation on Hover or Active */
-.chevron-icon {
-    transition: transform 0.3s ease;
-}
-.group:hover .chevron-icon,
-.group.active .chevron-icon {
-    transform: rotate(180deg);
-}
+        /* Visibility States */
+        .nav-visible { transform: translateY(0); }
+        .nav-hidden { transform: translateY(-100%); }
+
+        /* ====== 2. Hamburger Animation ====== */
+        .hamburger-line {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #4b5563;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        #hamburger.active .line-1 {
+            transform: translateY(8px) rotate(45deg);
+            background-color: #2563eb;
+        }
+
+        #hamburger.active .line-2 { opacity: 0; }
+
+        #hamburger.active .line-3 {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: #2563eb;
+        }
+
+        /* ====== 3. Product Dropdowns ====== */
+        #mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        #mega-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Mobile Product Menu */
+        #mobile-product-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #mobile-product-menu.active {
+            max-height: 500px; /* Adjust based on content */
+        }
+
+        /* ====== 4. Responsive Fixes ====== */
+        @media (min-width: 1024px) {
+            #offCanvasMenu,
+            #overlay {
+                display: none;
+            }
+        }
+    

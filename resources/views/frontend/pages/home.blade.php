@@ -1,511 +1,615 @@
 @extends('frontend.app')
 
 @section('content')
-@push('style')
-                <style>
-                body {
-                    font-family: 'Inter', sans-serif;
-                }
+    @push('style')
+        <!-- Custom CSS for Animations -->
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
 
-                /* Smooth scrolling */
-                html {
-                    scroll-behavior: smooth;
-                }
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(40px) scale(0.98);
+                transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                will-change: opacity, transform;
+            }
 
-                /* Custom scrollbar */
-                ::-webkit-scrollbar {
-                    width: 8px;
-                }
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
 
-                ::-webkit-scrollbar-track {
-                    background: #f1f1f1;
-                }
+            .delay-100 {
+                transition-delay: 100ms;
+            }
 
-                ::-webkit-scrollbar-thumb {
-                    background: #08379b;
-                    border-radius: 4px;
-                }
+            .delay-200 {
+                transition-delay: 200ms;
+            }
 
-                ::-webkit-scrollbar-thumb:hover {
-                    background: #0b5ffa;
-                }
-            </style>
+            .delay-300 {
+                transition-delay: 300ms;
+            }
 
-@endpush
+            .delay-500 {
+                transition-delay: 500ms;
+            }
 
-    {{-- Herosection --}}
-    <section>
+            /* Reveal Animation Classes */
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            }
 
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
+            /* Staggered delays for grids */
+            .delay-100 {
+                transition-delay: 100ms;
+            }
 
+            .delay-200 {
+                transition-delay: 200ms;
+            }
 
+            .delay-300 {
+                transition-delay: 300ms;
+            }
 
-
-
-            <!-- HERO SECTION -->
-<section class="relative w-full h-screen min-h-[600px] overflow-hidden flex items-center">
+            .gpu-accelerated {
+                will-change: transform;
+                backface-visibility: hidden;
+            }
+        </style>
+    @endpush
     
-    <!-- 1. BACKGROUND LAYER -->
-    <div class="absolute inset-0 z-0">
-        <!-- The Image with the Zoom Animation -->
-        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
-             alt="Team working" 
-             class="w-full h-full object-cover animate-hero-zoom">
-        
-        <!-- Gradient Overlay: Crucial for text readability -->
-        <!-- Gradient from Blue (left) to Black/Transparent (right) -->
-        <div class="absolute inset-0 bg-gradient-to-r from-[#0b5ffa]/90 via-[#062a78]/80 to-black/40"></div>
-    </div>
+    <!-- Hero Section -->
+    <section
+        class="relative pt-10 pb-36 lg:pt-40 lg:pb-56 overflow-hidden text-[#d1e2f6] lg:h-[80vh] flex flex-col justify-center">
 
-    <!-- 2. CONTENT LAYER -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20"> <!-- pt-20 to clear fixed nav -->
-        
-        <div class="max-w-3xl">
-            <!-- Badge -->
-            <div class="animate-fade-up inline-block px-4 py-1.5 rounded-full border border-blue-300/30 bg-blue-500/20 backdrop-blur-sm text-blue-50 font-semibold text-sm mb-6">
-                <span class="mr-2">🚀</span> New Version 2.0 is Live
+        <!-- Abstract Background -->
+        <div class="absolute inset-0">
+
+            <img src="{{ asset('imagess/heroimages/mobile.png') }}" alt="Network Background"
+                class="w-full h-full object-cover md:hidden">
+
+            <img src="{{ asset('imagess/heroimages/tablet.png') }}" alt="Network Background"
+                class="w-full h-full object-cover lg:hidden">
+
+            <img src="{{ asset('imagess/heroimages/image.png') }}" alt="Network Background"
+                class="w-full h-full object-cover hidden lg:block">
+        </div>
+
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 lg:bg-gradient-to-r from-transparent via-black/5 to-black/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/70 lg:hidden"></div>
+
+        <!-- Content Container -->
+        <div class="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-20 text-left reveal active flex flex-col lg:flex-row">
+
+            <div class="flex flex-col lg:items-start items-center justify-center text-center lg:text-left">
+
+                <div
+                    class="reveal-on-scroll delay-100 inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-[#d1e2f6] uppercase bg-[#1e293b] rounded-full border border-[#2563eb]">
+                    Live Readiness • 24/7
+                </div>
+
+                <h1
+                    class="reveal-on-scroll text-center lg:text-left text-black delay-200 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                    <span class='md:text-white lg:text-black max-sm:text-black'> YOUR </span> TECH PARTNER<br>
+                    <span class='md:text-white lg:text-black sm:text-black'>FOR</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]">Success</span>
+                </h1>
+
+                <p
+                    class="reveal-on-scroll delay-300 mt-4 text-sm md:text-xl lg:text-stone-800 text-slate-300 font-semibold max-w-xl leading-relaxed">
+                    Cisco and Alcatel-Lucent networking, Hikvision surveillance, and resilient IT that keeps you
+                    online—delivered with clear SLAs and 24/7 response.
+                </p>
+
+                <div
+                    class="reveal-on-scroll delay-500 mt-10 flex flex-col sm:flex-row justify-center items-center lg:items-start lg:justify-start gap-4 w-full">
+                    <a href="contact"
+                        class="px-8 py-2 text-lg font-bold text-[#d1e2f6] bg-[#2563eb] rounded-lg hover:bg-[#3b82f6] transition shadow-lg shadow-[#2563eb]/40 text-center">
+                        Get a quote
+                    </a>
+                    <a href="{{ route('contact') }}"
+                        class="px-8 py-2 text-lg font-bold text-stone-600 border max-lg:bg-white lg:border-gray-500 rounded-lg hover:border-transparent lg:hover:bg-[#d1e2f6] hover:text-[#0f172a] transition text-center">
+                        Talk to us
+                    </a>
+                </div>
             </div>
 
-            <!-- Headline -->
-            <h1 class="animate-fade-up delay-100 text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                Build faster with <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Intelligent Data.</span>
-            </h1>
+        </div>
+    </section>
 
-            <!-- Subtext -->
-            <p class="animate-fade-up delay-200 text-lg md:text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">
-                Empower your team with the tools they need to scale efficiently. 
-                Our platform integrates seamlessly with your existing workflow to deliver real-time insights.
-            </p>
 
-            <!-- Buttons -->
-            <div class="animate-fade-up delay-300 flex flex-col sm:flex-row gap-4">
-                <a href="#" class="px-8 py-4 bg-white text-[#0b5ffa] rounded-full font-bold text-lg hover:bg-blue-50 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-105 transform duration-200 text-center">
-                    Get Started Free
-                </a>
-                <a href="#" class="px-8 py-4 border border-white/30 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all flex items-center justify-center gap-2 group">
-                    <i class="fa-solid fa-play text-xs group-hover:scale-125 transition-transform"></i>
-                    Watch Demo
-                </a>
+    <!-- Stats Section -->
+    <section class="relative -mt-20 z-10 px-4">
+        <div
+            class="max-w-6xl mx-auto bg-[#d1e2f6] rounded-2xl shadow-xl lg:p-5 p-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b-4 border-[#2563eb] reveal">
+            <div class="space-y-2">
+                <div class="text-4xl font-bold text-[#0f172a]">10+ Years</div>
+                <div class="text-gray-500 text-sm uppercase tracking-wide">Experience</div>
+                <p class="text-gray-600 text-sm">Rapid on-site teams & Quality guarantee</p>
+            </div>
+            <div class="space-y-2 border-t md:border-t-0 md:border-l md:border-r border-stone-300 pt-4 md:pt-0">
+                <div class="text-4xl font-bold text-[#2563eb]">99.9%</div>
+                <div class="text-gray-500 text-sm uppercase tracking-wide">Network Uptime</div>
+                <p class="text-gray-600 text-sm">Across monitored sites</p>
+            </div>
+            <div class="space-y-2 border-t md:border-t-0 pt-4 md:pt-0">
+                <div class="text-4xl font-bold text-[#0f172a]">50+</div>
+                <div class="text-gray-500 text-sm uppercase tracking-wide">Major Deployments</div>
+                <p class="text-gray-600 text-sm">24/7 Support window with clear SLAs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-[#d1e2f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-[#2563eb] font-semibold tracking-wide uppercase">Our Services</h2>
+                <p class="mt-2 text-3xl font-bold text-[#0f172a] sm:text-4xl">Enterprise-Grade Rigor</p>
+                <p class="mt-4 text-gray-600">Networking, CCTV, IT consultation, and rapid computer repair delivered by
+                    certified engineers.</p>
             </div>
 
-            <!-- Social Proof / Stats (Glassmorphism) -->
-            <div class="animate-fade-up delay-300 mt-12 pt-8 border-t border-white/10 flex items-center gap-8">
-                <div>
-                    <p class="text-3xl font-bold text-white">10k+</p>
-                    <p class="text-xs text-blue-200 uppercase tracking-wide">Active Users</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
+                    <div
+                        class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
+                        <i class="fas fa-network-wired text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0f172a] mb-3">Network Solutions</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Campus LAN/WAN, Wi‑Fi, secure routing.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">Cisco</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">QoS</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">SD-WAN</span>
+                    </div>
                 </div>
-                <div class="h-8 w-px bg-white/20"></div>
-                <div>
-                    <p class="text-3xl font-bold text-white">99.9%</p>
-                    <p class="text-xs text-blue-200 uppercase tracking-wide">Uptime</p>
+
+                <!-- Service 2 -->
+                <div
+                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-200 group">
+                    <div
+                        class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
+                        <i class="fas fa-video text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0f172a] mb-3">CCTV Installation</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Design, deploy, monitor smart surveillance.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">Hikvision</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">ANPR</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">VMS</span>
+                    </div>
                 </div>
-                <div class="h-8 w-px bg-white/20"></div>
-                <div class="flex -space-x-3">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#0b5ffa]" src="https://i.pravatar.cc/100?img=1" alt="">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#0b5ffa]" src="https://i.pravatar.cc/100?img=2" alt="">
-                    <img class="w-10 h-10 rounded-full border-2 border-[#0b5ffa]" src="https://i.pravatar.cc/100?img=3" alt="">
-                    <div class="w-10 h-10 rounded-full border-2 border-[#0b5ffa] bg-white flex items-center justify-center text-xs font-bold text-[#0b5ffa]">+2k</div>
+
+                <!-- Service 3 -->
+                <div
+                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-300 group">
+                    <div
+                        class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
+                        <i class="fas fa-user-shield text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0f172a] mb-3">IT Consultation</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Audits, hardening, cloud/on-prem strategy.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">Zero Trust</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">BCP/DR</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div
+                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
+                    <div
+                        class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
+                        <i class="fas fa-microchip text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0f172a] mb-3">Computer Repair</h3>
+                    <p class="text-gray-600 mb-4 text-sm">Diagnostics, upgrades, rapid turnaround.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-green-100 text-xs font-semibold rounded text-green-700">Same-day</span>
+                        <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">On-site</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-            <!-- FEATURES / USP -->
-            <section
-                class="py-12 bg-white -mt-10 relative z-20 container mx-auto px-6 rounded-lg shadow-lg border border-gray-100">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-4 group">
-                        <div
-                            class="w-16 h-16 bg-blue-50 text-[#0b5ffa] rounded-full flex items-center justify-center text-2xl mx-auto mb-4 group-hover:bg-[#0b5ffa] group-hover:text-white transition duration-300">
-                            <i class="fas fa-truck-fast"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2 text-[#08379b]">Fast Delivery</h3>
-                        <p class="text-gray-500 text-sm">Same-day dispatch for hardware and instant activation for software
-                            keys.</p>
-                    </div>
-                    <div class="p-4 group">
-                        <div
-                            class="w-16 h-16 bg-blue-50 text-[#0b5ffa] rounded-full flex items-center justify-center text-2xl mx-auto mb-4 group-hover:bg-[#0b5ffa] group-hover:text-white transition duration-300">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2 text-[#08379b]">Genuine Products</h3>
-                        <p class="text-gray-500 text-sm">Authorized distributors for top brands. 100% original hardware and
-                            licenses.</p>
-                    </div>
-                    <div class="p-4 group">
-                        <div
-                            class="w-16 h-16 bg-blue-50 text-[#0b5ffa] rounded-full flex items-center justify-center text-2xl mx-auto mb-4 group-hover:bg-[#0b5ffa] group-hover:text-white transition duration-300">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2 text-[#08379b]">Expert Support</h3>
-                        <p class="text-gray-500 text-sm">24/7 technical assistance for installation and configuration.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CATEGORIES -->
-            <section id="services" class="py-20 bg-gray-50">
-                <div class="container mx-auto px-6">
-                    <div class="text-center mb-16">
-                        <h2 class="text-3xl font-bold text-[#08379b] mb-4">Our Categories</h2>
-                        <div class="w-20 h-1 bg-[#0b5ffa] mx-auto rounded"></div>
-                        <p class="text-gray-500 mt-4 max-w-xl mx-auto">Everything you need to build a secure and connected
-                            infrastructure.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Cat 1 -->
-                        <div
-                            class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-                            <div class="h-40 bg-gray-200 overflow-hidden relative">
-                                <img src="https://placehold.co/400x300/e2e8f0/08379b?text=CCTV+Systems"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                    alt="CCTV">
-                                <div
-                                    class="absolute inset-0 bg-[#08379b] opacity-0 group-hover:opacity-20 transition duration-300">
-                                </div>
-                            </div>
-                            <div class="p-6 text-center">
-                                <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#0b5ffa] transition">
-                                    Surveillance (CCTV)</h3>
-                                <p class="text-xs text-gray-500 mt-2">Cameras, NVRs, Cables</p>
-                            </div>
-                        </div>
-
-                        <!-- Cat 2 -->
-                        <div
-                            class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-                            <div class="h-40 bg-gray-200 overflow-hidden relative">
-                                <img src="https://placehold.co/400x300/e2e8f0/08379b?text=Networking"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                    alt="Routers">
-                                <div
-                                    class="absolute inset-0 bg-[#08379b] opacity-0 group-hover:opacity-20 transition duration-300">
-                                </div>
-                            </div>
-                            <div class="p-6 text-center">
-                                <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#0b5ffa] transition">Networking
-                                </h3>
-                                <p class="text-xs text-gray-500 mt-2">Routers, Switches, Access Points</p>
-                            </div>
-                        </div>
-
-                        <!-- Cat 3 -->
-                        <div
-                            class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-                            <div class="h-40 bg-gray-200 overflow-hidden relative">
-                                <img src="https://placehold.co/400x300/e2e8f0/08379b?text=Software"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                    alt="Software">
-                                <div
-                                    class="absolute inset-0 bg-[#08379b] opacity-0 group-hover:opacity-20 transition duration-300">
-                                </div>
-                            </div>
-                            <div class="p-6 text-center">
-                                <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#0b5ffa] transition">Software
-                                </h3>
-                                <p class="text-xs text-gray-500 mt-2">OS, Antivirus, Office Suites</p>
-                            </div>
-                        </div>
-
-                        <!-- Cat 4 -->
-                        <div
-                            class="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-                            <div class="h-40 bg-gray-200 overflow-hidden relative">
-                                <img src="https://placehold.co/400x300/e2e8f0/08379b?text=Accessories"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                    alt="Accessories">
-                                <div
-                                    class="absolute inset-0 bg-[#08379b] opacity-0 group-hover:opacity-20 transition duration-300">
-                                </div>
-                            </div>
-                            <div class="p-6 text-center">
-                                <h3 class="font-bold text-lg text-gray-800 group-hover:text-[#0b5ffa] transition">
-                                    Accessories</h3>
-                                <p class="text-xs text-gray-500 mt-2">Connectors, Tools, Racks</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FEATURED PRODUCTS -->
-            <section id="products" class="py-20 bg-white">
-                <div class="container mx-auto px-6">
-                    <div class="flex justify-between items-end mb-10">
-                        <div>
-                            <h2 class="text-3xl font-bold text-[#08379b]">Featured Products</h2>
-                            <p class="text-gray-500 mt-2">Best-selling hardware for your infrastructure.</p>
-                        </div>
-                        <a href="#" class="hidden md:inline-block text-[#0b5ffa] font-semibold hover:underline">View All
-                            Products <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Product Card 1 -->
-                        <div class="group relative bg-white border border-gray-200 rounded-lg hover:shadow-lg transition">
-                            <div
-                                class="relative w-full h-60 bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center p-4">
-                                <span
-                                    class="absolute top-2 left-2 bg-[#0b5ffa] text-white text-xs font-bold px-2 py-1 rounded">New</span>
-                                <img src="https://placehold.co/300x300/ffffff/08379b?text=Dome+Camera+4K" alt="Product"
-                                    class="max-h-full">
-                            </div>
-                            <div class="p-5">
-                                <p class="text-sm text-gray-400 mb-1">CCTV</p>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 truncate">4K Dome Security Camera IP67</h3>
-                                <div class="flex items-center mb-4">
-                                    <div class="text-yellow-400 text-xs">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-gray-400 text-xs ml-2">(42)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold text-[#08379b]">$129.99</span>
-                                    <button onclick="addToCart()"
-                                        class="w-10 h-10 rounded-full bg-gray-100 text-[#08379b] flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 2 -->
-                        <div class="group relative bg-white border border-gray-200 rounded-lg hover:shadow-lg transition">
-                            <div
-                                class="relative w-full h-60 bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center p-4">
-                                <img src="https://placehold.co/300x300/ffffff/08379b?text=Gigabit+Router" alt="Product"
-                                    class="max-h-full">
-                            </div>
-                            <div class="p-5">
-                                <p class="text-sm text-gray-400 mb-1">Networking</p>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 truncate">Dual-Band Gigabit Router AX3000
-                                </h3>
-                                <div class="flex items-center mb-4">
-                                    <div class="text-yellow-400 text-xs">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="far fa-star"></i>
-                                    </div>
-                                    <span class="text-gray-400 text-xs ml-2">(15)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold text-[#08379b]">$89.50</span>
-                                    <button onclick="addToCart()"
-                                        class="w-10 h-10 rounded-full bg-gray-100 text-[#08379b] flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 3 -->
-                        <div class="group relative bg-white border border-gray-200 rounded-lg hover:shadow-lg transition">
-                            <div
-                                class="relative w-full h-60 bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center p-4">
-                                <span
-                                    class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">-20%</span>
-                                <img src="https://placehold.co/300x300/ffffff/08379b?text=8-Port+Switch" alt="Product"
-                                    class="max-h-full">
-                            </div>
-                            <div class="p-5">
-                                <p class="text-sm text-gray-400 mb-1">Networking</p>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 truncate">8-Port PoE+ Managed Switch</h3>
-                                <div class="flex items-center mb-4">
-                                    <div class="text-yellow-400 text-xs">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-gray-400 text-xs ml-2">(104)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-gray-400 line-through">$100.00</span>
-                                        <span class="text-xl font-bold text-[#08379b]">$80.00</span>
-                                    </div>
-                                    <button onclick="addToCart()"
-                                        class="w-10 h-10 rounded-full bg-gray-100 text-[#08379b] flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Card 4 -->
-                        <div class="group relative bg-white border border-gray-200 rounded-lg hover:shadow-lg transition">
-                            <div
-                                class="relative w-full h-60 bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center p-4">
-                                <img src="https://placehold.co/300x300/ffffff/08379b?text=Antivirus+Key" alt="Product"
-                                    class="max-h-full">
-                            </div>
-                            <div class="p-5">
-                                <p class="text-sm text-gray-400 mb-1">Software</p>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 truncate">Total Security Antivirus (1 Year)
-                                </h3>
-                                <div class="flex items-center mb-4">
-                                    <div class="text-yellow-400 text-xs">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <span class="text-gray-400 text-xs ml-2">(300+)</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xl font-bold text-[#08379b]">$25.00</span>
-                                    <button onclick="addToCart()"
-                                        class="w-10 h-10 rounded-full bg-gray-100 text-[#08379b] flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-10 md:hidden">
-                        <a href="#"
-                            class="inline-block border border-[#0b5ffa] text-[#0b5ffa] font-semibold px-6 py-3 rounded hover:bg-[#0b5ffa] hover:text-white transition">View
-                            All Products</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CALL TO ACTION (Service) -->
-            <section class="bg-[#08379b] py-20">
-                <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Need Professional Installation?</h2>
-                    <p class="text-blue-200 max-w-2xl mx-auto mb-10 text-lg">
-                        We don't just sell hardware; we set it up. Our expert team is ready to install CCTV systems and
-                        configure complex networks for your office or home.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="#contact"
-                            class="bg-[#0b5ffa] text-white px-8 py-4 rounded-md font-bold hover:bg-white hover:text-[#0b5ffa] transition shadow-lg">
-                            Book a Service
-                        </a>
-                        <a href="tel:+18001234567"
-                            class="flex items-center justify-center bg-transparent border-2 border-white text-white px-8 py-4 rounded-md font-bold hover:bg-white hover:text-[#08379b] transition">
-                            <i class="fas fa-phone-alt mr-2"></i> Call Support
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FOOTER -->
-            <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
-                <div class="container mx-auto px-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                        <!-- Company Info -->
-                        <div>
-                            <a href="#" class="text-2xl font-bold text-white flex items-center gap-2 mb-6">
-                                <i class="fas fa-server text-[#0b5ffa]"></i> TechServe
-                            </a>
-                            <p class="text-sm text-gray-400 mb-6">
-                                Your trusted partner for IT hardware, software solutions, and professional networking
-                                services.
-                            </p>
-                            <div class="flex space-x-4">
-                                <a href="#"
-                                    class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#"
-                                    class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#"
-                                    class="w-8 h-8 rounded bg-gray-800 flex items-center justify-center hover:bg-[#0b5ffa] hover:text-white transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Quick Links -->
-                        <div>
-                            <h4 class="text-white text-lg font-bold mb-6">Quick Links</h4>
-                            <ul class="space-y-3 text-sm">
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">About Us</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Shop Hardware</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Software Licenses</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Installation Services</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Categories -->
-                        <div>
-                            <h4 class="text-white text-lg font-bold mb-6">Categories</h4>
-                            <ul class="space-y-3 text-sm">
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">CCTV & Surveillance</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Routers & Modems</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Cables & Connectors</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Smart Home</a></li>
-                                <li><a href="#" class="hover:text-[#0b5ffa] transition">Office Networking</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Contact -->
-                        <div id="contact">
-                            <h4 class="text-white text-lg font-bold mb-6">Contact Us</h4>
-                            <ul class="space-y-4 text-sm">
-                                <li class="flex items-start gap-3">
-                                    <i class="fas fa-map-marker-alt mt-1 text-[#0b5ffa]"></i>
-                                    <span>123 Tech Avenue, Silicon Valley,<br>CA 94000, USA</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fas fa-phone text-[#0b5ffa]"></i>
-                                    <span>+1 (800) 123-4567</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <i class="fas fa-envelope text-[#0b5ffa]"></i>
-                                    <span>sales@techserve.com</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div
-                        class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                        <p>&copy; 2023 TechServe. All rights reserved.</p>
-                        <div class="mt-4 md:mt-0 flex space-x-4">
-                            <i class="fab fa-cc-visa text-2xl text-white"></i>
-                            <i class="fab fa-cc-mastercard text-2xl text-white"></i>
-                            <i class="fab fa-cc-paypal text-2xl text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
     </section>
 
-@push('script')
-     <script>
-                // Mobile Menu Toggle
-                const btn = document.getElementById('mobile-menu-btn');
-                const menu = document.getElementById('mobile-menu');
+    <!-- Projects Section -->
+    <section id="projects"
+        class="relative min-h-screen py-16 sm:py-20 lg:py-24 text-[var(--sky)] bg-[var(--slate)] overflow-hidden">
 
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                });
+        <!-- Background Image -->
+        <!-- Optimization: Removed fixed attachment if it was there, just absolute positioning -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+            style="background-image: url('{{ asset('imagess/image.png') }}');">
+        </div>
 
-                // Simple Cart Logic (Simulation)
-                function addToCart() {
-                    // In a real app, this would add data to local storage or state
-                    const cartBadge = document.querySelector('.fa-shopping-cart + span');
-                    let count = parseInt(cartBadge.innerText);
-                    cartBadge.innerText = count + 1;
+        <!-- Gradient Overlay (Faster than blur) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0f172a]/80 via-[#0f172a]/70 to-[var(--slate)]"></div>
 
-                    // Visual feedback
-                    alert("Item added to cart successfully!");
-                }
+        <!-- Content Container -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                // Sticky Navbar shadow on scroll
-                window.addEventListener('scroll', () => {
-                    const nav = document.querySelector('nav');
-                    if (window.scrollY > 0) {
-                        nav.classList.add('shadow-lg');
-                    } else {
-                        nav.classList.remove('shadow-lg');
-                        nav.classList.add('shadow-md');
+            <!-- Header Section -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12 lg:mb-16 reveal">
+                <div class="max-w-2xl">
+                    <h2 class="text-[var(--royal)] font-bold tracking-wide uppercase text-sm sm:text-base">
+                        Major Projects
+                    </h2>
+                    <p class="mt-2 text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-white">
+                        Secure Infrastructure & Integrated Buildings
+                    </p>
+                </div>
+                <a href="#contact"
+                    class="inline-flex items-center bg-[var(--royal)] py-2 px-6 rounded-xl text-[var(--sky)] hover:text-white transition-colors duration-300 font-medium group">
+                    <span>Start a project</span>
+                    <i
+                        class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+
+                <!-- Project 1 - Janamatri (Original - Unchanged) -->
+                <div
+                    class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
+            hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+            transition-all duration-300 group reveal delay-100
+            transform hover:-translate-y-1 gpu-accelerated">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                Secure Infra
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
+                                <i
+                                    class="fas fa-lock text-gray-400 group-hover:text-[var(--royal)] transition-colors duration-300"></i>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                            Janamatri Project
+                        </h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                            Scalable, secure deployment initiative for critical infrastructure.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                High Availability
+                            </span>
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                Encryption
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Airport (Styles Updated) -->
+                <div
+                    class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
+            hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+            transition-all duration-300 group reveal delay-200
+            transform hover:-translate-y-1 gpu-accelerated">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                Airports
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
+                                <i
+                                    class="fas fa-plane-departure text-gray-400 group-hover:text-[var(--royal)] transition-colors duration-300"></i>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                            Tribhuvan Intl. Airport
+                        </h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                            Smart communication systems and safety infrastructure upgrades.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                Redundancy
+                            </span>
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                24/7 Ops
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - ANPR (Styles Updated) -->
+                <div
+                    class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
+            hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+            transition-all duration-300 group reveal delay-100
+            transform hover:-translate-y-1 gpu-accelerated">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                Smart City
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
+                                <i
+                                    class="fas fa-city text-gray-400 group-hover:text-[var(--royal)] transition-colors duration-300"></i>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                            ANPR Camera Distribution
+                        </h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                            City-wide ANPR surveillance rollout for enhanced security.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                Edge AI
+                            </span>
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                Low-light
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 - Rising Builders (Styles Updated) -->
+                <div
+                    class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
+            hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+            transition-all duration-300 group reveal delay-200
+            transform hover:-translate-y-1 gpu-accelerated">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                BMS + CCTV
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
+                                <i
+                                    class="fas fa-building text-gray-400 group-hover:text-[var(--royal)] transition-colors duration-300"></i>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                            Rising Builders
+                        </h3>
+                        <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                            Integrated building management and surveillance systems.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                Access Control
+                            </span>
+                            <span
+                                class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                HVAC
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- View All Projects Link -->
+            <div class="mt-12 text-center reveal delay-300">
+                <a href="{{ route('projects') }}"
+                    class="inline-flex items-center gap-2 px-6 py-3 border border-[var(--royal)]/50 
+                       rounded-full text-[var(--sky)] hover:bg-[var(--royal)] hover:text-white 
+                       transition-all duration-300 font-medium">
+                    <span>View All Projects</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-16 bg-[#d1e2f6] border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 font-medium mb-8 uppercase tracking-widest text-xs reveal">Collaborations & Technology
+                Partners</p>
+            <div
+                class="flex flex-wrap justify-center items-center gap-8 md:gap-16 reveal delay-100 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Using text representations as placeholders for logos -->
+                <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-handshake"></i>
+                    Beyond
+                    Tech Nepal</div>
+                <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-truck-loading"></i>
+                    Dauha</div>
+                <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-eye"></i> Hikvision
+                </div>
+                <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-server"></i> Cisco &
+                    Alcatel-Lucent</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rapid Deployment Banner -->
+    <section class="bg-[#2563eb] py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="text-[#d1e2f6] mb-6 md:mb-0 text-center md:text-left">
+                <h3 class="text-2xl font-bold">Need a rapid deployment?</h3>
+                <p class="text-blue-100 mt-1">We can mobilize certified teams with clear SLAs and documentation.</p>
+            </div>
+            <a href="#contact"
+                class="bg-[#d1e2f6] text-[#2563eb] px-6 py-3 rounded-lg font-bold shadow-lg hover:bg-[#d1e2f6] transition whitespace-nowrap">
+                Start a project
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-[#d1e2f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Info -->
+                <div class="reveal">
+                    <h2 class="text-[#2563eb] font-semibold tracking-wide uppercase mb-2">Why Us</h2>
+                    <h3 class="text-4xl font-bold text-[#0f172a] mb-6">Get a quick quote</h3>
+                    <p class="text-gray-600 mb-8 text-lg">Tell us what you need—networking, CCTV, IT consultation, or
+                        product inquiry. Our engineers are ready to assist.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 bg-[#d1e2f6] rounded-full flex items-center justify-center text-[#2563eb] mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Visit Us</h4>
+                                <p class="text-gray-600">Lazimpat-2, Kathmandu</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 bg-[#d1e2f6] rounded-full flex items-center justify-center text-[#2563eb] mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Call Us</h4>
+                                <p class="text-gray-600">9702651469</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 bg-[#d1e2f6] rounded-full flex items-center justify-center text-[#2563eb] mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Email</h4>
+                                <p class="text-gray-600">techverse@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 bg-[#d1e2f6] rounded-full flex items-center justify-center text-[#2563eb] mr-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Hours</h4>
+                                <p class="text-gray-600">Sun–Fri 9am-6pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-[#d1e2f6] p-8 rounded-2xl border border-stone-300 shadow-lg reveal delay-100">
+                    <form action="#" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full name</label>
+                            <input type="text" id="name"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
+                                placeholder="John Doe">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
+                                    placeholder="john@company.com">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone
+                                    (optional)</label>
+                                <input type="tel" id="phone"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
+                                    placeholder="98XXXXXXXX">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="inquiry" class="block text-sm font-medium text-gray-700">Inquiry Type</label>
+                            <select id="inquiry"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition">
+                                <option>Product Inquiry</option>
+                                <option>Service Quote</option>
+                                <option>Consultation</option>
+                                <option>Support</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Tell us about your
+                                requirements</label>
+                            <textarea id="message" rows="4"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-[#2563eb] text-[#d1e2f6] py-3 px-4 rounded-md hover:bg-[#1e293b] font-bold transition shadow-lg shadow-[#3b82f6]/30">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- JavaScript for Interactions & Animations -->
+    @push('script')
+        <script>
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger when 15% visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            </script>
-@endpush
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+            // --- Reveal on Scroll Animation (Intersection Observer) ---
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once revealed
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% of element is visible
+                rootMargin: "0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        </script>
+    @endpush
 @endsection

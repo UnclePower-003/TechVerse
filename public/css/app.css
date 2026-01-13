@@ -1,1 +1,13 @@
-/* #0b5ffa  #08379b*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+/* #0f172a #d1e2f6 #2563eb */
+:root {
+    --sky: #d1e2f6;
+    --royal: #2563eb;
+    --slate: #0f172a;
+}
+body {
+    font-family: "Inter", sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}

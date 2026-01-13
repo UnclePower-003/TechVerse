@@ -1,92 +1,116 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const mobileToggle = document.getElementById("mobile-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const burgerIcon = document.getElementById("burger-icon");
-    const closeIcon = document.getElementById("close-icon");
-    const body = document.body;
 
-    // 1. Handle Main Mobile Menu Toggle
-    mobileToggle.addEventListener("click", () => {
-        const isHidden = mobileMenu.classList.contains("hidden");
+    // ================================================
+    // NAVBAR & INTERACTIVE ELEMENTS LOGIC
+    // ================================================
 
-        if (isHidden) {
-            // Open Menu
-            mobileMenu.classList.remove("hidden");
-            burgerIcon.classList.add("hidden");
-            closeIcon.classList.remove("hidden");
-            // Lock Scroll
-            body.style.overflow = "hidden";
-        } else {
-            // Close Menu
-            mobileMenu.classList.add("hidden");
-            burgerIcon.classList.remove("hidden");
-            closeIcon.classList.add("hidden");
-            // Unlock Scroll
-            body.style.overflow = "";
+    document.addEventListener('DOMContentLoaded', () => {
+        // ====== 1. SMART SCROLL BEHAVIOR ======
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            // Add/remove scrolled class for styling
+            if (currentScrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+
+            // Hide/show navbar on scroll direction change
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                navbar.classList.add('nav-hidden');
+                navbar.classList.remove('nav-visible');
+            } else {
+                navbar.classList.remove('nav-hidden');
+                navbar.classList.add('nav-visible');
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // ====== 2. MOBILE MENU TOGGLE ======
+        const hamburger = document.getElementById('hamburger');
+        const offCanvasMenu = document.getElementById('offCanvasMenu');
+        const closeBtn = document.getElementById('closeBtn');
+        const overlay = document.getElementById('overlay');
+
+        // Open Mobile Menu
+        function openMobileMenu() {
+            offCanvasMenu.classList.remove('translate-x-full');
+            offCanvasMenu.classList.add('translate-x-0');
+            overlay.classList.remove('opacity-0', 'invisible');
+            overlay.classList.add('opacity-100', 'visible');
+            hamburger.classList.add('active');
+            document.body.classList.add('overflow-hidden');
+            hamburger.setAttribute('aria-expanded', 'true');
         }
-    });
 
-    // 2. Handle Mobile Dropdowns (Accordion Style)
-    const mobileDropdownBtns = document.querySelectorAll(
-        ".mobile-dropdown-btn"
-    );
+        // Close Mobile Menu
+        function closeMobileMenu() {
+            offCanvasMenu.classList.add('translate-x-full');
+            offCanvasMenu.classList.remove('translate-x-0');
+            overlay.classList.add('opacity-0', 'invisible');
+            overlay.classList.remove('opacity-100', 'visible');
+            hamburger.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
 
-    mobileDropdownBtns.forEach((btn) => {
-        btn.addEventListener("click", function () {
-            // Toggle chevron rotation
-            const icon = this.querySelector(".chevron-icon");
-            icon.classList.toggle("rotate-180");
+        // Event Listeners
+        hamburger.addEventListener('click', () => {
+            offCanvasMenu.classList.contains('translate-x-full') 
+                ? openMobileMenu() 
+                : closeMobileMenu();
+        });
 
-            // Toggle submenu height
-            const submenu = this.nextElementSibling;
-            submenu.classList.toggle("open");
+        closeBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !offCanvasMenu.classList.contains('translate-x-full')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) closeMobileMenu();
+        });
+
+        // ====== 3. DESKTOP PRODUCTS DROPDOWN ======
+        const productTrigger = document.getElementById('product-trigger');
+        const megaMenu = document.getElementById('mega-menu');
+
+        function toggleMegaMenu() {
+            megaMenu.classList.toggle('active');
+            productTrigger.querySelector('i').classList.toggle('rotate-180');
+        }
+
+        // Desktop hover/click handling
+        productTrigger.addEventListener('mouseenter', () => megaMenu.classList.add('active'));
+        productTrigger.addEventListener('mouseleave', () => megaMenu.classList.remove('active'));
+        megaMenu.addEventListener('mouseenter', () => megaMenu.classList.add('active'));
+        megaMenu.addEventListener('mouseleave', () => megaMenu.classList.remove('active'));
+        productTrigger.addEventListener('click', toggleMegaMenu);
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!productTrigger.contains(e.target) && !megaMenu.contains(e.target)) {
+                megaMenu.classList.remove('active');
+                productTrigger.querySelector('i').classList.remove('rotate-180');
+            }
+        });
+
+        // ====== 4. MOBILE PRODUCTS SUBMENU ======
+        const mobileProductBtn = document.getElementById('mobile-product-btn');
+        const mobileProductMenu = document.getElementById('mobile-product-menu');
+        const mobileChevron = document.getElementById('mobile-chevron');
+
+        mobileProductBtn.addEventListener('click', () => {
+            mobileProductMenu.classList.toggle('active');
+            mobileChevron.classList.toggle('rotate-180');
         });
     });
-
-    // 3. Cleanup on Resize
-    // If user resizes to desktop while mobile menu is open, we need to reset
-    window.addEventListener("resize", () => {
-        if (window.innerWidth >= 768) {
-            mobileMenu.classList.add("hidden");
-            burgerIcon.classList.remove("hidden");
-            closeIcon.classList.add("hidden");
-            body.style.overflow = "";
-        }
-    });
-});
-
-function toggleDropdown() {
-    const dropdown = document.getElementById("productDropdown");
-    const wrapper = document.getElementById("productDropdownWrapper");
-
-    // Toggle the active class on the dropdown
-    dropdown.classList.toggle("active");
-    wrapper.classList.toggle("active"); // For the chevron rotation
-}
-
-// Optional: Close dropdown when clicking outside
-document.addEventListener("click", function (event) {
-    const wrapper = document.getElementById("productDropdownWrapper");
-    const dropdown = document.getElementById("productDropdown");
-
-    if (!wrapper.contains(event.target)) {
-        dropdown.classList.remove("active");
-        wrapper.classList.remove("active");
-    }
-});
-
-function toggleMobileProducts() {
-    const content = document.getElementById("mobileProductContent");
-    const icon = document.getElementById("mobileChevron");
-
-    // Toggle Visibility
-    if (content.classList.contains("hidden")) {
-        content.classList.remove("hidden");
-        // Rotate icon 180 degrees
-        icon.classList.add("rotate-180");
-    } else {
-        content.classList.add("hidden");
-        // Reset icon rotation
-        icon.classList.remove("rotate-180");
-    }
-}
