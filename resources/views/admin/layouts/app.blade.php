@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dashboard | Bandipur Hotel</title>
-    <link rel="icon" type="image/png" href="{{ asset('frontendimages/logo.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('imagess/logo.svg') }}" />
 
 
     <script src="https://cdn.tailwindcss.com"></script>

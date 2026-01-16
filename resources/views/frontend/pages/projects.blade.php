@@ -1,5 +1,6 @@
 @extends('frontend.app')
 @section('content')
+<title>Projects | TechVerse</title>
     @push('style')
         {{-- header --}}
         <style>

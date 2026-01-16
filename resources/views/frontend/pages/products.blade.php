@@ -1,6 +1,7 @@
     @extends('frontend.app')
 
     @section('content')
+    <title>Products | TechVerse</title>
         @push('style')
             {{-- herosection  --}}
             <style>

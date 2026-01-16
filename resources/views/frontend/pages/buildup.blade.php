@@ -1,6 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
+<title>Buildup | TechVerse</title>
     @push('style')
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');

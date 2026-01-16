@@ -1,6 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
+    <title>Home | TechVerse</title>
     @push('style')
         <!-- Custom CSS for Animations -->
         <style>
@@ -68,7 +69,7 @@
             }
         </style>
     @endpush
-    
+
     <!-- Hero Section -->
     <section
         class="relative pt-10 pb-36 lg:pt-40 lg:pb-56 overflow-hidden text-[#d1e2f6] lg:h-[80vh] flex flex-col justify-center">

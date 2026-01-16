@@ -1,5 +1,6 @@
 @extends('frontend.app')
 @section('content')
+<title>Contact | TechVerse</title>
     @push('style')
         <style>
             /* 2. ANIMATION UTILITIES */

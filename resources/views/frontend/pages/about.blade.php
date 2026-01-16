@@ -1,6 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
+<title>About | TechVerse</title>
     @push('style')
         <!-- Custom CSS for Animations -->
         <style>

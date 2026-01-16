@@ -1,6 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
+<title>Services | TechVerse</title>
     @push('style')
         <style>
             .perspective-1000 {
