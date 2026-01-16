@@ -39,7 +39,6 @@
             </div>
 
             <div class="lg:col-span-2">
-
             </div>
 
             <div class="lg:col-span-2">

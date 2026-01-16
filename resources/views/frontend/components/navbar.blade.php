@@ -46,6 +46,10 @@
                     class="font-medium transition hover:text-[#2563eb] {{ request()->routeIs('about') ? 'text-blue-600 font-semibold' : 'text-stone-700' }}">
                     About
                 </a>
+                <a href="{{ route('buildup') }}"
+                    class="font-medium transition hover:text-[#2563eb] {{ request()->routeIs('about') ? 'text-blue-600 font-semibold' : 'text-stone-700' }}">
+                    Build Own
+                </a>
 
                 <a href="{{ route('contact') }}"
                     class="bg-[#2563eb] text-white px-5 py-2.5 rounded-lg font-medium hover:bg-brand-800 transition shadow-lg shadow-brand-500/30">
@@ -110,7 +114,7 @@
                 </div>
 
                 <!-- CTA Section -->
-                <div class="bg-[#d1e2f6] p-6 rounded-xl border border-gray-100 shadow-2xl col-span-full lg:col-auto">
+                <div class="bg-[#e5effa] p-6 rounded-xl border border-gray-100 shadow-2xl col-span-full lg:col-auto">
                     <h3 class="text-gray-900 font-bold mb-2">All Products</h3>
                     <p class="text-sm text-gray-500 mb-4">Check out our latest AI-integrated analytics dashboard and
                         other products.</p>
@@ -165,7 +169,7 @@
             </a>
             <a href="{{ route('products') }}"
                 class="nav-link mobile-link  px-4 py-3 rounded-lg {{ request()->is('products') ? 'rounded-lg bg-white/10' : '' }}">
-            Products</a>
+                Products</a>
 
             <a href="{{ route('about') }}"
                 class="nav-link mobile-link  px-4 py-3 rounded-lg {{ request()->is('about') ? 'rounded-lg bg-white/10' : '' }}">

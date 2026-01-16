@@ -165,7 +165,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Service 1 -->
                 <div
-                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
+                    class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
                     <div
                         class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
                         <i class="fas fa-network-wired text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
@@ -181,7 +181,7 @@
 
                 <!-- Service 2 -->
                 <div
-                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-200 group">
+                    class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-200 group">
                     <div
                         class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
                         <i class="fas fa-video text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
@@ -197,7 +197,7 @@
 
                 <!-- Service 3 -->
                 <div
-                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-300 group">
+                    class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-300 group">
                     <div
                         class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
                         <i class="fas fa-user-shield text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
@@ -212,7 +212,7 @@
 
                 <!-- Service 4 -->
                 <div
-                    class="bg-[#d1e2f6] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
+                    class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
                     <div
                         class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
                         <i class="fas fa-microchip text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>

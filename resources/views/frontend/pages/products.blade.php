@@ -315,7 +315,7 @@
 
             <div class="container mx-auto px-4 relative z-10">
                 <div
-                    class="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch rounded-3xl overflow-hidden shadow-2xl reveal reveal-up bg-white">
+                    class="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch rounded-3xl overflow-hidden shadow-2xl reveal reveal-up bg-[#f1f5f9]">
 
                     <!-- Contact Info Side -->
                     <div
@@ -379,7 +379,7 @@
                     </div>
 
                     <!-- Form Side -->
-                    <div class="lg:w-3/5 p-8 md:p-12 bg-white">
+                    <div class="lg:w-3/5 p-8 md:p-12 bg-[#f1f5f9]">
                         <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
@@ -596,15 +596,15 @@
                 function createProductCard(product, delay) {
                     // Generate specs HTML
                     const specsHtml = product.specs.map(spec => `
-                <div class="flex items-center text-xs text-slate-500 bg-slate-50 px-2 py-1.5 rounded-md border border-slate-100">
+                <div class="flex items-center text-xs text-slate-500 bg-[#d1e2f6] px-2 py-1.5 rounded-md border border-slate-100">
                     <i class="fas ${spec.icon} mr-2 text-blue-500"></i> ${spec.text}
                 </div>
             `).join('');
 
                     return `
-                <div class="product-card-new reveal reveal-up bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-900/5 border border-slate-100 transition-all duration-300 group" style="transition-delay: ${delay}ms">
+                <div class="product-card-new reveal reveal-up bg-[#e5effa] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-900/5 border border-slate-100 transition-all duration-300 group" style="transition-delay: ${delay}ms">
                     <div class="h-full flex flex-col cursor-pointer">
-                        <div class="relative overflow-hidden bg-slate-300 aspect-[4/3] flex items-center justify-center">
+                        <div class="relative overflow-hidden bg-black aspect-[4/3] flex items-center justify-center">
                             <img src="${product.image}" alt="${product.title}" 
                                 class="object-cover object-center w-full h-full opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-transform duration-700 ease-out">
                             <div class="absolute top-4 left-4 ${product.badge.color} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">

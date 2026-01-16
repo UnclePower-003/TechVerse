@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\BuildupController;
 use App\Http\Controllers\Frontend\CardsDetailsController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -27,13 +28,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Frontend routes
-Route::get('/', [HomeController::class,'index'])->name('home');
-Route::get('/services', [ServicesController::class,'index'])->name('services');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/about', [AboutController::class,  'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/products', [ProductsController::class,   'index'])->name('products');
 Route::get('/projects', [ProjectsController::class,  'index'])->name('projects');
+Route::get('/buildup', [BuildupController::class, 'index'])->name('buildup');
 
-// projects 
+// projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
-
