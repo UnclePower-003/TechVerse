@@ -47,7 +47,7 @@
                     About
                 </a>
                 <a href="{{ route('buildup') }}"
-                    class="font-medium transition hover:text-[#2563eb] {{ request()->routeIs('about') ? 'text-blue-600 font-semibold' : 'text-stone-700' }}">
+                    class="font-medium transition hover:text-[#2563eb] {{ request()->routeIs('buildup') ? 'text-blue-600 font-semibold' : 'text-stone-700' }}">
                     Build Own
                 </a>
 
@@ -131,7 +131,7 @@
 
 <!-- Mobile Menu Overlay -->
 <div id="overlay"
-    class="fixed inset-0 bg-black/60 z-30 opacity-0 invisible transition-all duration-300 backdrop-blur-sm"></div>
+    class="fixed inset-0 bg-black/60 z-50 opacity-0 invisible transition-all duration-300 backdrop-blur-lgT"></div>
 
 <!-- Mobile Slide-out Menu -->
 <aside id="offCanvasMenu"
@@ -174,6 +174,10 @@
             <a href="{{ route('about') }}"
                 class="nav-link mobile-link  px-4 py-3 rounded-lg {{ request()->is('about') ? 'rounded-lg bg-white/10' : '' }}">
                 About
+            </a>
+            <a href="{{ route('buildup') }}"
+                class="nav-link mobile-link  px-4 py-3 rounded-lg {{ request()->is('buildup') ? 'rounded-lg bg-white/10' : '' }}">
+                Build Own
             </a>
 
             <a href="{{ route('contact') }}"

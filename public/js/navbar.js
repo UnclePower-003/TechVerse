@@ -8,7 +8,7 @@
         const navbar = document.getElementById('navbar');
         let lastScrollY = window.scrollY;
 
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {   
             const currentScrollY = window.scrollY;
             
             // Add/remove scrolled class for styling

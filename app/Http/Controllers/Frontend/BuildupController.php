@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class BuildupController extends Controller
 {
     public function index(){
-        return view('frontend.pages.build.buildup');
+        return view('frontend.pages.buildup');
     }
 }
