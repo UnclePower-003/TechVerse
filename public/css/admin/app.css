@@ -1,0 +1,76 @@
+/* Custom scrollbar */
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+/* Define custom colors for CDN usage (best practice is to use a build process) */
+.bg-primary {
+background-color: #062144;
+}
+
+.text-primary {
+color: #003262;
+}
+
+.border-primary {
+border-color: #003262;
+}
+
+.bg-secondary {
+background-color: #266eb1;
+}
+
+.text-secondary {
+color: #38CE3C;
+}
+
+.border-secondary {
+border-color: #38CE3C;
+}
+
+.bg-dark {
+background-color: #0f172a;
+}
+
+.text-dark {
+color: #0f172a;
+}
+
+/* scrollbar for the sidebar */
+/* Add this to your main CSS file or where you include custom styles */
+.styled-scrollbar::-webkit-scrollbar {
+width: 6px; /* Width of the vertical scrollbar */
+}
+
+.styled-scrollbar::-webkit-scrollbar-track {
+background: #374151; /* Dark track color (e.g., bg-gray-700) */
+border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb {
+background: green; /* Thumb color (your hover/active color) */
+border-radius: 10px;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+background: green; /* Slightly darker thumb on hover */
+}
+
+/* Optional: For Firefox compatibility */
+.styled-scrollbar {
+scrollbar-width: thin;
+scrollbar-color: green #374151;
+}

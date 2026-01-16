@@ -11,30 +11,72 @@ use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('welcom', function () {
-    return view('welcome');
-});
+// Route::get('welcom', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Frontend routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
-Route::get('/about', [AboutController::class,  'index'])->name('about');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/products', [ProductsController::class,   'index'])->name('products');
-Route::get('/projects', [ProjectsController::class,  'index'])->name('projects');
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 Route::get('/buildup', [BuildupController::class, 'index'])->name('buildup');
 
 // projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
+
+use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\DashboardController;
+
+Route::middleware(['auth'])->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard (Admin + Super Admin)
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['admin_role'])->group(function () {
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Profile (Admin + Super Admin)
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['admin_role'])->group(function () {
+        Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Super Admin Only — Manage Admins/Super Admins
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['super_admin'])->group(function () {
+        Route::resource('/admin/dashboard/users', AdminUsersController::class);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin + Super Admin — Shared Dashboard Resources
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['admin_role'])->group(function () {
+        Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+});
