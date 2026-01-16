@@ -131,7 +131,7 @@
 
 <!-- Mobile Menu Overlay -->
 <div id="overlay"
-    class="fixed inset-0 bg-black/60 z-50 opacity-0 invisible transition-all duration-300 backdrop-blur-lgT"></div>
+    class="fixed inset-0 bg-black/60 z-50 opacity-0 invisible transition-all duration-300 backdrop-blur-lg"></div>
 
 <!-- Mobile Slide-out Menu -->
 <aside id="offCanvasMenu"
