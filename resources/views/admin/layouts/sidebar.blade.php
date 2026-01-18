@@ -105,7 +105,7 @@
                         @endforeach
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
 
             {{-- <a href="{{ route('social-links.index') }}" @click="sidebarOpen = false"
                 class="flex items-center px-4 py-3 hover:bg-[#9a9a1e] hover:text-black hover:rounded-lg

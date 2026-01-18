@@ -102,39 +102,41 @@
 
         <!-- Content Container -->
         <div class="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-20 text-left reveal active flex flex-col lg:flex-row">
+            @if ($heroHeader)
 
-            <div class="flex flex-col lg:items-start items-center justify-center text-center lg:text-left">
+                <div class="flex flex-col lg:items-start items-center justify-center text-center lg:text-left">
 
-                <div
-                    class="reveal-on-scroll delay-100 inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-[#d1e2f6] uppercase bg-[#1e293b] rounded-full border border-[#2563eb]">
-                    Live Readiness • 24/7
+                    <div
+                        class="reveal-on-scroll delay-100 inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-[#d1e2f6] uppercase bg-[#1e293b] rounded-full border border-[#2563eb]">
+                        Live Readiness • 24/7
+                    </div>
+
+                    <h1
+                        class="reveal-on-scroll text-center lg:text-left text-black delay-200 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                        <span class='md:text-white lg:text-black max-sm:text-black'> YOUR </span> TECH PARTNER<br>
+                        <span class='md:text-white lg:text-black sm:text-black'>FOR</span>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]">Success</span>
+                    </h1>
+
+                    <p
+                        class="reveal-on-scroll delay-300 mt-4 text-sm md:text-xl lg:text-stone-800 text-slate-300 font-semibold max-w-xl leading-relaxed">
+                        Cisco and Alcatel-Lucent networking, Hikvision surveillance, and resilient IT that keeps you
+                        online—delivered with clear SLAs and 24/7 response.
+                    </p>
+
+                    <div
+                        class="reveal-on-scroll delay-500 mt-10 flex flex-col sm:flex-row justify-center items-center lg:items-start lg:justify-start gap-4 w-full">
+                        <a href="contact"
+                            class="px-8 py-2 text-lg font-bold text-[#d1e2f6] bg-[#2563eb] rounded-lg hover:bg-[#3b82f6] transition shadow-lg shadow-[#2563eb]/40 text-center">
+                            Get a quote
+                        </a>
+                        <a href="{{ route('contact') }}"
+                            class="px-8 py-2 text-lg font-bold text-stone-600 border max-lg:bg-white lg:border-gray-500 rounded-lg hover:border-transparent lg:hover:bg-[#d1e2f6] hover:text-[#0f172a] transition text-center">
+                            Talk to us
+                        </a>
+                    </div>
                 </div>
-
-                <h1
-                    class="reveal-on-scroll text-center lg:text-left text-black delay-200 text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
-                    <span class='md:text-white lg:text-black max-sm:text-black'> YOUR </span> TECH PARTNER<br>
-                    <span class='md:text-white lg:text-black sm:text-black'>FOR</span>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]">Success</span>
-                </h1>
-
-                <p
-                    class="reveal-on-scroll delay-300 mt-4 text-sm md:text-xl lg:text-stone-800 text-slate-300 font-semibold max-w-xl leading-relaxed">
-                    Cisco and Alcatel-Lucent networking, Hikvision surveillance, and resilient IT that keeps you
-                    online—delivered with clear SLAs and 24/7 response.
-                </p>
-
-                <div
-                    class="reveal-on-scroll delay-500 mt-10 flex flex-col sm:flex-row justify-center items-center lg:items-start lg:justify-start gap-4 w-full">
-                    <a href="contact"
-                        class="px-8 py-2 text-lg font-bold text-[#d1e2f6] bg-[#2563eb] rounded-lg hover:bg-[#3b82f6] transition shadow-lg shadow-[#2563eb]/40 text-center">
-                        Get a quote
-                    </a>
-                    <a href="{{ route('contact') }}"
-                        class="px-8 py-2 text-lg font-bold text-stone-600 border max-lg:bg-white lg:border-gray-500 rounded-lg hover:border-transparent lg:hover:bg-[#d1e2f6] hover:text-[#0f172a] transition text-center">
-                        Talk to us
-                    </a>
-                </div>
-            </div>
 
         </div>
     </section>

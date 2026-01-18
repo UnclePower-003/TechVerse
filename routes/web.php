@@ -80,5 +80,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::resource('/admin/dashboard/home-hero', \App\Http\Controllers\Admin\HomeHeroController::class);
+        Route::resource('/admin/dashboard/hero-header', \App\Http\Controllers\Admin\HeroHeaderController::class);
     });
 });
