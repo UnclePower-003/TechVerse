@@ -82,5 +82,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/home-hero', \App\Http\Controllers\Admin\HomeHeroController::class);
         Route::resource('/admin/dashboard/hero-header', \App\Http\Controllers\Admin\HeroHeaderController::class);
         Route::resource('/admin/dashboard/home-stat', \App\Http\Controllers\Admin\HomeStatController::class)->only(['index', 'edit', 'update']);
+
+        Route::resource('/admin/dashboard/services-hero', \App\Http\Controllers\Admin\ServicesHeroController::class);
     });
 });

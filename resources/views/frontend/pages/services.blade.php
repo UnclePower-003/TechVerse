@@ -1,7 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
-<title>Services | TechVerse</title>
+    <title>Services | TechVerse</title>
     @push('style')
         <style>
             .perspective-1000 {
@@ -103,14 +103,25 @@
 
         <div class="absolute inset-0">
 
-            <img src="{{ asset('imagess/heroimages/serviceM.png') }}" alt="Network Background"
+            {{-- <img src="{{ asset('imagess/heroimages/serviceM.png') }}" alt="Network Background"
                 class="w-full h-full object-cover md:hidden">
 
             <img src="{{ asset('imagess/heroimages/serviceT.png') }}" alt="Network Background"
                 class="w-full h-full object-cover lg:hidden">
 
             <img src="{{ asset('imagess/heroimages/service.png') }}" alt="Network Background"
-                class="w-full h-full object-cover object-center hidden lg:block">
+                class="w-full h-full object-cover object-center hidden lg:block"> --}}
+
+            @if ($hero)
+                <img src="{{ asset('storage/' . $hero->mobile_image) }}" alt="Network Background"
+                    class="w-full h-full object-cover md:hidden">
+
+                <img src="{{ asset('storage/' . $hero->tablet_image) }}" alt="Network Background"
+                    class="w-full h-full object-cover lg:hidden">
+
+                <img src="{{ asset('storage/' . $hero->desktop_image) }}" alt="Network Background"
+                    class="w-full h-full object-cover object-center hidden lg:block">
+            @endif
         </div>
 
         <!-- Gradient Overlay -->
@@ -138,7 +149,8 @@
                 class="reveal-on-scroll delay-100 text-4xl md:text-6xl font-extrabold text-slate-600 tracking-tight leading-tight mb-6 drop-shadow-lg">
                 Resilient Systems.<br>
                 <!-- Gradient Text -->
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-[var(--royal)] opacity-90">Clear
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-[var(--royal)] opacity-90">Clear
                     SLAs.</span>
             </h1>
 

@@ -64,6 +64,18 @@
                             ],
                         ],
                     ],
+                    [
+                        'title' => 'Services',
+                        'icon' => 'fa-solid fa-house-chimney', // Home specific
+                        'routes' => ['services-hero.*',],
+                        'links' => [
+                            [
+                                'route' => 'services-hero.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Section',
+                            ],
+                        ],
+                    ],
                 ];
             @endphp
 
