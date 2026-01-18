@@ -557,7 +557,7 @@
                         product inquiry. Our engineers are ready to assist.</p>
 
                     <div class="space-y-6">
-                        <div class="flex items-center">
+                        {{-- <div class="flex items-center">
                             <div
                                 class="w-12 h-12 bg-[#d1e2f6] rounded-full flex items-center justify-center text-[#2563eb] mr-4">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -596,7 +596,19 @@
                                 <h4 class="font-bold text-gray-900">Hours</h4>
                                 <p class="text-gray-600">Sun–Fri 9am-6pm</p>
                             </div>
-                        </div>
+                        </div> --}}
+                        @foreach ($info->items as $item)
+                            <div class="flex items-start text-lg">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-[var(--sky)]/30 text-[var(--royal)] flex items-center justify-center flex-shrink-0">
+                                    <i class="{{ $item['icon'] }}"></i>
+                                </div>
+                                <div class="ml-5">
+                                    <h3 class="font-bold text-lg">{{ $item['title'] }}</h3>
+                                    <p class="text-gray-500">{{ $item['description'] ?? '' }}</p>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 

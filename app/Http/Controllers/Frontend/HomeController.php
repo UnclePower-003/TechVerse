@@ -8,6 +8,7 @@ use App\Models\HeroHeader;
 use App\Models\HomeStat;
 use App\Models\ServiceList;
 use App\Models\HomePartner;
+use App\Models\ContactInfo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,8 @@ class HomeController extends Controller
 
         $partners = HomePartner::where('is_active', true)->get();
 
-        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services', 'partners'));
+        $info = ContactInfo::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services', 'partners', 'info'));
     }
 }
