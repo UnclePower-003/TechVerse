@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactHero;
 use App\Models\ContactHeader;
 use App\Models\ContactInfo;
+use App\Models\ContactSupportPromise;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -18,6 +19,8 @@ class ContactController extends Controller
 
         $info = ContactInfo::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.contact', compact('hero', 'header', 'info'));
+        $promise = ContactSupportPromise::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.contact', compact('hero', 'header', 'info', 'promise'));
     }
 }

@@ -202,12 +202,21 @@
                         <div class="relative z-10">
                             <h3 class="text-[var(--sky)] font-bold text-lg mb-4">Support Promise</h3>
                             <ul class="space-y-3">
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[var(--royal)]"></i>
+                                {{-- <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[var(--royal)]"></i>
                                     24/7 Support</li>
                                 <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[var(--royal)]"></i>
                                     Certified Engineers</li>
                                 <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[var(--royal)]"></i>
-                                    Rapid On-site</li>
+                                    Rapid On-site</li> --}}
+                                @if ($promise)
+                                    <ul>
+                                        @foreach ($promise->promises as $item)
+                                            <li class="flex items-center gap-3">
+                                                <i class="fa-solid fa-check text-[var(--royal)]"></i> {{ $item }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </ul>
                         </div>
                     </div>
