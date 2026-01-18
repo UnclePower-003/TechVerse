@@ -45,12 +45,17 @@
                     [
                         'title' => 'Home',
                         'icon' => 'fa-solid fa-house-chimney', // Home specific
-                        'routes' => ['home-hero.*'],
+                        'routes' => ['home-hero.*', 'hero-header.*'],
                         'links' => [
                             [
                                 'route' => 'home-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'hero-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Header',
                             ],
                         ],
                     ],
