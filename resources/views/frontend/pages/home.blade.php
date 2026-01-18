@@ -77,14 +77,23 @@
         <!-- Abstract Background -->
         <div class="absolute inset-0">
 
-            <img src="{{ asset('imagess/heroimages/mobile.png') }}" alt="Network Background"
+            {{-- <img src="{{ asset('imagess/heroimages/mobile.png') }}" alt="Network Background"
                 class="w-full h-full object-cover md:hidden">
 
             <img src="{{ asset('imagess/heroimages/tablet.png') }}" alt="Network Background"
                 class="w-full h-full object-cover lg:hidden">
 
             <img src="{{ asset('imagess/heroimages/image.png') }}" alt="Network Background"
-                class="w-full h-full object-cover hidden lg:block">
+                class="w-full h-full object-cover hidden lg:block"> --}}
+
+            @if ($hero)
+                <img src="{{ asset('storage/' . $hero->mobile_image) }}" class="w-full h-full object-cover md:hidden">
+
+                <img src="{{ asset('storage/' . $hero->tablet_image) }}" class="w-full h-full object-cover lg:hidden">
+
+                <img src="{{ asset('storage/' . $hero->desktop_image) }}" class="w-full h-full object-cover hidden lg:block">
+            @endif
+
         </div>
 
         <!-- Gradient Overlay -->

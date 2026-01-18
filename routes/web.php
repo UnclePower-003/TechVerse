@@ -78,5 +78,7 @@ Route::middleware(['auth'])->group(function () {
     */
     Route::middleware(['admin_role'])->group(function () {
         Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::resource('/admin/dashboard/home-hero', \App\Http\Controllers\Admin\HomeHeroController::class);
     });
 });
