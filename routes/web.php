@@ -93,5 +93,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/contact-support-promise', \App\Http\Controllers\Admin\ContactSupportPromiseController::class);
         Route::resource('/admin/dashboard/contact-choose', \App\Http\Controllers\Admin\ContactChooseController::class);
         Route::resource('/admin/dashboard/service-pick', \App\Http\Controllers\Admin\ServicePickController::class);
+        Route::resource('/admin/dashboard/social-links', \App\Http\Controllers\Admin\SocialLinkController::class);
     });
 });

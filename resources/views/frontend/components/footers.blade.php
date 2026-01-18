@@ -23,7 +23,7 @@
                     on speed, reliability, and user-centric design.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#"
+                    {{-- <a href="#"
                         class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all duration-300">
                         <i class="fab fa-facebook-f text-sm"></i>
                     </a>
@@ -34,7 +34,18 @@
                     <a href="#"
                         class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-pink-600 hover:border-pink-600 transition-all duration-300">
                         <i class="fab fa-instagram text-sm"></i>
-                    </a>
+                    </a> --}}
+
+                    @foreach ($socialLinks as $link)
+                        <a href="{{ $link->url }}" target="_blank"
+                            class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800
+                            flex items-center justify-center
+                            hover:bg-{{ $link->hover_color }}
+                            hover:border-{{ $link->hover_color }}
+                            transition-all duration-300">
+                            <i class="fab {{ $link->icon }} text-sm"></i>
+                        </a>
+                    @endforeach
                 </div>
             </div>
 

@@ -99,7 +99,13 @@
                     [
                         'title' => 'Contact',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['contact-hero.*', 'contact-header.*', 'contact-info.*', 'contact-support-promise.*', 'contact-choose.*'],
+                        'routes' => [
+                            'contact-hero.*',
+                            'contact-header.*',
+                            'contact-info.*',
+                            'contact-support-promise.*',
+                            'contact-choose.*',
+                        ],
                         'links' => [
                             [
                                 'route' => 'contact-hero.index',
@@ -124,7 +130,7 @@
                             [
                                 'route' => 'contact-choose.index',
                                 'icon' => 'fa-solid fa-images',
-                                'text' => 'Choose Cards',
+                                'text' => 'Why Choose Us',
                             ],
                         ],
                     ],
@@ -149,8 +155,8 @@
                         @click="activeDropdown === '{{ $dropdown['title'] }}'
                     ? activeDropdown = null
                     : activeDropdown = '{{ $dropdown['title'] }}'"
-                        class="flex items-center justify-between w-full px-4 py-3 hover:bg-[#9a9a1e] hover:text-black hover:rounded-lg transition
-                    {{ $isActive ? 'bg-[#9a9a1e] text-black font-semibold rounded-lg' : '' }}">
+                        class="flex items-center justify-between w-full px-4 py-3 hover:bg-[#266eb1] hover:text-black hover:rounded-lg transition
+                    {{ $isActive ? 'bg-[#266eb1] text-black font-semibold rounded-lg' : '' }}">
 
                         <span class="flex items-center space-x-2">
                             <i class="{{ $dropdown['icon'] }} w-6"></i>
@@ -169,9 +175,9 @@
 
                         @foreach ($dropdown['links'] as $link)
                             <a href="{{ route($link['route']) }}" @click="sidebarOpen = false"
-                                class="flex items-center px-4 py-2 rounded-lg hover:bg-[#9a9a1e] hover:text-black
+                                class="flex items-center px-4 py-2 rounded-lg hover:bg-[#266eb1] hover:text-black
                                                         {{ request()->routeIs(explode('.', $link['route'])[0] . '.*')
-                                                            ? 'bg-[#9a9a1e]  text-black font-semibold'
+                                                            ? 'bg-[#266eb1]  text-black font-semibold'
                                                             : 'text-white' }}">
                                 <i class="{{ $link['icon'] }} w-6"></i>
                                 <span class="font-medium">{{ $link['text'] }}</span>
@@ -181,12 +187,12 @@
                 </div>
             @endforeach
 
-            {{-- <a href="{{ route('social-links.index') }}" @click="sidebarOpen = false"
-                class="flex items-center px-4 py-3 hover:bg-[#9a9a1e] hover:text-black hover:rounded-lg
-                    {{ request()->routeIs('social-links.*') ? 'bg-secondary text-black font-semibold rounded-lg' : '' }}">
+            <a href="{{ route('social-links.index') }}" @click="sidebarOpen = false"
+                class="flex items-center px-4 py-3 hover:bg-[#266eb1] hover:text-black hover:rounded-lg
+                    {{ request()->routeIs('social-links.*') ? 'bg-[#266eb1] text-black font-semibold rounded-lg' : '' }}">
                 <i class="fa-solid fa-users w-6"></i>
                 <span class="font-medium">Social Links (Footer)</span>
-            </a> --}}
+            </a>
         </nav>
 
         <!-- Logout -->
