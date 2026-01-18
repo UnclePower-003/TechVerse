@@ -67,7 +67,7 @@
                     [
                         'title' => 'Services',
                         'icon' => 'fa-solid fa-house-chimney', 
-                        'routes' => ['services-hero.*', 'service-header.*'],
+                        'routes' => ['services-hero.*', 'service-header.*', 'service-list.*'],
                         'links' => [
                             [
                                 'route' => 'services-hero.index',
@@ -78,6 +78,11 @@
                                 'route' => 'service-header.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Service Header',
+                            ],
+                            [
+                                'route' => 'service-list.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Service List',
                             ],
                         ],
                     ],

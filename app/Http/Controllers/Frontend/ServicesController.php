@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ServicesHero;
 use App\Models\ServiceHeader;
+use App\Models\ServiceList;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
@@ -15,6 +16,8 @@ class ServicesController extends Controller
 
         $header = ServiceHeader::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.services', compact('hero', 'header'));
+        $services = ServiceList::where('is_active', true)->orderBy('id')->get();
+
+        return view('frontend.pages.services', compact('hero', 'header', 'services'));
     }
 }

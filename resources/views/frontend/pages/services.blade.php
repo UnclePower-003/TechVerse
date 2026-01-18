@@ -241,7 +241,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 perspective-1000">
 
                 <!-- Service 1: Networking -->
-                <div
+                {{-- <div
                     class=" reveal-on-scroll delay-100 group bg-white border border-slate-200 rounded-2xl p-8 shadow-xl shadow-black/20 hover:shadow-2xl hover:shadow-blue-900/50 cursor-pointer transition-all duration-500 relative overflow-hidden transform-style-3d">
                     <div
                         class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left">
@@ -253,8 +253,7 @@
                             class="w-14 h-14 bg-[#eff6ff] text-blue-700 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
                             <i class="fa-solid fa-network-wired"></i>
                         </div>
-                        <i
-                            class="fa-solid fa-arrow-right text-slate-300 group-hover:text-blue-700 transition-colors transform group-hover:translate-x-1"></i>
+
                     </div>
 
                     <h3 class="text-2xl font-bold text-blue-900 mb-2">Networking</h3>
@@ -368,7 +367,34 @@
                         <span
                             class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded border border-slate-200">On-site</span>
                     </div>
-                </div>
+                </div> --}}
+
+                @foreach ($services as $service)
+                    <div
+                        class="reveal-on-scroll delay-{{ $service->animation_delay }} group bg-white border border-slate-200 rounded-2xl p-8 shadow-xl shadow-black/20 hover:shadow-2xl hover:shadow-blue-900/50 cursor-pointer transition-all duration-500 relative overflow-hidden transform-style-3d">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left">
+                        </div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-14 h-14 bg-[#eff6ff] text-blue-700 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                                <i class="{{ $service->icon }}"></i>
+                            </div>
+                            <i
+                                class="fa-solid fa-arrow-right text-slate-300 group-hover:text-blue-700 transition-colors transform group-hover:translate-x-1"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900 mb-2">{{ $service->title }}</h3>
+                        <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-4">{{ $service->subtitle }}
+                        </p>
+                        <p class="text-slate-600 mb-6 leading-relaxed">{{ $service->description }}</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($service->tags as $tag)
+                                <span
+                                    class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded border border-slate-200">{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
 
             </div>
         </div>

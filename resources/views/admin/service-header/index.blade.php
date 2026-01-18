@@ -13,11 +13,11 @@
                     sections.</p>
             </div>
 
-            <a href="{{ route('service-header.create') }}"
+            {{-- <a href="{{ route('service-header.create') }}"
                 class="flex items-center space-x-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold transition-all hover:bg-[#266eb1] shadow-lg shadow-indigo-100 focus:ring-2 focus:ring-primary focus:ring-opacity-50">
                 <i class="fas fa-plus text-xs"></i>
                 <span>Add Service Header</span>
-            </a>
+            </a> --}}
         </div>
 
         {{-- Success Message --}}
@@ -96,7 +96,7 @@
                                         </a>
 
                                         {{-- Delete --}}
-                                        <form action="{{ route('service-header.destroy', $header) }}" method="POST"
+                                        {{-- <form action="{{ route('service-header.destroy', $header) }}" method="POST"
                                             onsubmit="return confirm('Are you sure you want to delete this header?');"
                                             class="inline-block">
                                             @csrf
@@ -106,7 +106,7 @@
                                                 title="Delete Header">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
