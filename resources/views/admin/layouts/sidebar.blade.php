@@ -94,12 +94,17 @@
                     [
                         'title' => 'Contact',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['contact-hero.*',],
+                        'routes' => ['contact-hero.*', 'contact-header.*'],
                         'links' => [
                             [
                                 'route' => 'contact-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'contact-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Contact Header',
                             ],
                         ],
                     ],

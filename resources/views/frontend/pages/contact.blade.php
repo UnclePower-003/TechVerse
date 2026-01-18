@@ -47,11 +47,18 @@
 
         <div class="container mx-auto   ">
             <div class=" lg:text-left lg:px-20  text-center relative z-10 reveal">
-                <h1 class="text-4xl md:text-5xl font-bold text-slate-700 mb-4 ">Contact Us</h1>
+                {{-- <h1 class="text-4xl md:text-5xl font-bold text-slate-700 mb-4 ">Contact Us</h1>
                 <p class="text-[var(--sky)] lg:text-slate-600 font-bold text-lg md:text-xl max-w-2xl">
                     Tell us about your needs—networking, CCTV, IT consultation, or product inquiry. We respond within one
                     business day.
-                </p>
+                </p> --}}
+
+                @if ($header)
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-700 mb-4">{{ $header->title }}</h1>
+                    <p class="text-[var(--sky)] lg:text-slate-600 font-bold text-lg md:text-xl max-w-2xl">
+                        {!! $header->description !!}
+                    </p>
+                @endif
             </div>
         </div>
     </header>
