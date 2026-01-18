@@ -217,7 +217,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Service 1 -->
-                <div
+                {{-- <div
                     class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-100 group">
                     <div
                         class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
@@ -276,7 +276,26 @@
                         <span class="px-2 py-1 bg-green-100 text-xs font-semibold rounded text-green-700">Same-day</span>
                         <span class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">On-site</span>
                     </div>
-                </div>
+                </div> --}}
+
+                @foreach ($services as $service)
+                    <div
+                        class="bg-[#e5effa] p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-stone-300 reveal delay-{{ $service->animation_delay ?? 100 }} group">
+                        <div
+                            class="w-14 h-14 bg-[#d1e2f6] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#2563eb] transition">
+                            <i
+                                class="{{ $service->icon }} text-2xl text-[#2563eb] group-hover:text-[#d1e2f6] transition"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0f172a] mb-3">{{ $service->title }}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">{{ $service->description }}</p>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($service->tags as $tag)
+                                <span
+                                    class="px-2 py-1 bg-[#d1e2f6] text-xs font-semibold rounded text-gray-600">{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
