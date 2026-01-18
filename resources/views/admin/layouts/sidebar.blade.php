@@ -45,7 +45,7 @@
                     [
                         'title' => 'Home',
                         'icon' => 'fa-solid fa-house-chimney', // Home specific
-                        'routes' => ['home-hero.*', 'hero-header.*'],
+                        'routes' => ['home-hero.*', 'hero-header.*', 'home-stat.*'],
                         'links' => [
                             [
                                 'route' => 'home-hero.index',
@@ -56,6 +56,11 @@
                                 'route' => 'hero-header.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Header',
+                            ],
+                            [
+                                'route' => 'home-stat.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Home Stats',
                             ],
                         ],
                     ],

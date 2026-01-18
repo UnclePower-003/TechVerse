@@ -165,7 +165,7 @@
     <section class="relative -mt-20 z-10 px-4">
         <div
             class="max-w-6xl mx-auto bg-[#d1e2f6] rounded-2xl shadow-xl lg:p-5 p-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-b-4 border-[#2563eb] reveal">
-            <div class="space-y-2">
+            {{-- <div class="space-y-2">
                 <div class="text-4xl font-bold text-[#0f172a]">10+ Years</div>
                 <div class="text-gray-500 text-sm uppercase tracking-wide">Experience</div>
                 <p class="text-gray-600 text-sm">Rapid on-site teams & Quality guarantee</p>
@@ -179,7 +179,29 @@
                 <div class="text-4xl font-bold text-[#0f172a]">50+</div>
                 <div class="text-gray-500 text-sm uppercase tracking-wide">Major Deployments</div>
                 <p class="text-gray-600 text-sm">24/7 Support window with clear SLAs</p>
-            </div>
+            </div> --}}
+            @foreach ($stats as $stat)
+                @if ($stat->position == 1)
+                    <div class="space-y-2">
+                        <div class="text-4xl font-bold text-[#0f172a]">{{ $stat->quantity }}</div>
+                        <div class="text-gray-500 text-sm uppercase tracking-wide">{{ $stat->title }}</div>
+                        <p class="text-gray-600 text-sm">{{ $stat->description }}</p>
+                    </div>
+                @elseif($stat->position == 2)
+                    <div class="space-y-2 border-t md:border-t-0 md:border-l md:border-r border-stone-300 pt-4 md:pt-0">
+                        <div class="text-4xl font-bold text-[#2563eb]">{{ $stat->quantity }}</div>
+                        <div class="text-gray-500 text-sm uppercase tracking-wide">{{ $stat->title }}</div>
+                        <p class="text-gray-600 text-sm">{{ $stat->description }}</p>
+                    </div>
+                @elseif($stat->position == 3)
+                    <div class="space-y-2 border-t md:border-t-0 pt-4 md:pt-0">
+                        <div class="text-4xl font-bold text-[#0f172a]">{{ $stat->quantity }}</div>
+                        <div class="text-gray-500 text-sm uppercase tracking-wide">{{ $stat->title }}</div>
+                        <p class="text-gray-600 text-sm">{{ $stat->description }}</p>
+                    </div>
+                @endif
+            @endforeach
+
         </div>
     </section>
 

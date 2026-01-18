@@ -11,18 +11,17 @@
 
 
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
     
-    {{-- <link rel="stylesheet" href="{{ asset('css/admin/app.css') }}"> --}}
-
-    
+    <link rel="stylesheet" href="{{ asset('css/admin/app.css') }}">
 
     {{-- <script src="{{ asset('css/admin/admin.js') }}" defer></script> --}}
 
-    @vite(['public/css/admin/app.css', 'public/css/admin/app.js'])
+    {{-- @vite(['public/css/admin/app.css', 'public/css/admin/app.js']) --}}
 
 
 </head>

@@ -122,8 +122,7 @@
                                         <i class="fas fa-images text-5xl text-gray-200 mb-4"></i>
                                         <p class="text-gray-500 font-medium">No hero banners found.</p>
                                         <a href="{{ route('home-hero.create') }}"
-                                            class="mt-2 text-primary hover:underline text-sm font-semibold">Upload your
-                                            first slider</a>
+                                            class="mt-2 text-primary hover:underline text-sm font-semibold">Upload your first slider</a>
                                     </div>
                                 </td>
                             </tr>
