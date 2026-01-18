@@ -86,5 +86,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/services-hero', \App\Http\Controllers\Admin\ServicesHeroController::class);
         Route::resource('/admin/dashboard/service-header', \App\Http\Controllers\Admin\ServiceHeaderController::class);
         Route::resource('/admin/dashboard/service-list', \App\Http\Controllers\Admin\ServiceListController::class);
+        Route::resource('/admin/dashboard/home-partners', \App\Http\Controllers\Admin\HomePartnerController::class);
     });
 });

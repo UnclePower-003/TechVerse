@@ -45,7 +45,7 @@
                     [
                         'title' => 'Home',
                         'icon' => 'fa-solid fa-house-chimney', // Home specific
-                        'routes' => ['home-hero.*', 'hero-header.*', 'home-stat.*'],
+                        'routes' => ['home-hero.*', 'hero-header.*', 'home-stat.*', 'home-partners.*'],
                         'links' => [
                             [
                                 'route' => 'home-hero.index',
@@ -62,11 +62,16 @@
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Home Stats',
                             ],
+                            [
+                                'route' => 'home-partners.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Partners',
+                            ],
                         ],
                     ],
                     [
                         'title' => 'Services',
-                        'icon' => 'fa-solid fa-house-chimney', 
+                        'icon' => 'fa-solid fa-house-chimney',
                         'routes' => ['services-hero.*', 'service-header.*', 'service-list.*'],
                         'links' => [
                             [

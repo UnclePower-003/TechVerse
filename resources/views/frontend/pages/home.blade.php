@@ -512,7 +512,7 @@
             <div
                 class="flex flex-wrap justify-center items-center gap-8 md:gap-16 reveal delay-100 grayscale hover:grayscale-0 transition-all duration-500">
                 <!-- Using text representations as placeholders for logos -->
-                <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-handshake"></i>
+                {{-- <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-handshake"></i>
                     Beyond
                     Tech Nepal</div>
                 <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-truck-loading"></i>
@@ -520,7 +520,13 @@
                 <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-eye"></i> Hikvision
                 </div>
                 <div class="font-bold text-xl text-gray-700 flex items-center gap-2"><i class="fas fa-server"></i> Cisco &
-                    Alcatel-Lucent</div>
+                    Alcatel-Lucent</div> --}}
+
+                @foreach ($partners as $partner)
+                    <div class="font-bold text-xl text-gray-700 flex items-center gap-2">
+                        <i class="{{ $partner->icon }}"></i> {{ $partner->name }}
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

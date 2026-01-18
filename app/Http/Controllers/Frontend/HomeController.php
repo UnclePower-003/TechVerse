@@ -7,6 +7,7 @@ use App\Models\HomeHero;
 use App\Models\HeroHeader;
 use App\Models\HomeStat;
 use App\Models\ServiceList;
+use App\Models\HomePartner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,6 +22,8 @@ class HomeController extends Controller
 
         $services = ServiceList::where('is_active', true)->orderBy('id')->get();
 
-        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services'));
+        $partners = HomePartner::where('is_active', true)->get();
+
+        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services', 'partners'));
     }
 }
