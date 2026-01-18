@@ -1,0 +1,135 @@
+@extends('admin.layouts.app')
+
+@section('content')
+    <div class="p-6 max-w-7xl mx-auto">
+
+        {{-- Header Section --}}
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">
+                    <i class="fas fa-id-card mr-2 text-primary"></i> Contact Hero Banners
+                </h1>
+                <p class="text-sm text-gray-500 mt-1">Manage the specific hero images displayed on the Contact Us page.</p>
+            </div>
+
+            {{-- Add Button --}}
+            {{-- <a href="{{ route('contact-hero.create') }}"
+                class="flex items-center space-x-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold transition-all hover:bg-blue-600 shadow-lg shadow-blue-100 focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                <i class="fas fa-plus text-xs"></i>
+                <span>Add Contact Hero</span>
+            </a> --}}
+        </div>
+
+        {{-- Success Message --}}
+        @if (session('success'))
+            <div
+                class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6 flex items-center shadow-sm">
+                <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                <span class="text-sm font-medium">{{ session('success') }}</span>
+            </div>
+        @endif
+
+        {{-- Table Section --}}
+        <div class="overflow-hidden shadow-xl rounded-2xl border border-gray-200 bg-white">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    {{-- Table Header --}}
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest w-16">SN</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Mobile View</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Tablet View</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Desktop View</th>
+                            <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-widest w-32">Status</th>
+                            <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-widest w-40">Actions</th>
+                        </tr>
+                    </thead>
+
+                    {{-- Table Body --}}
+                    <tbody class="divide-y divide-gray-100">
+                        @forelse($heroes as $hero)
+                            <tr class="hover:bg-gray-50/50 transition-colors">
+                                {{-- SN --}}
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-400">
+                                    {{ $loop->iteration }}
+                                </td>
+
+                                {{-- Mobile Image --}}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                        <img src="{{ asset('storage/' . $hero->image_mobile) }}"
+                                            class="h-16 w-12 object-cover rounded-md" alt="Mobile Hero">
+                                    </div>
+                                </td>
+
+                                {{-- Tablet Image --}}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                        <img src="{{ asset('storage/' . $hero->image_tablet) }}"
+                                            class="h-16 w-24 object-cover rounded-md" alt="Tablet Hero">
+                                    </div>
+                                </td>
+
+                                {{-- Desktop Image --}}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                        <img src="{{ asset('storage/' . $hero->image_desktop) }}"
+                                            class="h-16 w-32 object-cover rounded-md" alt="Desktop Hero">
+                                    </div>
+                                </td>
+
+                                {{-- Status Badge --}}
+                                <td class="px-6 py-4 text-center whitespace-nowrap">
+                                    @if ($hero->is_active)
+                                        <span
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-blue-100 text-primary border border-blue-200 uppercase tracking-tighter">
+                                            Active
+                                        </span>
+                                    @else
+                                        <span
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-100 text-gray-400 border border-gray-200 uppercase tracking-tighter">
+                                            Inactive
+                                        </span>
+                                    @endif
+                                </td>
+
+                                {{-- Actions --}}
+                                <td class="px-6 py-4 text-center whitespace-nowrap">
+                                    <div class="flex justify-center items-center space-x-3">
+                                        {{-- Edit --}}
+                                        <a href="{{ route('contact-hero.edit', $hero) }}"
+                                            class="p-2 text-primary hover:bg-blue-50 rounded-lg transition-all"
+                                            title="Edit Hero">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
+                                        {{-- Delete --}}
+                                        {{-- <form action="{{ route('contact-hero.destroy', $hero) }}" method="POST"
+                                            onsubmit="return confirm('Delete this hero configuration?');"
+                                            class="inline-block">
+                                            @csrf @method('DELETE')
+                                            <button type="submit"
+                                                class="p-2 text-red-400 hover:bg-red-50 hover:text-red-600 rounded-lg transition-all"
+                                                title="Delete Hero">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center">
+                                    <div class="flex flex-col items-center">
+                                        <i class="fas fa-images text-5xl text-gray-200 mb-4"></i>
+                                        <p class="text-gray-500 font-medium">No contact hero banners found.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection

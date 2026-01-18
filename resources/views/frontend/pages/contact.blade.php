@@ -1,6 +1,6 @@
 @extends('frontend.app')
 @section('content')
-<title>Contact | TechVerse</title>
+    <title>Contact | TechVerse</title>
     @push('style')
         <style>
             /* 2. ANIMATION UTILITIES */
@@ -22,20 +22,28 @@
 
         <div class="absolute inset-0">
 
-            <img src="{{ asset('imagess/heroimages/contactM.png') }}" alt="Network Background"
+            {{-- <img src="{{ asset('imagess/heroimages/contactM.png') }}" alt="Network Background"
                 class="w-full h-full object-cover md:hidden">
 
             <img src="{{ asset('imagess/heroimages/contactT.png') }}" alt="Network Background"
                 class="w-full h-full object-cover lg:hidden">
 
             <img src="{{ asset('imagess/heroimages/contact.png') }}" alt="Network Background"
-                class="w-full h-full object-cover object-center hidden lg:block">
+                class="w-full h-full object-cover object-center hidden lg:block"> --}}
+            @if ($hero)
+                <img src="{{ asset('storage/' . $hero->image_mobile) }}" alt="Contact"
+                    class="w-full h-full object-cover md:hidden">
+                <img src="{{ asset('storage/' . $hero->image_tablet) }}" alt="Contact"
+                    class="w-full h-full object-cover lg:hidden">
+                <img src="{{ asset('storage/' . $hero->image_desktop) }}" alt="Contact"
+                    class="w-full h-full object-cover hidden lg:block">
+            @endif
         </div>
 
         <!-- Gradient Overlay -->
         <div class="absolute inset-0 lg:bg-gradient-to-r from-transparent via-black/5 to-black/70"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/70 lg:hidden"></div>
-    
+
 
         <div class="container mx-auto   ">
             <div class=" lg:text-left lg:px-20  text-center relative z-10 reveal">

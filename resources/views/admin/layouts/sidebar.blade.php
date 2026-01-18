@@ -91,6 +91,18 @@
                             ],
                         ],
                     ],
+                    [
+                        'title' => 'Contact',
+                        'icon' => 'fa-solid fa-house-chimney',
+                        'routes' => ['contact-hero.*',],
+                        'links' => [
+                            [
+                                'route' => 'contact-hero.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Section',
+                            ],
+                        ],
+                    ],
                 ];
             @endphp
 
