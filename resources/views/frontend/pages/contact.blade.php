@@ -133,7 +133,7 @@
                         <!-- Info Cards -->
                         <div class="space-y-6">
                             <!-- Address -->
-                            <div class="flex items-start">
+                            {{-- <div class="flex items-start">
                                 <div
                                     class="w-12 h-12 rounded-lg bg-[var(--sky)]/30 text-[var(--royal)] flex items-center justify-center flex-shrink-0">
                                     <i class="fa-solid fa-location-dot text-xl"></i>
@@ -167,6 +167,30 @@
                                     <p class="text-gray-500">Responds within 24h</p>
                                 </div>
                             </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-[var(--sky)]/30 text-[var(--royal)] flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-clock text-xl"></i>
+                                </div>
+                                <div class="ml-5">
+                                    <h3 class="font-bold text-lg">Hours</h3>
+                                    <p class="text-gray-500">Sun–Fri 9am-6pm</p>
+                                </div>
+                            </div> --}}
+
+                            @foreach ($info->items as $item)
+                                <div class="flex items-start text-lg">
+                                    <div
+                                        class="w-12 h-12 rounded-lg bg-[var(--sky)]/30 text-[var(--royal)] flex items-center justify-center flex-shrink-0">
+                                        <i class="{{ $item['icon'] }}"></i>
+                                    </div>
+                                    <div class="ml-5">
+                                        <h3 class="font-bold text-lg">{{ $item['title'] }}</h3>
+                                        <p class="text-gray-500">{{ $item['description'] ?? '' }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 

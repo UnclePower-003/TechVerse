@@ -89,5 +89,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/home-partners', \App\Http\Controllers\Admin\HomePartnerController::class);
         Route::resource('/admin/dashboard/contact-hero', \App\Http\Controllers\Admin\ContactHeroController::class);
         Route::resource('/admin/dashboard/contact-header', \App\Http\Controllers\Admin\ContactHeaderController::class);
+        Route::resource('/admin/dashboard/contact-info', \App\Http\Controllers\Admin\ContactInfoController::class);
     });
 });
