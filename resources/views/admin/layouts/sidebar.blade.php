@@ -94,7 +94,7 @@
                     [
                         'title' => 'Contact',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['contact-hero.*', 'contact-header.*', 'contact-info.*', 'contact-support-promise.*'],
+                        'routes' => ['contact-hero.*', 'contact-header.*', 'contact-info.*', 'contact-support-promise.*', 'contact-choose.*'],
                         'links' => [
                             [
                                 'route' => 'contact-hero.index',
@@ -115,6 +115,11 @@
                                 'route' => 'contact-support-promise.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Support Promise',
+                            ],
+                            [
+                                'route' => 'contact-choose.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Choose Cards',
                             ],
                         ],
                     ],

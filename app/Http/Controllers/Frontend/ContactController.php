@@ -7,6 +7,7 @@ use App\Models\ContactHero;
 use App\Models\ContactHeader;
 use App\Models\ContactInfo;
 use App\Models\ContactSupportPromise;
+use App\Models\ContactChoose;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -21,6 +22,8 @@ class ContactController extends Controller
 
         $promise = ContactSupportPromise::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.contact', compact('hero', 'header', 'info', 'promise'));
+        $cards = ContactChoose::orderBy('order')->get();
+
+        return view('frontend.pages.contact', compact('hero', 'header', 'info', 'promise', 'cards'));
     }
 }

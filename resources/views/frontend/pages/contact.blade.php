@@ -235,7 +235,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div
+                {{-- <div
                     class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition reveal border-t-4 border-[var(--royal)]">
                     <div class="mb-4 text-[var(--royal)]">
                         <i class="fa-solid fa-truck-fast text-3xl"></i>
@@ -276,7 +276,18 @@
                     <h3 class="font-bold text-lg mb-2 text-[var(--slate)]">24/7 support</h3>
                     <p class="text-sm text-gray-600">Always-available assistance for critical incidents and SLAs you
                         can count on.</p>
-                </div>
+                </div> --}}
+
+                @foreach ($cards as $index => $card)
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition reveal border-t-4 border-[var(--royal)]"
+                        style="transition-delay: {{ $index * 100 }}ms;">
+                        <div class="mb-4 text-[var(--royal)]">
+                            <i class="{{ $card->icon }} text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-[var(--slate)]">{{ $card->title }}</h3>
+                        <p class="text-sm text-gray-600">{{ $card->description }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
