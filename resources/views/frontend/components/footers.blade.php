@@ -52,6 +52,7 @@
                     <li><a href="{{ route('products') }}" class="hover:text-blue-400 transition-colors">Products</a>
                     </li>
                     <li><a href="{{ route('contact') }}" class="hover:text-blue-400 transition-colors">Contact</a></li>
+                    <li><a href="{{ route('buildup') }}" class="hover:text-blue-400 transition-colors">Build</a></li>
                 </ul>
             </div>
 

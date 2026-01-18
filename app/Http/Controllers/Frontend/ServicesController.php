@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ServicesHero;
 use App\Models\ServiceHeader;
 use App\Models\ServiceList;
+use App\Models\ServicePick;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
@@ -18,6 +19,8 @@ class ServicesController extends Controller
 
         $services = ServiceList::where('is_active', true)->orderBy('id')->get();
 
-        return view('frontend.pages.services', compact('hero', 'header', 'services'));
+        $servicePicks = ServicePick::orderBy('order')->get();
+
+        return view('frontend.pages.services', compact('hero', 'header', 'services', 'servicePicks'));
     }
 }

@@ -411,7 +411,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <!-- Feature 1 -->
-                <div
+                {{-- <div
                     class="reveal-on-scroll delay-100 group bg-white/50 backdrop-blur-sm p-8 rounded-xl border border-white hover:bg-white shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                     <div
                         class="w-12 h-12 bg-blue-800 text-white rounded-lg flex items-center justify-center text-xl mb-6 shadow-lg shadow-blue-800/20 group-hover:scale-110 transition-transform duration-300">
@@ -448,8 +448,28 @@
                     <p class="text-slate-700 leading-relaxed text-sm">
                         Validated configs, vetted vendors, and proactive monitoring to ensure enterprise-grade stability.
                     </p>
-                </div>
+                </div> --}}
 
+                @foreach ($servicePicks as $index => $item)
+                    <div class="reveal-on-scroll group bg-white/50 backdrop-blur-sm p-8 rounded-xl border border-white
+               hover:bg-white shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                        style="transition-delay: {{ $index * 100 }}ms">
+
+                        <div
+                            class="w-12 h-12 bg-blue-800 text-white rounded-lg flex items-center justify-center text-xl mb-6
+                   shadow-lg shadow-blue-800/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="{{ $item->icon }}"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-blue-900 mb-3">
+                            {{ $item->title }}
+                        </h4>
+
+                        <p class="text-slate-700 leading-relaxed text-sm">
+                            {{ $item->description }}
+                        </p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
