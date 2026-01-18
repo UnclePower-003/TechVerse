@@ -66,13 +66,18 @@
                     ],
                     [
                         'title' => 'Services',
-                        'icon' => 'fa-solid fa-house-chimney', // Home specific
-                        'routes' => ['services-hero.*',],
+                        'icon' => 'fa-solid fa-house-chimney', 
+                        'routes' => ['services-hero.*', 'service-header.*'],
                         'links' => [
                             [
                                 'route' => 'services-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'service-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Service Header',
                             ],
                         ],
                     ],

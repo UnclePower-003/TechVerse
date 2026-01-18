@@ -137,52 +137,87 @@
         <div
             class="w-full text-center justify-center items-center lg:text-left lg:justify-start lg:items-start lg:px-20 px-4">
 
-            <!-- Badge -->
-            <div
-                class="reveal-on-scroll inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-slate-500 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-400/30 backdrop-blur-sm">
-                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-                Enterprise Rigor
-            </div>
-
-            <!-- Headline -->
-            <h1
-                class="reveal-on-scroll delay-100 text-4xl md:text-6xl font-extrabold text-slate-600 tracking-tight leading-tight mb-6 drop-shadow-lg">
-                Resilient Systems.<br>
-                <!-- Gradient Text -->
-                <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-[var(--royal)] opacity-90">Clear
-                    SLAs.</span>
-            </h1>
-
-            <!-- Subtext -->
-            <p
-                class="reveal-on-scroll delay-200 text-lg md:text-xl text-slate-300 lg:text-stone-600 font-bold mb-8 leading-relaxed lg:max-w-2xl ">
-                Networking, surveillance, consultation, and rapid repair delivered with documentation and 24/7 support.
-            </p>
-
-            <!-- Floating Glass Cards -->
-            <div
-                class="reveal-on-scroll delay-300 flex flex-wrap justify-center lg:justify-start gap-4 text-sm font-medium text-white perspective-1000">
-
+            @if ($header)
+                <!-- Badge -->
+                {{-- <div
+                    class="reveal-on-scroll inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-slate-500 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-400/30 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    Enterprise Rigor
+                </div> --}}
                 <div
-                    class="animate-float flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
-                    <i class="fa-solid fa-certificate text-blue-400"></i>
-                    <span>Certified Engineers</span>
+                    class="reveal-on-scroll inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-slate-500 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-400/30 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    {{ $header->badge_text }}
+
                 </div>
 
-                <div
-                    class="animate-float-delayed flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
-                    <i class="fa-solid fa-bolt text-blue-400"></i>
-                    <span>Rapid Deployment</span>
-                </div>
+                <!-- Headline -->
+                {{-- <h1
+                    class="reveal-on-scroll delay-100 text-4xl md:text-6xl font-extrabold text-slate-600 tracking-tight leading-tight mb-6 drop-shadow-lg">
+                    Resilient Systems.<br>
+                    <!-- Gradient Text -->
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-[var(--royal)] opacity-90">Clear
+                        SLAs.</span>
+                </h1> --}}
+                <h1
+                    class="reveal-on-scroll delay-100 text-4xl md:text-6xl font-extrabold text-slate-600 tracking-tight leading-tight mb-6 drop-shadow-lg">
+                    {{ $header->heading_main }}.<br>
+                    <!-- Gradient Text -->
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-[var(--royal)] opacity-90">{{ $header->heading_gradient }}</span>
+                </h1>
 
-                <div
-                    class="animate-float-slow flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
-                    <i class="fa-solid fa-headset text-blue-400"></i>
-                    <span>24/7 Support</span>
-                </div>
-            </div>
+                <!-- Subtext -->
+                {{-- <p
+                    class="reveal-on-scroll delay-200 text-lg md:text-xl text-slate-300 lg:text-stone-600 font-bold mb-8 leading-relaxed lg:max-w-2xl ">
+                    Networking, surveillance, consultation, and rapid repair delivered with documentation and 24/7 support.
+                </p> --}}
+                <p
+                    class="reveal-on-scroll delay-200 text-lg md:text-xl text-slate-300 lg:text-stone-600 font-bold mb-8 leading-relaxed lg:max-w-2xl ">
+                    {{ $header->description }}
+                </p>
 
+                <!-- Floating Glass Cards -->
+                <div
+                    class="reveal-on-scroll delay-300 flex flex-wrap justify-center lg:justify-start gap-4 text-sm font-medium text-white perspective-1000">
+
+                    {{-- <div
+                        class="animate-float flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
+                        <i class="fa-solid fa-certificate text-blue-400"></i>
+                        <span>Certified Engineers</span>
+                    </div>
+
+                    <div
+                        class="animate-float-delayed flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
+                        <i class="fa-solid fa-bolt text-blue-400"></i>
+                        <span>Rapid Deployment</span>
+                    </div>
+
+                    <div
+                        class="animate-float-slow flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
+                        <i class="fa-solid fa-headset text-blue-400"></i>
+                        <span>24/7 Support</span>
+                    </div> --}}
+
+                    @php
+                        $features = $header->features;
+
+                        // If it's a JSON string, decode it to array
+                        if (is_string($features)) {
+                            $features = json_decode($features, true) ?? [];
+                        }
+                    @endphp
+
+                    @foreach ($features as $feature)
+                        <div
+                            class="animate-float-slow flex items-center gap-3 bg-white/10 lg:bg-[var(--slate)] backdrop-blur-md px-5 py-3 rounded-lg border border-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/5">
+                            <i class="{{ $feature['icon'] ?? '' }} text-blue-400"></i>
+                            <span>{{ $feature['text'] ?? '' }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
     </header>
