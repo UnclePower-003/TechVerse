@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductsHero;
+use App\Models\ProductsHeader;
 
 class ProductsController extends Controller
 {
@@ -12,6 +13,8 @@ class ProductsController extends Controller
     {
         $hero = ProductsHero::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.products', compact('hero'));
+        $header = ProductsHeader::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.products', compact('hero', 'header'));
     }
 }

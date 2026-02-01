@@ -202,20 +202,28 @@
             <!-- Gradient Overlay -->
             <div class="absolute inset-0 lg:bg-gradient-to-r from-transparent via-black/5 to-black/70"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/70 lg:hidden"></div>
-            <div
-                class="hero-content relative z-10 w-full flex flex-col lg:items-start items-center lg:text-left text-center p-6 lg:px-20">
+            @if ($header)
+                <div
+                    class="hero-content relative z-10 w-full flex flex-col lg:items-start items-center lg:text-left text-center p-6 lg:px-20">
 
-                <h1 class="reveal delay-1 text-5xl md:text-7xl font-bold text-slate-700 leading-tight">
-                    Premium Sound. <br>
-                    <span class="text-[#3b82f6]">Unmatched.</span>
-                </h1>
+                    {{-- <h1 class="reveal delay-1 text-5xl md:text-7xl font-bold text-slate-700 leading-tight">
+                        Premium Sound. <br>
+                        <span class="text-[#3b82f6]">Unmatched.</span>
+                    </h1> --}}
+                    <h1 class="reveal delay-1 text-5xl md:text-7xl font-bold text-slate-700 leading-tight">
+                        {{ $header->title }} <br>
+                        <span class="text-[#3b82f6]">{{ $header->highlight_text }}</span>
+                    </h1>
 
-                <p class="reveal delay-2 lg:text-slate-800 text-stone-200  font-bold text-lg md:text-xl max-w-xl mt-4">
-                    Experience studio-quality audio with our latest noise-canceling technology.
-                    Designed for those who demand perfection.
-                </p>
-
-            </div>
+                    {{-- <p class="reveal delay-2 lg:text-slate-800 text-stone-200  font-bold text-lg md:text-xl max-w-xl mt-4">
+                        Experience studio-quality audio with our latest noise-canceling technology.
+                        Designed for those who demand perfection.
+                    </p> --}}
+                    <p class="reveal delay-2 lg:text-slate-800 text-stone-200  font-bold text-lg md:text-xl max-w-xl mt-4">
+                        {{ $header->description }}
+                    </p>
+                </div>
+            @endif
 
             <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2">
                 <a href="#filter-bar"

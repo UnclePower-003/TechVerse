@@ -121,12 +121,17 @@
                     [
                         'title' => 'Products',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['products-hero.*'],
+                        'routes' => ['products-hero.*', 'products-header.*'],
                         'links' => [
                             [
                                 'route' => 'products-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'products-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Products Header',
                             ],
                         ],
                     ],
