@@ -1,7 +1,7 @@
     @extends('frontend.app')
 
     @section('content')
-    <title>Products | TechVerse</title>
+        <title>Products | TechVerse</title>
         @push('style')
             {{-- herosection  --}}
             <style>
@@ -180,14 +180,23 @@
         <section class="hero min-h-[90vh] relative bg-black overflow-hidden flex items-center">
             <div class="absolute inset-0">
 
-                <img src="{{ asset('imagess/heroimages/productM.png') }}" alt="Network Background"
+                {{-- <img src="{{ asset('imagess/heroimages/productM.png') }}" alt="Network Background"
                     class="w-full h-full object-cover md:hidden">
 
                 <img src="{{ asset('imagess/heroimages/productT.png') }}" alt="Network Background"
                     class="w-full h-full object-cover lg:hidden">
 
                 <img src="{{ asset('imagess/heroimages/product.png') }}" alt="Network Background"
-                    class="w-full h-full object-cover object-center hidden lg:block">
+                    class="w-full h-full object-cover object-center hidden lg:block"> --}}
+
+                @if ($hero)
+                    <img src="{{ asset('storage/' . $hero->mobile_image) }}" alt="Network Background"
+                        class="w-full h-full object-cover md:hidden">
+                    <img src="{{ asset('storage/' . $hero->tablet_image) }}" alt="Network Background"
+                        class="w-full h-full object-cover lg:hidden">
+                    <img src="{{ asset('storage/' . $hero->desktop_image) }}" alt="Network Background"
+                        class="w-full h-full object-cover object-center hidden lg:block">
+                @endif
             </div>
 
             <!-- Gradient Overlay -->

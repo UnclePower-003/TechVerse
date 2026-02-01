@@ -103,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/about-drive', \App\Http\Controllers\Admin\AboutDriveController::class);
         Route::resource('/admin/dashboard/about-highlight', \App\Http\Controllers\Admin\AboutHighlightController::class);
         Route::resource('/admin/dashboard/about-promise', \App\Http\Controllers\Admin\AboutPromiseController::class);
+Route::resource('/admin/dashboard/products-hero', \App\Http\Controllers\Admin\ProductsHeroController::class);
 
     });
 });

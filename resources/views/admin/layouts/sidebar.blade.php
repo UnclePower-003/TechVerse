@@ -119,6 +119,18 @@
                         ],
                     ],
                     [
+                        'title' => 'Products',
+                        'icon' => 'fa-solid fa-house-chimney',
+                        'routes' => ['products-hero.*'],
+                        'links' => [
+                            [
+                                'route' => 'products-hero.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Section',
+                            ],
+                        ],
+                    ],
+                    [
                         'title' => 'About',
                         'icon' => 'fa-solid fa-house-chimney',
                         'routes' => ['about-hero.*', 'about-header.*', 'about-expertise.*', 'about-drive.*', 'about-highlight.*', 'about-promise.*'],
