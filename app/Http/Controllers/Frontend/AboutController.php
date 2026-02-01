@@ -9,6 +9,7 @@ use App\Models\AboutHeader;
 use App\Models\AboutExpertise;
 use App\Models\AboutDrive;
 use App\Models\AboutHighlight;
+use App\Models\AboutPromise;
 
 class AboutController extends Controller
 {
@@ -24,6 +25,8 @@ class AboutController extends Controller
 
         $highlights = AboutHighlight::where('is_active', true)->orderBy('id', 'asc')->get();
 
-        return view('frontend.pages.about', compact('hero', 'header', 'expertise', 'drive', 'highlights'));
+        $promises = AboutPromise::where('is_active', true)->orderBy('id', 'asc')->get();
+
+        return view('frontend.pages.about', compact('hero', 'header', 'expertise', 'drive', 'highlights', 'promises'));
     }
 }

@@ -284,7 +284,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Feature 1 -->
-                    <div class="text-center reveal">
+                    {{-- <div class="text-center reveal">
                         <div
                             class="mx-auto w-16 h-16 rounded-full bg-[var(--slate)] flex items-center justify-center text-white mb-4 shadow-lg shadow-[#2563eb]/40">
                             <i class="fa-solid fa-pen-ruler text-2xl"></i>
@@ -321,7 +321,17 @@
                         </div>
                         <h4 class="font-bold text-lg mb-2">Quality Guarantee</h4>
                         <p class="text-sm text-gray-600 px-4">Vetted vendors and validated configurations.</p>
-                    </div>
+                    </div> --}}
+
+                    @foreach($promises as $promise)
+                        <div class="text-center reveal">
+                            <div class="mx-auto w-16 h-16 rounded-full bg-[var(--slate)] flex items-center justify-center text-white mb-4 shadow-lg shadow-[#2563eb]/40">
+                                <i class="{{ $promise->icon }} text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">{{ $promise->title }}</h4>
+                            <p class="text-sm text-gray-600 px-4">{{ $promise->description }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
