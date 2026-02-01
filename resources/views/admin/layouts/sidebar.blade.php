@@ -97,7 +97,19 @@
                         ],
                     ],
                     [
-                        'title' => 'Contact',
+                        'title' => 'Projects',
+                        'icon' => 'fa-solid fa-house-chimney',
+                        'routes' => ['project-hero.*'],
+                        'links' => [
+                            [
+                                'route' => 'project-hero.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Section',
+                            ],
+                        ],
+                    ],
+                    [
+                        'title' => 'Get a Quote',
                         'icon' => 'fa-solid fa-house-chimney',
                         'routes' => [
                             'contact-hero.*',

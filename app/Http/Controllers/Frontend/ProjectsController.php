@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProjectHero;
 
 class ProjectsController extends Controller
 {
-   public function index(){
-    return view("frontend.pages.projects");
-   }
+    public function index()
+    {
+        $hero = ProjectHero::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.projects', compact('hero'));
+    }
 }

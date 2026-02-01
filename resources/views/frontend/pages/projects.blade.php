@@ -1,6 +1,6 @@
 @extends('frontend.app')
 @section('content')
-<title>Projects | TechVerse</title>
+    <title>Projects | TechVerse</title>
     @push('style')
         {{-- header --}}
         <style>
@@ -101,15 +101,20 @@
             }
         </style>
     @endpush
+
     {{-- hero section 1 --}}
     <section class="bg-slate-900 font-sans antialiased text-white lg:hidden flex">
         <section class="relative min-h-screen w-full overflow-hidden flex items-center max-md:justify-center lg:pl-32">
-            <div class="absolute inset-0 z-0">
-                <img id="hero-bg-mobile"
+            @if ($hero)
+                <div class="absolute inset-0 z-0">
+                    {{-- <img id="hero-bg-mobile"
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
-                    alt="Infrastructure" class="w-full h-full object-cover bg-image-zoom brightness-50">
-                <div class="absolute inset-0 hero-overlay"></div>
-            </div>
+                    alt="Infrastructure" class="w-full h-full object-cover bg-image-zoom brightness-50"> --}}
+                    <img id="hero-bg-mobile" src="{{ asset('storage/' . $hero->image) }}" alt="Infrastructure"
+                        class="w-full h-full object-cover bg-image-zoom brightness-50">
+                    <div class="absolute inset-0 hero-overlay"></div>
+                </div>
+            @endif
 
             <div class="absolute inset-0 z-10 px-4 flex justify-center text-center items-center">
                 <div class="space-y-8">
@@ -155,6 +160,7 @@
             </div>
         </section>
     </section>
+
     {{-- hero section 2 --}}
     <section class="lg:block hidden">
         <div class="relative flex flex-col md:flex-row w-full h-[90vh]">
@@ -203,12 +209,18 @@
             </div>
             {{-- right image  --}}
             <div class="relative md:w-[55%] h-full bg-[#0f172a] overflow-hidden">
-                <div id=""
+                @if ($hero)
+                    {{-- <div id=""
                     class="absolute inset-0 bg-cover bg-center transition-transform duration-500` hover:scale-105"
-                    style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000');">
-                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/20 via-[#0f172a]/40 to-[#0f172a]/80">
+                    style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000');"> --}}
+                    <div id=""
+                        class="absolute inset-0 bg-cover bg-center transition-transform duration-500` hover:scale-105"
+                        style="background-image: url('{{ asset('storage/' . $hero->image) }}');">
+
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-900/20 via-[#0f172a]/40 to-[#0f172a]/80">
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <svg class="hidden md:block absolute top-0 left-0 h-full w-48 lg:w-72 text-[#0f172a] fill-current z-30 pointer-events-none transform -translate-x-[1px]"
                     viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -222,7 +234,6 @@
             </div>
         </div>
     </section>
-
 
     {{-- projects section --}}
     <section class="p-3 py-16 ">
