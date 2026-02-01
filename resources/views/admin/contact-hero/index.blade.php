@@ -12,12 +12,14 @@
                 <p class="text-sm text-gray-500 mt-1">Manage the specific hero images displayed on the Contact Us page.</p>
             </div>
 
-            {{-- Add Button --}}
-            {{-- <a href="{{ route('contact-hero.create') }}"
-                class="flex items-center space-x-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold transition-all hover:bg-blue-600 shadow-lg shadow-blue-100 focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+            {{-- Add Button (Uncomment if needed) --}}
+            {{-- 
+            <a href="{{ route('contact-hero.create') }}"
+                class="flex items-center space-x-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold transition-all hover:bg-[#266eb1] shadow-lg shadow-indigo-100 focus:ring-2 focus:ring-primary focus:ring-opacity-50">
                 <i class="fas fa-plus text-xs"></i>
                 <span>Add Contact Hero</span>
-            </a> --}}
+            </a> 
+            --}}
         </div>
 
         {{-- Success Message --}}
@@ -29,7 +31,7 @@
             </div>
         @endif
 
-        {{-- Table Section --}}
+        {{-- Table Section (Card Layout) --}}
         <div class="overflow-hidden shadow-xl rounded-2xl border border-gray-200 bg-white">
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -40,7 +42,7 @@
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Mobile View</th>
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Tablet View</th>
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest">Desktop View</th>
-                            <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-widest w-32">Status</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest w-32">Status</th>
                             <th class="px-6 py-4 text-center text-xs font-bold uppercase tracking-widest w-40">Actions</th>
                         </tr>
                     </thead>
@@ -56,38 +58,35 @@
 
                                 {{-- Mobile Image --}}
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
-                                        <img src="{{ asset('storage/' . $hero->image_mobile) }}"
-                                            class="h-16 w-12 object-cover rounded-md" alt="Mobile Hero">
-                                    </div>
+                                    <img src="{{ asset('storage/' . $hero->image_mobile) }}"
+                                        class="h-12 w-10 object-cover rounded-lg border border-gray-100 shadow-sm"
+                                        alt="Mobile Hero">
                                 </td>
 
                                 {{-- Tablet Image --}}
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
-                                        <img src="{{ asset('storage/' . $hero->image_tablet) }}"
-                                            class="h-16 w-24 object-cover rounded-md" alt="Tablet Hero">
-                                    </div>
+                                    <img src="{{ asset('storage/' . $hero->image_tablet) }}"
+                                        class="h-12 w-16 object-cover rounded-lg border border-gray-100 shadow-sm"
+                                        alt="Tablet Hero">
                                 </td>
 
                                 {{-- Desktop Image --}}
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="inline-block p-1 bg-white border border-gray-200 rounded-lg shadow-sm">
-                                        <img src="{{ asset('storage/' . $hero->image_desktop) }}"
-                                            class="h-16 w-32 object-cover rounded-md" alt="Desktop Hero">
-                                    </div>
+                                    <img src="{{ asset('storage/' . $hero->image_desktop) }}"
+                                        class="h-12 w-24 object-cover rounded-lg border border-gray-100 shadow-sm"
+                                        alt="Desktop Hero">
                                 </td>
 
                                 {{-- Status Badge --}}
-                                <td class="px-6 py-4 text-center whitespace-nowrap">
+                                <td class="px-6 py-4 whitespace-nowrap">
                                     @if ($hero->is_active)
                                         <span
-                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-blue-100 text-primary border border-blue-200 uppercase tracking-tighter">
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-blue-200 text-primary border border-indigo-100 uppercase tracking-tighter">
                                             Active
                                         </span>
                                     @else
                                         <span
-                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-100 text-gray-400 border border-gray-200 uppercase tracking-tighter">
+                                            class="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gray-100 text-gray-500 border border-gray-200 uppercase tracking-tighter">
                                             Inactive
                                         </span>
                                     @endif
@@ -95,25 +94,27 @@
 
                                 {{-- Actions --}}
                                 <td class="px-6 py-4 text-center whitespace-nowrap">
-                                    <div class="flex justify-center items-center space-x-3">
+                                    <div class="flex justify-center items-center space-x-2">
                                         {{-- Edit --}}
                                         <a href="{{ route('contact-hero.edit', $hero) }}"
-                                            class="p-2 text-primary hover:bg-blue-50 rounded-lg transition-all"
+                                            class="p-2 text-[#266eb1] hover:bg-blue-400 hover:text-white rounded-lg transition-all"
                                             title="Edit Hero">
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        {{-- Delete --}}
-                                        {{-- <form action="{{ route('contact-hero.destroy', $hero) }}" method="POST"
+                                        {{-- Delete (Uncomment if needed) --}}
+                                        {{-- 
+                                        <form action="{{ route('contact-hero.destroy', $hero) }}" method="POST"
                                             onsubmit="return confirm('Delete this hero configuration?');"
                                             class="inline-block">
                                             @csrf @method('DELETE')
                                             <button type="submit"
-                                                class="p-2 text-red-400 hover:bg-red-50 hover:text-red-600 rounded-lg transition-all"
+                                                class="p-2 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition-all"
                                                 title="Delete Hero">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
-                                        </form> --}}
+                                        </form> 
+                                        --}}
                                     </div>
                                 </td>
                             </tr>
