@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AboutHero;
 use App\Models\AboutHeader;
+use App\Models\AboutExpertise;
+use App\Models\AboutDrive;
 
 class AboutController extends Controller
 {
@@ -15,6 +17,10 @@ class AboutController extends Controller
 
         $header = AboutHeader::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.about', compact('hero', 'header'));
+        $expertise = AboutExpertise::where('is_active', true)->latest()->first();
+
+        $drive = AboutDrive::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.about', compact('hero', 'header', 'expertise', 'drive'));
     }
 }

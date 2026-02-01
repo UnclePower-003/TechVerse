@@ -114,27 +114,60 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <!-- Who We Are -->
-                    <div class="reveal">
-                        <h2 class="text-3xl font-bold text-[var(--slate)] mb-6 border-l-4 border-[var(--royal)] pl-4">Who we
-                            are
-                        </h2>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                            A team of network, security, and systems engineers delivering high-availability solutions across
-                            Nepal. From smart airports to city-wide ANPR, we design, deploy, and support mission-critical
-                            systems.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mt-8">
-                            <span
-                                class="px-4 py-2 bg-[var(--sky)] text-[var(--royal)] rounded-lg text-sm font-semibold border border-[var(--sky)]">Cisco
-                                & Alcatel-Lucent</span>
-                            <span
-                                class="px-4 py-2 bg-[var(--sky)] text-[var(--royal)] rounded-lg text-sm font-semibold border border-[var(--sky)]">Hikvision</span>
-                            <span
-                                class="px-4 py-2 bg-[var(--sky)] text-[var(--royal)] rounded-lg text-sm font-semibold border border-[var(--sky)]">BCP/DR</span>
-                            <span
-                                class="px-4 py-2 bg-[var(--sky)] text-[var(--royal)] rounded-lg text-sm font-semibold border border-[var(--sky)]">Zero
-                                Trust</span>
-                        </div>
+                    <div class="reveal max-w-2xl">
+                        @if ($expertise)
+                            {{-- Section Heading --}}
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div
+                                    class="h-10 w-1.5 bg-[var(--royal)] rounded-full shadow-[0_0_12px_rgba(var(--royal-rgb),0.3)]">
+                                </div>
+                                {{-- <h2 class="text-3xl font-extrabold text-[var(--slate)] tracking-tight">
+                                    Who we <span class="text-[var(--royal)]">are</span>
+                                </h2> --}}
+                                <h2 class="text-3xl font-extrabold text-[var(--slate)] tracking-tight">
+                                    {!! $expertise->title !!}
+                                </h2>
+
+                            </div>
+
+                            {{-- Description Block --}}
+                            <div class="relative">
+                                {{-- <p class="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
+                                    A team of <span class="text-[var(--slate)] font-bold">network, security, and systems
+                                        engineers</span> delivering high-availability solutions across Nepal. From smart
+                                    airports to city-wide ANPR, we design, deploy, and support mission-critical systems.
+                                </p> --}}
+                                <p class="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
+                                    {!! $expertise->description !!}
+                                </p>
+                            </div>
+
+                            {{-- Expertise Tags --}}
+                            <div class="flex flex-wrap gap-3 mt-8">
+                                {{-- @php
+                                $expertise = [
+                                    ['label' => 'Cisco & Alcatel-Lucent', 'icon' => 'fa-network-wired'],
+                                    ['label' => 'Hikvision', 'icon' => 'fa-video'],
+                                    ['label' => 'BCP/DR', 'icon' => 'fa-shield-heart'],
+                                    ['label' => 'Zero Trust', 'icon' => 'fa-fingerprint'],
+                                ];
+                                @endphp --}}
+
+                                @foreach ($expertise->items ?? [] as $item)
+                                    <div
+                                        class="group flex items-center px-5 py-2.5 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md hover:border-[var(--royal)] hover:-translate-y-0.5 transition-all duration-300 cursor-default">
+                                        <div
+                                            class="mr-3 h-8 w-8 flex items-center justify-center rounded-lg bg-[var(--sky)] text-[var(--royal)] group-hover:bg-[var(--royal)] group-hover:text-white transition-colors duration-300">
+                                            <i class="fas {{ $item['icon'] }} text-xs"></i>
+                                        </div>
+                                        <span
+                                            class="text-sm font-bold text-gray-700 group-hover:text-[var(--slate)] transition-colors">
+                                            {{ $item['label'] }}
+                                        </span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
 
                     <!-- What Drives Us -->
@@ -143,22 +176,33 @@
                         <div class="absolute top-6 right-8 text-[var(--royal)] opacity-20">
                             <i class="fa-solid fa-bolt text-9xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-[var(--sky)] mb-4">What drives us</h3>
-                        <p class="text-gray-300 leading-relaxed mb-6">
-                            Reliability, speed, and measurable outcomes. We pair best-in-class hardware with disciplined
-                            project delivery, giving clients predictable uptime and clear SLAs.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-[var(--royal)]"></i> Reliable Hardware
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-[var(--royal)]"></i> Disciplined Delivery
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <i class="fa-solid fa-check text-[var(--royal)]"></i> Predictable Uptime
-                            </li>
-                        </ul>
+                        @if ($drive)
+                            {{-- <h3 class="text-2xl font-bold text-[var(--sky)] mb-4">What drives us</h3> --}}
+                            <h3 class="text-2xl font-bold text-[var(--sky)] mb-4">{{ $drive->title }}</h3>
+
+                            {{-- <p class="text-gray-300 leading-relaxed mb-6">
+                                Reliability, speed, and measurable outcomes. We pair best-in-class hardware with disciplined project delivery, giving clients predictable uptime and clear SLAs.
+                            </p> --}}
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                {!! $drive->description !!}
+                            </p>
+                            <ul class="space-y-3">
+                                {{-- <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-[var(--royal)]"></i> Reliable Hardware
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-[var(--royal)]"></i> Disciplined Delivery
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check text-[var(--royal)]"></i> Predictable Uptime
+                                </li> --}}
+                                @foreach ($drive->points ?? [] as $point)
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-check text-[var(--royal)]"></i> {{ $point }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>

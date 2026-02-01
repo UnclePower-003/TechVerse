@@ -99,5 +99,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/project-quality', \App\Http\Controllers\Admin\ProjectQualityController::class);
         Route::resource('/admin/dashboard/about-hero', \App\Http\Controllers\Admin\AboutHeroController::class);
         Route::resource('/admin/dashboard/about-header', \App\Http\Controllers\Admin\AboutHeaderController::class);
+        Route::resource('/admin/dashboard/about-expertise', \App\Http\Controllers\Admin\AboutExpertiseController::class);
+        Route::resource('/admin/dashboard/about-drive', \App\Http\Controllers\Admin\AboutDriveController::class);
+
     });
 });
