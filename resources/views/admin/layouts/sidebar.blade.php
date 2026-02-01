@@ -40,6 +40,24 @@
                 </a>
             @endif
 
+            <a href="{{ route('contact-submission.index') }}" @click="sidebarOpen = false"
+    class="relative flex items-center px-4 py-3 transition-all duration-200
+    {{ request()->routeIs('contact-submission.*')
+        ? 'bg-[#9a9a1e] text-black font-semibold rounded-lg shadow-sm'
+        : 'text-white hover:bg-[#9a9a1e] hover:text-black rounded-lg' }}">
+
+    <i class="fas fa-envelope w-6"></i>
+    <span class="font-medium ml-2">Contact Messages</span>
+
+    @if ($contactUnreadCount > 0)
+        <span
+            class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+            {{ $contactUnreadCount }}
+        </span>
+    @endif
+</a>
+
+
             @php
                 $dropdowns = [
                     [

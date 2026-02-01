@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\SocialLink;
+use App\Models\ContactSubmission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $view->with('socialLinks', SocialLink::orderBy('order', 'asc')->get());
+        });
+
+        View::composer('*', function ($view) {
+            $contactUnreadCount = ContactSubmission::where('is_read', false)->count();
+            $view->with('contactUnreadCount', $contactUnreadCount);
         });
     }
 }

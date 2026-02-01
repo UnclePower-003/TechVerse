@@ -73,19 +73,20 @@
                     <div class="bg-white p-8 rounded-2xl shadow-xl shadow-[var(--slate)]/5 border border-gray-100">
                         <h2 class="text-2xl font-bold mb-6 text-[var(--slate)]">Reach out</h2>
 
-                        <form action="#" class="space-y-5">
+                        <form action="{{ route('contact.submit') }}" method="POST" class="space-y-5">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <!-- Name -->
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-1">Full name</label>
-                                    <input type="text" placeholder="John Doe"
+                                    <input type="text" placeholder="John Doe" name="full_name"
                                         class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition">
                                 </div>
                                 <!-- Phone -->
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-1">Phone
                                         (optional)</label>
-                                    <input type="tel" placeholder="+977 98..."
+                                    <input type="tel" placeholder="+977 98..." name="phone"
                                         class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition">
                                 </div>
                             </div>
@@ -93,14 +94,14 @@
                             <!-- Email -->
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-                                <input type="email" placeholder="john@company.com"
+                                <input type="email" placeholder="john@company.com" name="email"
                                     class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition">
                             </div>
 
                             <!-- Subject/Service Type -->
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Inquiry Type</label>
-                                <select
+                                <select name="inquiry_type"
                                     class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition text-gray-600">
                                     <option>Product Inquiry</option>
                                     <option>Networking</option>
@@ -113,11 +114,11 @@
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-1">Tell us about your
                                     requirements</label>
-                                <textarea rows="4" placeholder="How can we help you?"
+                                <textarea rows="4" placeholder="How can we help you?" name="message"
                                     class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition"></textarea>
                             </div>
 
-                            <button type="button"
+                            <button type="submit"
                                 class="w-full bg-[var(--royal)] text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition shadow-lg shadow-[var(--royal)]/30">
                                 Send Inquiry <i class="fa-solid fa-paper-plane ml-2"></i>
                             </button>

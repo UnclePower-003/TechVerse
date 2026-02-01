@@ -1,7 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
-<title>Buildup | TechVerse</title>
+    <title>Buildup | TechVerse</title>
     @push('style')
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
@@ -87,9 +87,9 @@
                         <!-- Placeholder or Real Image -->
                         <img src="{{ asset('imagess/buildupimages/PC.png') }}"
                             onerror="this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=800'"
-                            alt="PC"
-                            class="w-full h-full object-cover transition-transform duration-700">
-                        <div class="absolute inset-0  bg-gradient-to-t from-[#e5effa] via-transparent to-transparent opacity-95">
+                            alt="PC" class="w-full h-full object-cover transition-transform duration-700">
+                        <div
+                            class="absolute inset-0  bg-gradient-to-t from-[#e5effa] via-transparent to-transparent opacity-95">
                         </div>
                     </div>
                     <div class="p-6 sm:p-8 relative -mt-16">
@@ -113,9 +113,9 @@
                     <div class="aspect-[16/9] overflow-hidden bg-slate-100 relative">
                         <img src="{{ asset('imagess/buildupimages/server.png') }}"
                             onerror="this.src='https://images.unsplash.com/photo-1558494949-efc5e66cd38f?auto=format&fit=crop&q=80&w=800'"
-                            alt="Server"
-                            class="w-full h-full object-cover  transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#e5effa] via-transparent to-transparent opacity-90">
+                            alt="Server" class="w-full h-full object-cover  transition-transform duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#e5effa] via-transparent to-transparent opacity-90">
                         </div>
                     </div>
                     <div class="p-6 sm:p-8 relative -mt-16">
@@ -444,29 +444,29 @@
 
                     div.innerHTML = `   
                         <div class="flex items-center gap-4 sm:gap-5 w-full">
-                            <!-- Fixed dimensions for icon/image to prevent layout shift -->
-                            <div class="w-14 h-14 min-w-[3.5rem] rounded-xl bg-white/60 flex items-center justify-center  border border-slate-200 overflow-hidden shrink-0">
-                                ${selectedPart ? 
-                                    `<img src="${selectedPart.img}" class="w-full h-full object-cover">` : 
-                                    `<span class="text-slate-400 transform group-hover:scale-110 transition-transform">${category.icon}</span>`
-                                }
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <h4 class="font-bold text-slate-400 text-[10px] uppercase tracking-widest mb-0.5">${category.name}</h4>
-                                <p class="${selectedPart ? 'text-blue-600' : 'text-slate-800'} font-bold text-sm sm:text-lg leading-tight truncate">
-                                    ${selectedPart ? selectedPart.name : 'Choose Component'}
-                                </p>
-                            </div>
+                        <!-- Fixed dimensions for icon/image to prevent layout shift -->
+                        <div class="w-14 h-14 min-w-[3.5rem] rounded-xl bg-white/60 flex items-center justify-center  border border-slate-200 overflow-hidden shrink-0">
+                        ${selectedPart ? 
+                        `<img src="${selectedPart.img}" class="w-full h-full object-cover">` : 
+                        `<span class="text-slate-400 transform group-hover:scale-110 transition-transform">${category.icon}</span>`
+                        }
+                        </div>
+                        <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-slate-400 text-[10px] uppercase tracking-widest mb-0.5">${category.name}</h4>
+                        <p class="${selectedPart ? 'text-blue-600' : 'text-slate-800'} font-bold text-sm sm:text-lg leading-tight truncate">
+                        ${selectedPart ? selectedPart.name : 'Choose Component'}
+                        </p>
+                        </div>
                         </div>
                         <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 mt-2 sm:mt-0">
-                            <p class="w-28 text-sm font-bold ${selectedPart ? 'text-slate-800' : 'text-slate-300'}">
-                                ${selectedPart ? 'Rs ' + selectedPart.price.toLocaleString() : '--'}
-                            </p>
-                            <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            </div>
+                        <p class="w-28 text-sm font-bold ${selectedPart ? 'text-slate-800' : 'text-slate-300'}">
+                        ${selectedPart ? 'Rs ' + selectedPart.price.toLocaleString() : '--'}
+                        </p>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </div>
-                    `;
+                        </div>
+                        `;
                     container.appendChild(div);
                 });
 
@@ -500,46 +500,46 @@
 
                     // Improved Card Shell: responsive padding and border
                     card.className = `
-        group relative h-auto bg-white border-2 cursor-pointer 
-        transition-all duration-300 hover:shadow-lg rounded-lg overflow-clip
-        ${isSelected ? 'border border-blue-400' : ''}
-    `.trim();
+                        group relative h-auto bg-white border-2 cursor-pointer 
+                        transition-all duration-300 hover:shadow-lg rounded-lg overflow-clip
+                        ${isSelected ? 'border border-blue-400' : ''}
+                        `.trim();
 
                     card.onclick = () => selectPart(categoryId, option);
 
                     card.innerHTML = `
-        <div class="aspect-[2/1] relative overflow-hidden ">
-            <img src="${option.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-            
-            <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
-                <span class="text-[9px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
-                    In Stock
-                </span>
-                <span class="font-mono font-bold text-sm sm:text-base text-white">
-                    Rs ${option.price.toLocaleString()}
-                </span>
-            </div>
-        </div>
+                        <div class="aspect-[2/1] relative overflow-hidden ">
+                        <img src="${option.img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
 
-        <div class="p-3 sm:p-4 bg-[#e5effa]">
-            <h4 class="font-bold text-slate-800 text-xs sm:text-sm line-clamp-1 group-hover:text-blue-600 transition-colors">
-                ${option.name}
-            </h4>
-            <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-medium">
-                Premium Grade
-            </p>
-        </div>
-        
-        ${isSelected ? `
-                                                                                            <div class="absolute top-2 right-2 bg-blue-600 text-white rounded-full p-1 shadow-md">
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                        ` : ''}
-    `;
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                        <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                        <span class="text-[9px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        In Stock
+                        </span>
+                        <span class="font-mono font-bold text-sm sm:text-base text-white">
+                        Rs ${option.price.toLocaleString()}
+                        </span>
+                        </div>
+                        </div>
+
+                        <div class="p-3 sm:p-4 bg-[#e5effa]">
+                        <h4 class="font-bold text-slate-800 text-xs sm:text-sm line-clamp-1 group-hover:text-blue-600 transition-colors">
+                        ${option.name}
+                        </h4>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-medium">
+                        Premium Grade
+                        </p>
+                        </div>
+
+                        ${isSelected ? `
+                                <div class="absolute top-2 right-2 bg-blue-600 text-white rounded-full p-1 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                                </svg>
+                                </div>
+                                ` : ''}
+                        `;
                     optionsContainer.appendChild(card);
                 });
 
@@ -581,34 +581,34 @@
                 summary.innerHTML = `<div class="mb-6 pb-4 border-b border-slate-100 flex justify-between items-center">
                     <span class="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Spec Sheet</span>
                     <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-blue-100">${currentBuildType} platform</span>
-                </div>`;
+                    </div>`;
 
                 Object.entries(selections).forEach(([key, part]) => {
                     const cat = partsData[currentBuildType].find(c => c.id === key);
                     summary.innerHTML += `
-                        <div class="flex justify-between items-center py-3 border-b border-slate-50 last:border-0">
-                            <div class="flex items-center gap-3 sm:gap-4">
-                                <img src="${part.img}" class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover border border-slate-200">
-                                <div>
-                                    <p class="text-[9px] text-slate-400 uppercase font-black tracking-widest">${cat.name}</p>
-                                    <p class="font-bold text-slate-800 text-sm sm:text-base">${part.name}</p>
-                                </div>
-                            </div>
-                            <p class="font-mono text-slate-600 font-bold text-sm sm:text-base">Rs ${part.price.toLocaleString()}</p>
-                        </div>
+                    <div class="flex justify-between items-center py-3 border-b border-slate-50 last:border-0">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                    <img src="${part.img}" class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover border border-slate-200">
+                    <div>
+                    <p class="text-[9px] text-slate-400 uppercase font-black tracking-widest">${cat.name}</p>
+                    <p class="font-bold text-slate-800 text-sm sm:text-base">${part.name}</p>
+                    </div>
+                    </div>
+                    <p class="font-mono text-slate-600 font-bold text-sm sm:text-base">Rs ${part.price.toLocaleString()}</p>
+                    </div>
                     `;
                 });
 
                 const total = Object.values(selections).reduce((sum, item) => sum + item.price, 0);
                 summary.innerHTML += `
                     <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <div class="text-center sm:text-left">
-                            <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest">Total Investment</p>
-                            <span class="text-3xl font-black text-blue-600 leading-none">Rs ${total.toLocaleString()}</span>
-                        </div>
-                        <button class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold transition shadow-xl shadow-green-500/20 uppercase tracking-widest text-sm">Checkout Now</button>
+                    <div class="text-center sm:text-left">
+                    <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest">Total Investment</p>
+                    <span class="text-3xl font-black text-blue-600 leading-none">Rs ${total.toLocaleString()}</span>
                     </div>
-                `;
+                    <button class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold transition shadow-xl shadow-green-500/20 uppercase tracking-widest text-sm">Checkout Now</button>
+                    </div>
+                    `;
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'

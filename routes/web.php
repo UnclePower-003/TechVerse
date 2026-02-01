@@ -36,6 +36,8 @@ Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 Route::get('/buildup', [BuildupController::class, 'index'])->name('buildup');
 
+Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
+
 // projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
 
@@ -105,5 +107,15 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/about-promise', \App\Http\Controllers\Admin\AboutPromiseController::class);
         Route::resource('/admin/dashboard/products-hero', \App\Http\Controllers\Admin\ProductsHeroController::class);
         Route::resource('/admin/dashboard/products-header', \App\Http\Controllers\Admin\ProductsHeaderController::class);
+
+        Route::get('/admin/dashboard/contact-submission', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'index'])->name('contact-submission.index');
+
+        Route::get('/admin/dashboard/contact-submission/{contactSubmission}', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'show'])->name('contact-submission.show');
+
+        Route::delete('/admin/dashboard/contact-submission/{contactSubmission}', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'destroy'])->name('contact-submission.destroy');
+
+        Route::patch('/admin/dashboard/contact-submission/{contactSubmission}/read', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'markRead'])->name('contact-submission.read');
+
+        Route::patch('/admin/dashboard/contact-submission/{contactSubmission}/unread', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'markUnread'])->name('contact-submission.unread');
     });
 });
