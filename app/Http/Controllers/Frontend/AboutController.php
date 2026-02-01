@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AboutHero;
+use App\Models\AboutHeader;
 
 class AboutController extends Controller
 {
@@ -12,6 +13,8 @@ class AboutController extends Controller
     {
         $hero = AboutHero::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.about', compact('hero'));
+        $header = AboutHeader::where('is_active', true)->latest()->first();
+
+        return view('frontend.pages.about', compact('hero', 'header'));
     }
 }

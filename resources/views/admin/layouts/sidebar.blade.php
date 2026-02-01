@@ -121,12 +121,17 @@
                     [
                         'title' => 'About',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['about-hero.*'],
+                        'routes' => ['about-hero.*', 'about-header.*'],
                         'links' => [
                             [
                                 'route' => 'about-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'about-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'About Header',
                             ],
                         ],
                     ],

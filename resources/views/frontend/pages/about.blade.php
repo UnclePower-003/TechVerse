@@ -40,18 +40,17 @@
         <header class="relative bg-[var(--slate)] overflow-hidden h-[90vh] p-3 flex items-center">
             <div class="absolute inset-0">
                 @if ($hero)
-                    <img src="{{ asset('imagess/heroimages/aboutM.png') }}" alt="Network Background"
+                    {{-- <img src="{{ asset('imagess/heroimages/aboutM.png') }}" alt="Network Background"
                         class="w-full h-full object-cover md:hidden">
 
                     <img src="{{ asset('imagess/heroimages/aboutT.png') }}" alt="Network Background"
                         class="w-full h-full object-cover lg:hidden">
 
                     <img src="{{ asset('imagess/heroimages/about.png') }}" alt="Network Background"
-                        class="w-full h-full object-cover object-center hidden lg:block">
+                        class="w-full h-full object-cover object-center hidden lg:block"> --}}
 
                     @if ($hero->mobile_image)
-                        <img src="{{ asset('storage/' . $hero->mobile_image) }}"
-                            class="w-full h-full object-cover md:hidden">
+                        <img src="{{ asset('storage/' . $hero->mobile_image) }}" class="w-full h-full object-cover md:hidden">
                     @endif
 
                     @if ($hero->tablet_image)
@@ -72,8 +71,8 @@
 
             <!-- Added max-w-3xl to control text width -->
             <div class="max-w-3xl lg:text-left text-center items-center lg:items-start lg:px-20 px-4 ">
-                <h1 class="text-4xl md:text-6xl font-bold text-slate-600 mb-6 reveal">
-                    About <span class="">Tech Verse</span>
+                {{-- <h1 class="text-4xl md:text-6xl font-bold text-slate-600 mb-6 reveal">
+                    About Tech Verse
                 </h1>
 
                 <p class="text-lg md:text-xl text-[var(--sky)] lg:text-slate-600 leading-relaxed reveal"
@@ -87,9 +86,27 @@
                         class="inline-flex items-center gap-2 md:text-sm text-[12px] font-semibold text-[var(--royal)] bg-[var(--sky)] px-4 py-2 rounded-full shadow-lg shadow-[#2563eb]/40">
                         <i class="fa-solid fa-certificate"></i> Certified Engineers & Rapid Delivery
                     </div>
-                </div>
-            </div>
+                </div> --}}
 
+                @if ($header)
+                    <h1 class="text-4xl md:text-6xl font-bold text-slate-600 mb-6 reveal">
+                        {{ $header->title }}
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-[var(--sky)] lg:text-slate-600 leading-relaxed reveal"
+                        style="animation-delay: 100ms;">
+                        {{ $header->description }}
+                    </p>
+
+                    <div class="mt-10 reveal" style="animation-delay: 200ms;">
+                        <div
+                            class="inline-flex items-center gap-2 md:text-sm text-[12px] font-semibold text-[var(--royal)] bg-[var(--sky)] px-4 py-2 rounded-full shadow-lg shadow-[#2563eb]/40">
+                            <i class="{{ $header->badge_icon }}"></i>
+                            {{ $header->badge_text }}
+                        </div>
+                    </div>
+                @endif
+            </div>
         </header>
 
         <!-- Intro & Tech Stack -->
