@@ -119,6 +119,18 @@
                         ],
                     ],
                     [
+                        'title' => 'About',
+                        'icon' => 'fa-solid fa-house-chimney',
+                        'routes' => ['about-hero.*'],
+                        'links' => [
+                            [
+                                'route' => 'about-hero.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Hero Section',
+                            ],
+                        ],
+                    ],
+                    [
                         'title' => 'Get a Quote',
                         'icon' => 'fa-solid fa-house-chimney',
                         'routes' => [

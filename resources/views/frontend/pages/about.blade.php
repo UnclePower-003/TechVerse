@@ -1,7 +1,7 @@
 @extends('frontend.app')
 
 @section('content')
-<title>About | TechVerse</title>
+    <title>About | TechVerse</title>
     @push('style')
         <!-- Custom CSS for Animations -->
         <style>
@@ -39,22 +39,36 @@
 
         <header class="relative bg-[var(--slate)] overflow-hidden h-[90vh] p-3 flex items-center">
             <div class="absolute inset-0">
+                @if ($hero)
+                    <img src="{{ asset('imagess/heroimages/aboutM.png') }}" alt="Network Background"
+                        class="w-full h-full object-cover md:hidden">
 
-                <img src="{{ asset('imagess/heroimages/aboutM.png') }}" alt="Network Background"
-                    class="w-full h-full object-cover md:hidden">
+                    <img src="{{ asset('imagess/heroimages/aboutT.png') }}" alt="Network Background"
+                        class="w-full h-full object-cover lg:hidden">
 
-                <img src="{{ asset('imagess/heroimages/aboutT.png') }}" alt="Network Background"
-                    class="w-full h-full object-cover lg:hidden">
+                    <img src="{{ asset('imagess/heroimages/about.png') }}" alt="Network Background"
+                        class="w-full h-full object-cover object-center hidden lg:block">
 
-                <img src="{{ asset('imagess/heroimages/about.png') }}" alt="Network Background"
-                    class="w-full h-full object-cover object-center hidden lg:block">
+                    @if ($hero->mobile_image)
+                        <img src="{{ asset('storage/' . $hero->mobile_image) }}"
+                            class="w-full h-full object-cover md:hidden">
+                    @endif
+
+                    @if ($hero->tablet_image)
+                        <img src="{{ asset('storage/' . $hero->tablet_image) }}"
+                            class="w-full h-full object-cover lg:hidden hidden md:block">
+                    @endif
+
+                    @if ($hero->desktop_image)
+                        <img src="{{ asset('storage/' . $hero->desktop_image) }}"
+                            class="w-full h-full object-cover object-center hidden lg:block">
+                    @endif
+                @endif
             </div>
 
             <!-- Gradient Overlay -->
             <div class="absolute inset-0 lg:bg-gradient-to-r from-transparent via-black/5 to-black/70"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/70 lg:hidden"></div>
-         
-
 
             <!-- Added max-w-3xl to control text width -->
             <div class="max-w-3xl lg:text-left text-center items-center lg:items-start lg:px-20 px-4 ">
@@ -62,7 +76,8 @@
                     About <span class="">Tech Verse</span>
                 </h1>
 
-                <p class="text-lg md:text-xl text-[var(--sky)] lg:text-slate-600 leading-relaxed reveal" style="animation-delay: 100ms;">
+                <p class="text-lg md:text-xl text-[var(--sky)] lg:text-slate-600 leading-relaxed reveal"
+                    style="animation-delay: 100ms;">
                     Empowering businesses with secure, scalable technology since 2014. We specialize in networking,
                     surveillance, and resilient IT infrastructure.
                 </p>
