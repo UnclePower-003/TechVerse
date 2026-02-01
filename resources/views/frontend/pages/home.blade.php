@@ -613,48 +613,77 @@
                 </div>
 
                 <!-- Form -->
-                <div class="bg-[#d1e2f6] p-8 rounded-2xl border border-stone-300 shadow-lg reveal delay-100">
-                    <form action="#" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Full name</label>
-                            <input type="text" id="name"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
-                                placeholder="John Doe">
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl max-w-2xl mx-auto">
+                    {{-- Form Title/Header --}}
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center">
+                            <span class="w-8 h-8 bg-blue-50 text-primary rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-paper-plane text-sm"></i>
+                            </span>
+                            Get in Touch
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 ml-11">Fill out the form below and our team will get back to
+                            you shortly.</p>
+                    </div>
+
+                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-5">
+                        @csrf
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" id="email"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
-                                    placeholder="john@company.com">
+                                <label
+                                    class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Full
+                                    name</label>
+                                <input type="text" placeholder="John Doe" name="full_name" required
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all placeholder:text-gray-400">
                             </div>
+
                             <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone
-                                    (optional)</label>
-                                <input type="tel" id="phone"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"
-                                    placeholder="98XXXXXXXX">
+                                <label
+                                    class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Phone
+                                    <span class="text-gray-400 font-normal">(Optional)</span></label>
+                                <input type="tel" placeholder="+977 98..." name="phone"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all placeholder:text-gray-400">
                             </div>
                         </div>
+
                         <div>
-                            <label for="inquiry" class="block text-sm font-medium text-gray-700">Inquiry Type</label>
-                            <select id="inquiry"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition">
-                                <option>Product Inquiry</option>
-                                <option>Service Quote</option>
-                                <option>Consultation</option>
-                                <option>Support</option>
-                            </select>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Email
+                                Address</label>
+                            <input type="email" placeholder="john@company.com" name="email" required
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all placeholder:text-gray-400">
                         </div>
+
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Tell us about your
-                                requirements</label>
-                            <textarea id="message" rows="4"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#3b82f6] focus:ring-[#3b82f6] bg-[#d1e2f6] px-4 py-3 border outline-none transition"></textarea>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Inquiry
+                                Type</label>
+                            <div class="relative">
+                                <select name="inquiry_type"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all text-gray-600 appearance-none">
+                                    <option>Product Inquiry</option>
+                                    <option>Networking</option>
+                                    <option>CCTV / Surveillance</option>
+                                    <option>IT Consultation</option>
+                                </select>
+                                <div
+                                    class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
                         </div>
+
+                        <div>
+                            <label
+                                class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Requirements</label>
+                            <textarea rows="4" placeholder="How can we help you?" name="message" required
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all placeholder:text-gray-400"></textarea>
+                        </div>
+
+                        {{-- Submit Button --}}
                         <button type="submit"
-                            class="w-full bg-[#2563eb] text-[#d1e2f6] py-3 px-4 rounded-md hover:bg-[#1e293b] font-bold transition shadow-lg shadow-[#3b82f6]/30">
-                            Send Inquiry
+                            class="w-full bg-blue-400 text-white font-extrabold py-4 rounded-xl hover:bg-[#266eb1] transition-all shadow-lg shadow-blue-200 flex items-center justify-center space-x-2 active:scale-[0.98]">
+                            <span>Send Inquiry</span>
+                            <i class="fa-solid fa-paper-plane text-sm"></i>
                         </button>
                     </form>
                 </div>
