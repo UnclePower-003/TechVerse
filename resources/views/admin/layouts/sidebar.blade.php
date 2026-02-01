@@ -121,7 +121,7 @@
                     [
                         'title' => 'About',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['about-hero.*', 'about-header.*', 'about-expertise.*', 'about-drive.*'],
+                        'routes' => ['about-hero.*', 'about-header.*', 'about-expertise.*', 'about-drive.*', 'about-highlight.*'],
                         'links' => [
                             [
                                 'route' => 'about-hero.index',
@@ -142,6 +142,11 @@
                                 'route' => 'about-drive.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'About Drive',
+                            ],
+                            [
+                                'route' => 'about-highlight.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'About Highlights',
                             ],
                         ],
                     ],

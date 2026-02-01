@@ -218,14 +218,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Card 1 -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[var(--royal)] hover-card reveal">
+                    {{-- <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[var(--royal)] hover-card reveal">
                         <div
                             class="w-12 h-12 bg-[var(--sky)] rounded-lg flex items-center justify-center mb-6 text-[var(--royal)]">
                             <i class="fa-solid fa-building-shield text-xl"></i>
                         </div>
                         <h4 class="text-xl font-bold text-[var(--slate)] mb-2">Major Installations</h4>
-                        <p class="text-gray-600">Delivered secure networking and surveillance for KOICA, Cyber Bureau, and
-                            large public-sector sites ensuring maximum security.</p>
+                        <p class="text-gray-600">Delivered secure networking and surveillance for KOICA, Cyber Bureau, and large public-sector sites ensuring maximum security.</p>
                     </div>
 
                     <!-- Card 2 -->
@@ -236,8 +235,7 @@
                             <i class="fa-solid fa-plane-departure text-xl"></i>
                         </div>
                         <h4 class="text-xl font-bold text-[var(--slate)] mb-2">Smart Airport Upgrades</h4>
-                        <p class="text-gray-600">Tribhuvan International Airport: Implemented redundant comms, safety
-                            integrations, and 24/7 monitored operations.</p>
+                        <p class="text-gray-600">Tribhuvan International Airport: Implemented redundant comms, safety integrations, and 24/7 monitored operations.</p>
                     </div>
 
                     <!-- Card 3 -->
@@ -248,8 +246,7 @@
                             <i class="fa-solid fa-road text-xl"></i>
                         </div>
                         <h4 class="text-xl font-bold text-[var(--slate)] mb-2">City ANPR Rollout</h4>
-                        <p class="text-gray-600">Deployed ANPR distribution with edge AI, low-light specialized cameras, and
-                            centralized analytics for city management.</p>
+                        <p class="text-gray-600">Deployed ANPR distribution with edge AI, low-light specialized cameras, and centralized analytics for city management.</p>
                     </div>
 
                     <!-- Card 4 -->
@@ -260,9 +257,19 @@
                             <i class="fa-solid fa-city text-xl"></i>
                         </div>
                         <h4 class="text-xl font-bold text-[var(--slate)] mb-2">Integrated Buildings</h4>
-                        <p class="text-gray-600">Rising Builders: Unified building management systems combining CCTV, access
-                            control, and HVAC integrations.</p>
-                    </div>
+                        <p class="text-gray-600">Rising Builders: Unified building management systems combining CCTV, access control, and HVAC integrations.</p>
+                    </div> --}}
+
+                    @foreach ($highlights as $highlight)
+                        <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-[var(--royal)] hover-card reveal">
+                            <div
+                                class="w-12 h-12 bg-[var(--sky)] rounded-lg flex items-center justify-center mb-6 text-[var(--royal)]">
+                                <i class="{{ $highlight->icon }} text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-[var(--slate)] mb-2">{{ $highlight->title }}</h4>
+                            <p class="text-gray-600">{{ $highlight->description }}</p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>

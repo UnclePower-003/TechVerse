@@ -101,6 +101,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/about-header', \App\Http\Controllers\Admin\AboutHeaderController::class);
         Route::resource('/admin/dashboard/about-expertise', \App\Http\Controllers\Admin\AboutExpertiseController::class);
         Route::resource('/admin/dashboard/about-drive', \App\Http\Controllers\Admin\AboutDriveController::class);
-
+        Route::resource('/admin/dashboard/about-highlight', \App\Http\Controllers\Admin\AboutHighlightController::class);
     });
 });
