@@ -96,5 +96,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/dashboard/social-links', \App\Http\Controllers\Admin\SocialLinkController::class);
         Route::resource('/admin/dashboard/project-hero', \App\Http\Controllers\Admin\ProjectHeroController::class);
         Route::resource('/admin/dashboard/project-header', \App\Http\Controllers\Admin\ProjectHeaderController::class);
+        Route::resource('/admin/dashboard/project-quality', \App\Http\Controllers\Admin\ProjectQualityController::class);
     });
 });

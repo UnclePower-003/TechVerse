@@ -99,7 +99,7 @@
                     [
                         'title' => 'Projects',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['project-hero.*', 'project-header.*'],
+                        'routes' => ['project-hero.*', 'project-header.*', 'project-quality.*'],
                         'links' => [
                             [
                                 'route' => 'project-hero.index',
@@ -110,6 +110,11 @@
                                 'route' => 'project-header.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Project Header',
+                            ],
+                            [
+                                'route' => 'project-quality.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Project Quality Cards',
                             ],
                         ],
                     ],

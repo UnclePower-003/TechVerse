@@ -351,8 +351,7 @@
                 <h3 class="text-blue-500 font-semibold tracking-widest uppercase text-sm mb-3 opacity-0 reveal-up">
                     Our Best Qualities
                 </h3>
-                <h2 class="text-3xl md:text-5xl font-bold text-white opacity-0 reveal-up"
-                    style="transition-delay: 200ms;">
+                <h2 class="text-3xl md:text-5xl font-bold text-white opacity-0 reveal-up" style="transition-delay: 200ms;">
                     Why customers trust us
                 </h2>
                 <div class="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded-full opacity-0 reveal-up"
@@ -360,8 +359,7 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-
-                <div class="trust-card group p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 opacity-0 reveal-up"
+                {{-- <div class="trust-card group p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 opacity-0 reveal-up"
                     style="transition-delay: 400ms;">
                     <div
                         class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -395,8 +393,28 @@
                     <p class="text-slate-400 leading-relaxed">
                         Hardened configs, least-privilege access, and audits.
                     </p>
-                </div>
+                </div> --}}
 
+                @foreach ($qualities as $quality)
+                    <div class="trust-card group p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50
+                    hover:border-blue-500/50 transition-all duration-500 opacity-0 reveal-up"
+                        style="transition-delay: 800ms;">
+
+                        <div
+                            class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6
+                        group-hover:scale-110 transition-transform duration-500">
+                            <i class="{{ $quality->icon }} text-2xl text-blue-500"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-white mb-4">
+                            {{ $quality->title }}
+                        </h4>
+
+                        <p class="text-slate-400 leading-relaxed">
+                            {{ $quality->description }}
+                        </p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
