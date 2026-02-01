@@ -118,44 +118,63 @@
 
             <div class="absolute inset-0 z-10 px-4 flex justify-center text-center items-center">
                 <div class="space-y-8">
-                    <div
-                        class="animate-fade-up opacity-0 inline-flex items-center space-x-2 bg-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 text-sm font-semibold tracking-wide">
-                        <span class="relative flex h-2 w-2">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        <span>PROJECT PORTFOLIO</span>
-                    </div>
-
-                    <h1 class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold tracking-tight">
-                        Projects
-                    </h1>
-
-                    <p class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
-                        Selected deployments across secure infrastructure, smart airports, ANPR rollouts, and integrated
-                        buildings.
-                    </p>
-
-                    <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-center pt-4">
+                    @if ($header)
                         <div
-                            class="animate-float flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-file-shield text-blue-500"></i>
-                            <span class="text-sm font-medium">Documented</span>
+                            class="animate-fade-up opacity-0 inline-flex items-center space-x-2 bg-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 text-sm font-semibold tracking-wide">
+                            <span class="relative flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            </span>
+                            {{-- <span>PROJECT PORTFOLIO</span> --}}
+                            <span>{{ $header->small_title }}</span>
                         </div>
 
-                        <div
-                            class="animate-float [animation-delay:0.2s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-chart-line text-blue-500"></i>
-                            <span class="text-sm font-medium">Monitored</span>
-                        </div>
+                        {{-- <h1 class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold tracking-tight">
+                            Projects
+                        </h1> --}}
+                        <h1 class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold text-white">
+                            {{ $header->main_title }}
+                        </h1>
 
-                        <div
-                            class="animate-float [animation-delay:0.4s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-handshake-angle text-blue-500"></i>
-                            <span class="text-sm font-medium">SLA-backed</span>
+                        {{-- <p
+                            class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
+                            Selected deployments across secure infrastructure, smart airports, ANPR rollouts, and integrated
+                            buildings.
+                        </p> --}}
+                        <p class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl">
+                            {{ $header->description }}
+                        </p>
+
+                        {{-- <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-center pt-4">
+                            <div
+                                class="animate-float flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-file-shield text-blue-500"></i>
+                                <span class="text-sm font-medium">Documented</span>
+                            </div>
+
+                            <div
+                                class="animate-float [animation-delay:0.2s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-chart-line text-blue-500"></i>
+                                <span class="text-sm font-medium">Monitored</span>
+                            </div>
+
+                            <div
+                                class="animate-float [animation-delay:0.4s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-handshake-angle text-blue-500"></i>
+                                <span class="text-sm font-medium">SLA-backed</span>
+                            </div>
+                        </div> --}}
+                        <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-center pt-4">
+                            @foreach ($header->badges ?? [] as $badge)
+                                <div class="animate-float flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg"
+                                    style="animation-delay: {{ $badge['delay'] ?? '0s' }}">
+                                    <i class="{{ $badge['icon'] }} text-blue-500"></i>
+                                    <span class="text-sm font-medium">{{ $badge['text'] }}</span>
+                                </div>
+                            @endforeach
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -166,46 +185,72 @@
         <div class="relative flex flex-col md:flex-row w-full h-[90vh]">
             {{-- left content --}}
             <div class="relative w-[45%] bg-[#0f172a] flex flex-col justify-center items-start text-left px-24 py-20 z-20">
-                <div class="space-y-8">
-                    <div
-                        class="animate-fade-up opacity-0 inline-flex items-center space-x-2 bg-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 text-sm font-semibold tracking-wide">
-                        <span class="relative flex h-2 w-2">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        <span>PROJECT PORTFOLIO</span>
+                @if ($header)
+                    <div class="space-y-8">
+                        <div
+                            class="animate-fade-up opacity-0 inline-flex items-center space-x-2 bg-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full border border-blue-500/30 text-sm font-semibold tracking-wide">
+                            <span class="relative flex h-2 w-2">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            </span>
+                            {{-- <span>PROJECT PORTFOLIO</span> --}}
+                            <span>{{ $header->small_title }}</span>
+                        </div>
+
+                        {{-- <h1
+                            class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold text-white tracking-tight">
+                            Projects
+                        </h1> --}}
+                        <h1
+                            class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold text-white tracking-tight">
+                            {{ $header->main_title }}
+                        </h1>
+
+                        {{-- <p
+                            class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
+                            Selected deployments across secure infrastructure, smart airports, ANPR rollouts, and integrated
+                            buildings.
+                        </p> --}}
+                        <p
+                            class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
+                            {{ $header->description }}
+                        </p>
+
+                        {{-- <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-start pt-4">
+                            <div
+                                class="animate-float flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-file-shield text-blue-500"></i>
+                                <span class="text-sm font-medium">Documented</span>
+                            </div>
+
+                            <div
+                                class="animate-float [animation-delay:0.2s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-chart-line text-blue-500"></i>
+                                <span class="text-sm font-medium">Monitored</span>
+                            </div>
+
+                            <div
+                                class="animate-float [animation-delay:0.4s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-handshake-angle text-blue-500"></i>
+                                <span class="text-sm font-medium">SLA-backed</span>
+                            </div>
+                        </div> --}}
+                        <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-start pt-4">
+                            @foreach ($header->badges ?? [] as $index => $badge)
+                                <div
+                                    class="animate-float
+                   {{ isset($badge['delay']) ? '[animation-delay:' . $badge['delay'] . ']' : '' }}
+                   flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
+
+                                    <i class="{{ $badge['icon'] }} text-blue-500"></i>
+                                    <span class="text-sm font-medium">{{ $badge['text'] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+
                     </div>
-
-                    <h1 class="animate-fade-up delay-1 opacity-0 text-5xl md:text-7xl font-bold text-white tracking-tight">
-                        Projects
-                    </h1>
-
-                    <p class="animate-fade-up delay-2 opacity-0 text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed">
-                        Selected deployments across secure infrastructure, smart airports, ANPR rollouts, and integrated
-                        buildings.
-                    </p>
-
-                    <div class="animate-fade-up delay-3 opacity-0 flex flex-wrap gap-4 justify-start pt-4">
-                        <div
-                            class="animate-float flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-file-shield text-blue-500"></i>
-                            <span class="text-sm font-medium">Documented</span>
-                        </div>
-
-                        <div
-                            class="animate-float [animation-delay:0.2s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-chart-line text-blue-500"></i>
-                            <span class="text-sm font-medium">Monitored</span>
-                        </div>
-
-                        <div
-                            class="animate-float [animation-delay:0.4s] flex items-center space-x-2 text-slate-300 glass-card px-4 py-2 rounded-lg">
-                            <i class="fa-solid fa-handshake-angle text-blue-500"></i>
-                            <span class="text-sm font-medium">SLA-backed</span>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
             {{-- right image  --}}
             <div class="relative md:w-[55%] h-full bg-[#0f172a] overflow-hidden">
@@ -306,7 +351,8 @@
                 <h3 class="text-blue-500 font-semibold tracking-widest uppercase text-sm mb-3 opacity-0 reveal-up">
                     Our Best Qualities
                 </h3>
-                <h2 class="text-3xl md:text-5xl font-bold text-white opacity-0 reveal-up" style="transition-delay: 200ms;">
+                <h2 class="text-3xl md:text-5xl font-bold text-white opacity-0 reveal-up"
+                    style="transition-delay: 200ms;">
                     Why customers trust us
                 </h2>
                 <div class="w-20 h-1 bg-blue-600 mx-auto mt-6 rounded-full opacity-0 reveal-up"

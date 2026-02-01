@@ -99,12 +99,17 @@
                     [
                         'title' => 'Projects',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['project-hero.*'],
+                        'routes' => ['project-hero.*', 'project-header.*'],
                         'links' => [
                             [
                                 'route' => 'project-hero.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Hero Section',
+                            ],
+                            [
+                                'route' => 'project-header.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Project Header',
                             ],
                         ],
                     ],
