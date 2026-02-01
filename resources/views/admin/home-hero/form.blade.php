@@ -2,152 +2,96 @@
 
 @section('content')
     <div class="p-6 max-w-4xl mx-auto">
-        {{-- Breadcrumb/Back Link --}}
+        {{-- Breadcrumb --}}
         <div class="mb-6">
-            <a href="{{ route('hero-header.index') }}"
+            <a href="{{ route('home-hero.index') }}"
                 class="text-sm text-primary hover:text-blue-500 transition-colors flex items-center space-x-1 font-semibold">
                 <i class="fas fa-arrow-left text-xs"></i>
-                <span>Back to Hero Headers</span>
+                <span>Back to Home Heroes</span>
             </a>
         </div>
 
         <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-            {{-- Form Header --}}
+            {{-- Header --}}
             <div class="bg-primary px-8 py-6">
                 <h1 class="text-2xl font-bold text-white tracking-tight flex items-center">
-                    <i class="fas fa-heading mr-3 opacity-80"></i>
-                    {{ $header ? 'Edit Hero Header' : 'Create New Hero Header' }}
+                    <i class="fas fa-home mr-3 opacity-80"></i>
+                    {{ $hero ? 'Edit Home Hero' : 'Create New Home Hero' }}
                 </h1>
-                <p class="text-indigo-100/80 text-sm mt-1">Configure the text, highlights, and call-to-action buttons for your hero section.</p>
             </div>
 
             <div class="p-8">
-                {{-- Display Errors --}}
-                @if ($errors->any())
-                    <div class="mb-8 p-4 bg-red-50 border-l-4 border-red-500 text-red-800 rounded-r-lg shadow-sm">
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-exclamation-circle mr-2"></i>
-                            <span class="font-bold">Please correct the following:</span>
-                        </div>
-                        <ul class="list-disc pl-5 text-sm space-y-1">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form method="POST" 
-                    action="{{ $header ? route('hero-header.update', $header) : route('hero-header.store') }}" 
-                    class="space-y-6">
+                <form method="POST"
+                    action="{{ $hero ? route('home-hero.update', $hero->id) : route('home-hero.store') }}"
+                    enctype="multipart/form-data" class="space-y-8">
                     @csrf
-                    @if ($header)
-                        @method('PUT')
-                    @endif
+                    @if ($hero) @method('PUT') @endif
 
-                    {{-- Title Configuration Section --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Badge Text</label>
-                            <input type="text" name="badge_text" placeholder="e.g. Best Choice"
-                                value="{{ old('badge_text', $header->badge_text ?? '') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Small Title 1 (Prefix)</label>
-                            <input type="text" name="title_small_1" placeholder="YOUR"
-                                value="{{ old('title_small_1', $header->title_small_1 ?? '') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Main Title</label>
-                            <input type="text" name="title_main" placeholder="TECH PARTNER"
-                                value="{{ old('title_main', $header->title_main ?? '') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-bold">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Small Title 2 (Connector)</label>
-                            <input type="text" name="title_small_2" placeholder="FOR"
-                                value="{{ old('title_small_2', $header->title_small_2 ?? '') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Title Highlight</label>
-                            <input type="text" name="title_highlight" placeholder="Success"
-                                value="{{ old('title_highlight', $header->title_highlight ?? '') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-primary font-bold">
-                        </div>
-                    </div>
-
-                    {{-- Description --}}
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Description</label>
-                        <textarea name="description" rows="3" 
-                            placeholder="Enter a brief description for the hero section..."
-                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none">{{ old('description', $header->description ?? '') }}</textarea>
-                    </div>
-
-                    <hr class="border-gray-100">
-
-                    {{-- Buttons Section --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-600 mb-2">Primary Button Text</label>
-                            <input type="text" name="primary_btn_text" placeholder="Get Started"
-                                value="{{ old('primary_btn_text', $header->primary_btn_text ?? '') }}"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary transition-all outline-none">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        @foreach(['mobile_image' => 'mobile', 'tablet_image' => 'tablet', 'desktop_image' => 'desktop'] as $name => $icon)
+                        <div class="space-y-3">
+                            <label class="block text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                {{ str_replace('_', ' ', $name) }}
+                            </label>
                             
-                            <label class="block text-xs font-bold text-gray-400 mt-2 uppercase">Link</label>
-                            <input type="text" name="primary_btn_link" placeholder="https://..."
-                                value="{{ old('primary_btn_link', $header->primary_btn_link ?? '') }}"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary transition-all outline-none">
-                        </div>
+                            {{-- Upload Box --}}
+                            <div class="group relative bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-4 transition-all hover:border-primary">
+                                <input type="file" name="{{ $name }}" onchange="previewImage(this, '{{ $name }}_preview')"
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                <div class="text-center">
+                                    <i class="fas fa-{{ $icon }}-alt text-2xl text-gray-300 group-hover:text-primary mb-2"></i>
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase">Click to Upload</p>
+                                </div>
+                            </div>
 
-                        <div>
-                            <label class="block text-sm font-bold text-gray-600 mb-2">Secondary Button Text</label>
-                            <input type="text" name="secondary_btn_text" placeholder="Learn More"
-                                value="{{ old('secondary_btn_text', $header->secondary_btn_text ?? '') }}"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary transition-all outline-none">
-                            
-                            <label class="block text-xs font-bold text-gray-400 mt-2 uppercase">Link</label>
-                            <input type="text" name="secondary_btn_link" placeholder="https://..."
-                                value="{{ old('secondary_btn_link', $header->secondary_btn_link ?? '') }}"
-                                class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary transition-all outline-none">
+                            {{-- Preview Container --}}
+                            <div id="{{ $name }}_preview_container" class="mt-3 p-1 bg-white border border-gray-100 rounded-xl shadow-sm {{ ($hero && $hero->$name) ? '' : 'hidden' }}">
+                                <img id="{{ $name }}_preview" 
+                                     src="{{ $hero && $hero->$name ? asset('storage/' . $hero->$name) : '#' }}"
+                                     class="w-full h-32 object-cover rounded-lg" alt="Preview">
+                            </div>
                         </div>
+                        @endforeach
                     </div>
 
-                    {{-- Active Status Toggle --}}
-                    <div class="flex items-center space-x-3 py-4">
+                    {{-- Active Toggle --}}
+                    <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 w-fit">
                         <input type="hidden" name="is_active" value="0">
-                        <div class="flex items-center h-5">
-                            <input type="checkbox" name="is_active" value="1" id="isActive"
-                                {{ old('is_active', $header->is_active ?? true) ? 'checked' : '' }}
-                                class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary transition-all cursor-pointer">
-                        </div>
-                        <label for="isActive"
-                            class="text-sm font-bold text-gray-700 uppercase tracking-wider cursor-pointer select-none">
-                            Mark as Active
+                        <input type="checkbox" name="is_active" value="1" id="isActive"
+                            {{ old('is_active', $hero->is_active ?? 0) ? 'checked' : '' }}
+                            class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer">
+                        <label for="isActive" class="text-sm font-bold text-gray-700 uppercase tracking-wider cursor-pointer">
+                            Set as Active Banner
                         </label>
                     </div>
 
-                    {{-- Action Buttons --}}
+                    {{-- Actions --}}
                     <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-100 mt-8">
-                        <a href="{{ route('hero-header.index') }}"
-                            class="px-6 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold hover:bg-gray-200 transition-all">
-                            Cancel
-                        </a>
-                        <button type="submit"
-                            class="px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-blue-500 transition-all flex items-center space-x-2">
-                            <i class="fas fa-save text-sm"></i>
-                            <span>{{ $header ? 'Update' : 'Save' }} Header</span>
+                        <a href="{{ route('home-hero.index') }}" class="px-6 py-3 bg-gray-100 text-gray-600 rounded-xl font-bold">Cancel</a>
+                        <button type="submit" class="px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-blue-500 transition-all">
+                            Save Hero
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    {{-- Simple JS for Live Preview --}}
+    <script>
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const container = document.getElementById(previewId + '_container');
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    container.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 @endsection
