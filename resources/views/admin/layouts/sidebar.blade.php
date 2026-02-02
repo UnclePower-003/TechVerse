@@ -78,115 +78,91 @@
                 $dropdowns = [
                     [
                         'title' => 'Home',
-                        'icon' => 'fa-solid fa-house-chimney', // Home specific
+                        'icon' => 'fa-solid fa-house',
                         'routes' => ['home-hero.*', 'hero-header.*', 'home-stat.*', 'home-partners.*'],
                         'links' => [
-                            [
-                                'route' => 'home-hero.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Hero Section',
-                            ],
-                            [
-                                'route' => 'hero-header.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Hero Header',
-                            ],
+                            ['route' => 'home-hero.index', 'icon' => 'fa-solid fa-star', 'text' => 'Hero Section'],
+                            ['route' => 'hero-header.index', 'icon' => 'fa-solid fa-heading', 'text' => 'Hero Header'],
                             [
                                 'route' => 'home-stat.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-chart-simple',
                                 'text' => 'Home Stats',
                             ],
-                            [
-                                'route' => 'home-partners.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Partners',
-                            ],
+                            ['route' => 'home-partners.index', 'icon' => 'fa-solid fa-handshake', 'text' => 'Partners'],
                         ],
                     ],
                     [
                         'title' => 'Services',
-                        'icon' => 'fa-solid fa-house-chimney',
+                        'icon' => 'fa-solid fa-gears',
                         'routes' => ['services-hero.*', 'service-header.*', 'service-list.*', 'service-pick.*'],
                         'links' => [
                             [
                                 'route' => 'services-hero.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-wand-magic-sparkles',
                                 'text' => 'Hero Section',
                             ],
                             [
                                 'route' => 'service-header.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-window-maximize',
                                 'text' => 'Service Header',
                             ],
                             [
                                 'route' => 'service-list.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-list-check',
                                 'text' => 'Service List',
                             ],
                             [
                                 'route' => 'service-pick.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-check-to-slot',
                                 'text' => 'Service Pick',
                             ],
                         ],
                     ],
                     [
                         'title' => 'Projects',
-                        'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['project-hero.*', 'project-header.*','projects.*', 'project-quality.*'],
+                        'icon' => 'fa-solid fa-diagram-project',
+                        'routes' => ['project-hero.*', 'project-header.*', 'projects.*', 'project-quality.*'],
                         'links' => [
-                            [
-                                'route' => 'project-hero.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Hero Section',
-                            ],
+                            ['route' => 'project-hero.index', 'icon' => 'fa-solid fa-rocket', 'text' => 'Hero Section'],
                             [
                                 'route' => 'project-header.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-id-card',
                                 'text' => 'Project Header',
                             ],
-                            [
-                                'route' => 'projects.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Project List',
-                            ],
+                            ['route' => 'projects.index', 'icon' => 'fa-solid fa-briefcase', 'text' => 'Project List'],
                             [
                                 'route' => 'project-quality.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-medal',
                                 'text' => 'Project Quality Cards',
                             ],
                         ],
                     ],
                     [
                         'title' => 'Products',
-                        'icon' => 'fa-solid fa-house-chimney',
+                        'icon' => 'fa-solid fa-box-archive',
                         'routes' => ['products-hero.*', 'products-header.*', 'categories.*', 'products.*'],
                         'links' => [
-                            [
-                                'route' => 'products-hero.index',
-                                'icon' => 'fa-solid fa-images',
-                                'text' => 'Hero Section',
-                            ],
+                            ['route' => 'products-hero.index', 'icon' => 'fa-solid fa-tag', 'text' => 'Hero Section'],
                             [
                                 'route' => 'products-header.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-table-list',
                                 'text' => 'Products Header',
                             ],
                             [
                                 'route' => 'categories.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-layer-group',
                                 'text' => 'Category List',
                             ],
                             [
                                 'route' => 'products.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-cart-shopping',
                                 'text' => 'Product List',
                             ],
                         ],
                     ],
                     [
                         'title' => 'About',
-                        'icon' => 'fa-solid fa-house-chimney',
+                        'icon' => 'fa-solid fa-circle-info',
                         'routes' => [
                             'about-hero.*',
                             'about-header.*',
@@ -198,39 +174,39 @@
                         'links' => [
                             [
                                 'route' => 'about-hero.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-address-card',
                                 'text' => 'Hero Section',
                             ],
                             [
                                 'route' => 'about-header.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-bullseye',
                                 'text' => 'About Header',
                             ],
                             [
                                 'route' => 'about-expertise.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-brain',
                                 'text' => 'About Expertise',
                             ],
                             [
                                 'route' => 'about-drive.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-gauge-high',
                                 'text' => 'About Drive',
                             ],
                             [
                                 'route' => 'about-highlight.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-highlighter',
                                 'text' => 'About Highlights',
                             ],
                             [
                                 'route' => 'about-promise.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-hand-holding-heart',
                                 'text' => 'About Promises',
                             ],
                         ],
                     ],
                     [
                         'title' => 'Get a Quote',
-                        'icon' => 'fa-solid fa-house-chimney',
+                        'icon' => 'fa-solid fa-file-invoice-dollar',
                         'routes' => [
                             'contact-hero.*',
                             'contact-header.*',
@@ -241,27 +217,27 @@
                         'links' => [
                             [
                                 'route' => 'contact-hero.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-paper-plane',
                                 'text' => 'Hero Section',
                             ],
                             [
                                 'route' => 'contact-header.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-envelope-open-text',
                                 'text' => 'Contact Header',
                             ],
                             [
                                 'route' => 'contact-info.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-phone-volume',
                                 'text' => 'Contact Info',
                             ],
                             [
                                 'route' => 'contact-support-promise.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-headset',
                                 'text' => 'Support Promise',
                             ],
                             [
                                 'route' => 'contact-choose.index',
-                                'icon' => 'fa-solid fa-images',
+                                'icon' => 'fa-solid fa-thumbs-up',
                                 'text' => 'Why Choose Us',
                             ],
                         ],
