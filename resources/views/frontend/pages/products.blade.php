@@ -345,7 +345,9 @@
 
                         <div class="relative z-10">
                             <h2 class="text-3xl font-extrabold mb-4 tracking-tight">Partner With Us</h2>
-                            <p class="text-blue-100 mb-10 leading-relaxed font-light">Let's discuss your project. Whether it's a small office setup or a city-wide surveillance project, we provide the best tech support in Nepal.</p>
+                            <p class="text-blue-100 mb-10 leading-relaxed font-light">Let's discuss your project. Whether
+                                it's a small office setup or a city-wide surveillance project, we provide the best tech
+                                support in Nepal.</p>
 
                             {{-- <div class="space-y-8">
                                 <div class="flex items-start gap-5 group">
@@ -384,7 +386,7 @@
                                 @foreach ($info->items as $item)
                                     <div class="flex items-start gap-5 group">
                                         <div
-                                        class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10">
+                                            class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10">
                                             <i class="{{ $item['icon'] }}"></i>
                                         </div>
                                         <div class="ml-5">
@@ -460,58 +462,57 @@
                                 <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
                             </button>
                         </form> --}}
-                        <form action="{{ route('product-requirements.store') }}" method="POST" class="space-y-6" id="productRequirementForm" >
-    @csrf
+                        <form action="{{ route('product-requirements.store') }}" method="POST" class="space-y-6"
+                            id="productRequirementForm">
+                            @csrf
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
-                Full Name
-            </label>
-            <input type="text" name="full_name" required
-                placeholder="e.g. Ram Bahadur"
-                class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
-        </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                                        Full Name
+                                    </label>
+                                    <input type="text" name="full_name" required placeholder="e.g. Ram Bahadur"
+                                        class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
+                                </div>
 
-        <div class="space-y-2">
-            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
-                Phone Number
-            </label>
-            <input type="tel" name="phone" required
-                placeholder="+977-98..."
-                class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
-        </div>
-    </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                                        Phone Number
+                                    </label>
+                                    <input type="tel" name="phone" required placeholder="+977-98..."
+                                        oninput="this.value = this.value.replace(/[^0-9+ \-]/g, '')"
+                                        class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
+                                </div>
+                            </div>
 
-    <div class="space-y-2">
-        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
-            Interested In
-        </label>
-        <select name="interest"
-            class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none cursor-pointer appearance-none text-slate-700">
-            <option value="CCTV Systems">CCTV Systems</option>
-            <option value="Enterprise Networking">Enterprise Networking</option>
-            <option value="Computing Hardware">Computing Hardware</option>
-            <option value="Security Systems">Security Systems</option>
-            <option value="General Inquiry">General Inquiry</option>
-        </select>
-    </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                                    Interested In
+                                </label>
+                                <select name="interest"
+                                    class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none cursor-pointer appearance-none text-slate-700">
+                                    <option value="CCTV Systems">CCTV Systems</option>
+                                    <option value="Enterprise Networking">Enterprise Networking</option>
+                                    <option value="Computing Hardware">Computing Hardware</option>
+                                    <option value="Security Systems">Security Systems</option>
+                                    <option value="General Inquiry">General Inquiry</option>
+                                </select>
+                            </div>
 
-    <div class="space-y-2">
-        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
-            Your Message
-        </label>
-        <textarea name="message" rows="8"
-            placeholder="Tell us about your requirements..."
-            class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all resize-y placeholder:text-slate-400 text-slate-700"></textarea>
-    </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                                    Your Message
+                                </label>
+                                <textarea name="message" rows="8" placeholder="Tell us about your requirements..."
+                                    class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all resize-y placeholder:text-slate-400 text-slate-700"></textarea>
+                            </div>
 
-    <button type="submit"
-        class="w-full bg-slate-900 hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-slate-900/10 hover:shadow-blue-600/20 transform hover:-translate-y-1 active:translate-y-0 duration-200 flex items-center justify-center gap-2 group">
-        <span>Send Message</span>
-        <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
-    </button>
-</form>
+                            <button type="submit"
+                                class="w-full bg-slate-900 hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-slate-900/10 hover:shadow-blue-600/20 transform hover:-translate-y-1 active:translate-y-0 duration-200 flex items-center justify-center gap-2 group">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </form>
 
                     </div>
                 </div>
@@ -520,33 +521,33 @@
 
 
         @push('script')
-        <script>
-document.getElementById('productRequirementForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+            <script>
+                document.getElementById('productRequirementForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
 
-    const form = this;
-    const formData = new FormData(form);
+                    const form = this;
+                    const formData = new FormData(form);
 
-    fetch("{{ route('product-requirements.store') }}", {
-        method: "POST",
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-            'Accept': 'application/json'
-        },
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status) {
-            form.reset();
-            alert(data.message); // replace with toast if you want
-        }
-    })
-    .catch(err => {
-        alert('Something went wrong. Please try again.');
-    });
-});
-</script>
+                    fetch("{{ route('product-requirements.store') }}", {
+                            method: "POST",
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                                'Accept': 'application/json'
+                            },
+                            body: formData
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status) {
+                                form.reset();
+                                alert(data.message); // replace with toast if you want
+                            }
+                        })
+                        .catch(err => {
+                            alert('Something went wrong. Please try again.');
+                        });
+                });
+            </script>
 
             <script>
                 // Data Source

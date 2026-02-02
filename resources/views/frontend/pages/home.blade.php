@@ -642,8 +642,9 @@
                                 <label
                                     class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 ml-1">Phone
                                     <span class="text-gray-400 font-normal">(Optional)</span></label>
-                                <input type="tel" placeholder="+977 98..." name="phone"
-                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-primary focus:ring-4 focus:ring-blue-100 focus:bg-white outline-none transition-all placeholder:text-gray-400">
+                                <input type="tel" name="phone" placeholder="+977 98..."
+                                    oninput="this.value = this.value.replace(/[^0-9+]/g, '')"
+                                    class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition">
                             </div>
                         </div>
 

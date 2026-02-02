@@ -86,7 +86,8 @@
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-1">Phone
                                         (optional)</label>
-                                    <input type="tel" placeholder="+977 98..." name="phone"
+                                    <input type="tel" name="phone" placeholder="+977 98..."
+                                        oninput="this.value = this.value.replace(/[^0-9+]/g, '')"
                                         class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[var(--royal)] focus:ring-1 focus:ring-[var(--royal)] outline-none transition">
                                 </div>
                             </div>
@@ -222,7 +223,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
