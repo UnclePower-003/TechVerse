@@ -10,6 +10,7 @@ use App\Models\ServiceList;
 use App\Models\HomePartner;
 use App\Models\ContactInfo;
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,8 @@ class HomeController extends Controller
 
         $info = ContactInfo::where('is_active', true)->latest()->first();
 
-        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services', 'partners', 'info'));
+        $projects = Project::orderBy('id', 'asc')->get(); // Get all projects, latest first
+
+        return view('frontend.pages.home', compact('hero', 'heroHeader', 'stats', 'services', 'partners', 'info', 'projects'));
     }
 }

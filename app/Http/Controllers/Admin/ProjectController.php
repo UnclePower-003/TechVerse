@@ -21,10 +21,11 @@ class ProjectController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
             'badge' => 'nullable|string|max:50',
             'overview' => 'required|string',
             'project_specifications' => 'required|array',
+            'project_specifications.*.icon' => 'required|string|max:255',
             'project_specifications.*.title' => 'required|string|max:255',
             'project_specifications.*.description' => 'required|string',
             'completion' => 'required|string|max:255',
@@ -42,7 +43,7 @@ class ProjectController extends Controller
 
         Project::create($validated);
 
-        return redirect()->route('projects.create')->with('success', 'Project added successfully!');
+        return redirect()->route('projects.index')->with('success', 'Project added successfully!');
     }
 
     // INDEX - List all projects
@@ -66,37 +67,38 @@ class ProjectController extends Controller
 
     // UPDATE - Update project
     public function update(Request $request, Project $project)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'badge' => 'nullable|string|max:50',
-            'overview' => 'required|string',
-            'project_specifications' => 'required|array',
-            'project_specifications.*.title' => 'required|string|max:255',
-            'project_specifications.*.description' => 'required|string',
-            'completion' => 'required|string|max:255',
-            'key_features' => 'required|array',
-            'key_features.*' => 'required|string|max:255',
-            'technical_details' => 'required|string',
-            'quote' => 'nullable|string',
-            'quote_author' => 'nullable|string|max:255',
-        ]);
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'subtitle' => 'nullable|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
+        'badge' => 'nullable|string|max:50',
+        'overview' => 'required|string',
+        'project_specifications' => 'required|array',
+        'project_specifications.*.icon' => 'required|string|max:255',
+        'project_specifications.*.title' => 'required|string|max:255',
+        'project_specifications.*.description' => 'required|string',
+        'completion' => 'required|string|max:255',
+        'key_features' => 'required|array',
+        'key_features.*' => 'required|string|max:255',
+        'technical_details' => 'required|string',
+        'quote' => 'nullable|string',
+        'quote_author' => 'nullable|string|max:255',
+    ]);
 
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete old image
-            if ($project->image && Storage::disk('public')->exists($project->image)) {
-                Storage::disk('public')->delete($project->image);
-            }
-            $validated['image'] = $request->file('image')->store('projects', 'public');
+    // Handle image upload
+    if ($request->hasFile('image')) {
+        // Delete old image if it exists
+        if ($project->image) {
+            Storage::disk('public')->delete($project->image);
         }
-
-        $project->update($validated);
-
-        return redirect()->route('projects.edit', $project)->with('success', 'Project updated successfully!');
+        $validated['image'] = $request->file('image')->store('projects', 'public');
     }
+
+    $project->update($validated);
+
+    return redirect()->route('projects.index')->with('success', 'Project updated successfully!');
+}
 
     // DESTROY - Delete project
     public function destroy(Project $project)

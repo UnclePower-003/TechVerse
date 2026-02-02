@@ -38,9 +38,9 @@
             <header class="flex justify-between items-center mb-8 animate-fade-up">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold tracking-tight">{{ $project->title }}</h1>
-                    @if ($project->badge)
+                    @if ($project->subtitle)
                         <p class="text-[#0ea5e9] font-medium flex items-center gap-2 mt-1">
-                            <i class="fas fa-shield-alt"></i> {{ $project->badge }}
+                            <i class="fas fa-shield-alt"></i> {{ $project->subtitle }}
                         </p>
                     @endif
                 </div>
@@ -91,7 +91,7 @@
 
                         <div class="bg-white/20 shadow-lg p-6 rounded-2xl">
                             <h3 class="text-lg font-semibold mb-4 text-[#3b82f6]">Technical Details</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed whitespace-pre-wrap">
+                            <p class="text-slate-600 text-sm leading-relaxed">
                                 {{ $project->technical_details }}</p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             class="bg-white/20 shadow-lg border-l-4 border-[#2563eb] p-8 rounded-r-2xl italic animate-fade-up"
                             style="animation-delay: 0.4s">
                             <i class="fas fa-quote-left text-3xl text-[#0ea5e9] mb-4 opacity-50"></i>
-                            <p class="text-stone-800 text-lg mb-4">{{ $project->quote }}</p>
+                            <p class="text-stone-800 text-lg mb-4">" {{ $project->quote }} "</p>
                             @if ($project->quote_author)
                                 <cite class="text-sm font-semibold text-[#3b82f6] not-italic">—
                                     {{ $project->quote_author }}</cite>
@@ -120,14 +120,14 @@
 
                         <div class="space-y-6">
                             @if (!empty($project->project_specifications) && is_array($project->project_specifications))
-                                @foreach ($project->project_specifications as $spec)
+                                {{-- @foreach ($project->project_specifications as $spec)
                                     <div class="flex items-center gap-4">
                                         <div
                                             class="w-10 h-10 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center text-[#3b82f6]">
                                             <i class="fas fa-list"></i>
                                         </div>
                                         <div>
-                                            {{-- Using ?? 'N/A' prevents errors if a specific key is missing --}}
+                                            <!-- Using ?? 'N/A' prevents errors if a specific key is missing -->
                                             <p class="text-xs text-stone-800 uppercase font-bold">
                                                 {{ $spec['title'] ?? 'Specification' }}
                                             </p>
@@ -136,7 +136,23 @@
                                             </p>
                                         </div>
                                     </div>
-                                @endforeach
+                                @endforeach --}}
+                                @foreach ($project->project_specifications as $spec)
+    <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-lg bg-[#3b82f6]/10 flex items-center justify-center text-[#3b82f6]">
+            <i class="{{ $spec['icon'] ?? 'fas fa-list' }}"></i>
+        </div>
+        <div>
+            <p class="text-xs text-stone-800 uppercase font-bold">
+                {{ $spec['title'] ?? 'Specification' }}
+            </p>
+            <p class="text-stone-800">
+                {{ $spec['description'] ?? 'No details provided' }}
+            </p>
+        </div>
+    </div>
+@endforeach
+
                             @else
                                 <p class="text-sm text-stone-500 italic">No specifications available.</p>
                             @endif

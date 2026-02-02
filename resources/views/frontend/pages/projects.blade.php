@@ -294,10 +294,10 @@
             <div>
                 <a href="{{ route('contact') }}"
                     class="inline-block
-              py-3 px-4 bg-blue-700 text-white rounded-xl font-bold cursor-pointer
-              transition-transform duration-200
-              hover:bg-blue-800
-              active:scale-105">
+                        py-3 px-4 bg-blue-700 text-white rounded-xl font-bold cursor-pointer
+                        transition-transform duration-200
+                        hover:bg-blue-800
+                        active:scale-105">
                     Start a Project
                 </a>
             </div>
@@ -351,11 +351,11 @@
                         <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        @if ($project->badge)
+                        @if ($project->subtitle)
                             <div class="absolute bottom-4 left-6">
                                 <span
                                     class="text-[10px] font-bold uppercase tracking-widest text-slate-50 bg-black/50 px-2 py-1 rounded backdrop-blur-sm">
-                                    {{ $project->badge }}
+                                    {{ $project->subtitle }}
                                 </span>
                             </div>
                         @endif

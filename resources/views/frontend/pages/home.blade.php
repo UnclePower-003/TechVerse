@@ -338,17 +338,16 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
 
                 <!-- Project 1 - Janamatri (Original - Unchanged) -->
-                <div
+                {{-- <div
                     class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
-            hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
-            transition-all duration-300 group reveal delay-100
-            transform hover:-translate-y-1 gpu-accelerated">
+                        hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+                        transition-all duration-300 group reveal delay-100
+                        transform hover:-translate-y-1 gpu-accelerated">
                     <div class="p-6 sm:p-8">
                         <div class="flex justify-between items-start mb-4">
                             <span
                                 class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
-                                Secure Infra
-                            </span>
+                                Secure Infrastructure</span>
                             <div
                                 class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
                                 <i
@@ -487,8 +486,62 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
+                <div
+                    class="bg-[#0f172a]/90 border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden 
+                        hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:shadow-2xl hover:shadow-[var(--royal)]
+                        transition-all duration-300 group reveal delay-100
+                        transform hover:-translate-y-1 gpu-accelerated">
+                    @foreach ($projects as $project)
+                        <div class="p-6 sm:p-8">
+                            <div class="flex justify-between items-start mb-4">
+                                {{-- <span
+                                    class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                    Secure Infrastructure</span> --}}
+                                <span
+                                    class="text-[var(--sky)] font-semibold text-xs sm:text-sm uppercase tracking-wide group-hover:text-[var(--sky)]">
+                                    {{ $project->subtitle }}</span>
+                                <div
+                                    class="w-10 h-10 rounded-full group-hover:bg-[var(--sky)] bg-[var(--slate)] flex items-center justify-center border border-white/10 group-hover:border-[var(--royal)]">
+                                    <i
+                                        class="fas fa-lock text-gray-400 group-hover:text-[var(--royal)] trarastion-colors duration-300"></i>
+                                </div>
+                            </div>
+                            {{-- <h3
+                                class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                                Janamatri Project
+                            </h3> --}}
+                            <h3
+                                class="text-xl sm:text-2xl font-bold mb-2 text-white group-hover:text-[var(--sky)] transition-colors duration-300">
+                                {{ $project->title }}
+                            </h3>
+                            {{-- <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                                Scalable, secure deployment initiative for critical infrastructure.
+                            </p> --}}
+                            <p class="text-gray-400 text-sm sm:text-base mb-6 leading-relaxed group-hover:text-gray-300">
+                                {{ $project->overview }}
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                {{-- <span
+                                    class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                    High Availability
+                                </span> --}}
+                                {{-- <span
+                                    class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                    Encryption
+                                </span> --}}
+                                @foreach ($project->key_features as $feature)
+                                    <span
+                                        class="px-3 py-1.5 group-hover:bg-[#0f172a]/20 bg-[var(--slate)] rounded-full text-xs font-medium text-gray-300 group-hover:border-[var(--royal)]/50 transition-colors">
+                                        {{ $feature }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
 
             <!-- View All Projects Link -->

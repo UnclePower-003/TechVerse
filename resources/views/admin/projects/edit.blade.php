@@ -7,9 +7,9 @@
         <div class="flex justify-between items-center mb-8">
             <div>
                 <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">
-                    <i class="fas fa-edit mr-2 text-primary"></i> Edit Project
+                    <i class="fas fa-edit mr-2 text-primary"></i> Edit Project: {{ $project->title }}
                 </h1>
-                <p class="text-sm text-gray-500 mt-1">Update your project details below.</p>
+                <p class="text-sm text-gray-500 mt-1">Modify the project details below.</p>
             </div>
             <a href="{{ route('projects.index') }}"
                 class="text-sm font-semibold text-gray-600 hover:text-primary transition-colors">
@@ -27,7 +27,8 @@
         @endif
 
         <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-            <form action="{{ route('projects.update', $project) }}" method="POST" enctype="multipart/form-data"
+            {{-- Action updated to UPDATE route --}}
+            <form action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data"
                 class="p-8 space-y-6">
                 @csrf
                 @method('PATCH')
@@ -60,21 +61,24 @@
                             placeholder="e.g. Featured, New">
                     </div>
 
-                    {{-- Image with Preview --}}
+                    {{-- Image with Preview (Updated for Edit) --}}
                     <div class="md:col-span-2">
-                        <label class="block mb-2 font-bold text-gray-700 text-sm uppercase">Project Image <span
-                                class="text-red-500">*</span></label>
+                        <label class="block mb-2 font-bold text-gray-700 text-sm uppercase">Project Image</label>
                         <div class="flex flex-col items-center justify-center w-full">
                             <label id="image-label"
                                 class="flex flex-col w-full h-48 border-2 border-dashed @error('image') border-red-400 bg-red-50 @else border-gray-200 @enderror hover:bg-gray-50 hover:border-primary transition-colors rounded-xl cursor-pointer overflow-hidden relative">
+
+                                {{-- Show existing image if it exists --}}
                                 <div id="upload-placeholder"
-                                    class="flex flex-col items-center justify-center pt-12 @if ($project->image) hidden @endif">
+                                    class="flex flex-col items-center justify-center pt-12 {{ $project->image ? 'hidden' : '' }}">
                                     <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
-                                    <p class="text-sm text-gray-500">Click to upload project cover</p>
+                                    <p class="text-sm text-gray-500">Click to change project cover</p>
                                 </div>
+
                                 <img id="image-preview"
                                     src="{{ $project->image ? asset('storage/' . $project->image) : '#' }}" alt="Preview"
-                                    class="absolute inset-0 w-full h-full object-cover @if (!$project->image) hidden @endif">
+                                    class="{{ $project->image ? '' : 'hidden' }} absolute inset-0 w-full h-full object-cover">
+
                                 <input type="file" name="image" id="image-input" class="hidden" accept="image/*" />
                             </label>
                         </div>
@@ -101,15 +105,27 @@
                         <label class="block mb-4 font-bold text-gray-800 text-base">Project Specifications <span
                                 class="text-red-500">*</span></label>
                         <div id="specifications-wrapper" class="space-y-3">
-                            @php $specs = old('project_specifications', $project->project_specifications ?? [[]]); @endphp
-                            @foreach ($specs as $index => $spec)
-                                <div class="flex gap-3">
+                            @php
+                                $oldSpecs = old('project_specifications', $project->project_specifications ?? [[]]);
+                            @endphp
+                            @foreach ($oldSpecs as $index => $spec)
+                                <div class="flex gap-3 items-center">
+                                    <input type="text" name="project_specifications[{{ $index }}][icon]"
+                                        value="{{ $spec['icon'] ?? '' }}" placeholder="Icon class"
+                                        class="flex-1 px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
                                     <input type="text" name="project_specifications[{{ $index }}][title]"
                                         value="{{ $spec['title'] ?? '' }}" placeholder="Label"
                                         class="flex-1 px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
                                     <input type="text" name="project_specifications[{{ $index }}][description]"
                                         value="{{ $spec['description'] ?? '' }}" placeholder="Value"
                                         class="flex-1 px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
+
+                                    @if ($index > 0)
+                                        <button type="button"
+                                            class="remove-row px-3 py-2 bg-red-50 text-red-500 rounded-lg hover:bg-red-100 transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -119,7 +135,7 @@
                         </button>
                     </div>
 
-                    {{-- Completion --}}
+                    {{-- Completion Status --}}
                     <div class="md:col-span-2">
                         <label class="block mb-2 font-bold text-gray-700 text-sm uppercase">Completion Status <span
                                 class="text-red-500">*</span></label>
@@ -137,11 +153,21 @@
                         <label class="block mb-4 font-bold text-gray-800 text-base">Key Features <span
                                 class="text-red-500">*</span></label>
                         <div id="features-wrapper" class="space-y-3">
-                            @php $features = old('key_features', $project->key_features ?? ['']); @endphp
-                            @foreach ($features as $index => $feature)
-                                <input type="text" name="key_features[{{ $index }}]"
-                                    value="{{ $feature }}" placeholder="Enter a feature..."
-                                    class="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
+                            @php
+                                $oldFeatures = old('key_features', $project->key_features ?? ['']);
+                            @endphp
+                            @foreach ($oldFeatures as $index => $feature)
+                                <div class="flex gap-3 items-center">
+                                    <input type="text" name="key_features[{{ $index }}]"
+                                        value="{{ $feature }}" placeholder="Enter a feature..."
+                                        class="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
+                                    @if ($index > 0)
+                                        <button type="button"
+                                            class="remove-row px-3 py-2 bg-red-50 text-red-500 rounded-lg hover:bg-red-100 transition-colors">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    @endif
+                                </div>
                             @endforeach
                         </div>
                         <button type="button" id="add-feature-btn"
@@ -161,7 +187,7 @@
                         @enderror
                     </div>
 
-                    {{-- Quote --}}
+                    {{-- Quote Section --}}
                     <div>
                         <label class="block mb-2 font-bold text-gray-700 text-sm uppercase">Testimonial Quote</label>
                         <textarea name="quote" rows="2"
@@ -174,7 +200,6 @@
                             class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all"
                             placeholder="Name and Position">
                     </div>
-
                 </div>
 
                 {{-- Action Buttons --}}
@@ -183,56 +208,73 @@
                         class="flex-1 bg-primary text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-[#266eb1] transition-all transform hover:-translate-y-0.5">
                         <i class="fas fa-save mr-2"></i> Update Project
                     </button>
-                    <button type="reset"
-                        class="px-8 py-4 bg-gray-100 text-gray-500 rounded-xl font-bold hover:bg-gray-200 transition-all">
-                        Reset
-                    </button>
+                    <a href="{{ route('projects.index') }}"
+                        class="px-8 py-4 bg-gray-100 text-gray-500 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center">
+                        Cancel
+                    </a>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        // Image Preview Logic
+        // 1. Image Preview Logic
         const imageInput = document.getElementById('image-input');
         const imagePreview = document.getElementById('image-preview');
         const uploadPlaceholder = document.getElementById('upload-placeholder');
 
-        imageInput.onchange = evt => {
-            const [file] = imageInput.files;
-            if (file) {
-                imagePreview.src = URL.createObjectURL(file);
-                imagePreview.classList.remove('hidden');
-                uploadPlaceholder.classList.add('hidden');
-            }
+        if (imageInput) {
+            imageInput.onchange = evt => {
+                const [file] = imageInput.files;
+                if (file) {
+                    imagePreview.src = URL.createObjectURL(file);
+                    imagePreview.classList.remove('hidden');
+                    uploadPlaceholder.classList.add('hidden');
+                }
+            };
         }
 
+        // 2. Dynamic Fields Constants
         const inputClasses = "flex-1 px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary";
+        const removeBtnClasses = "px-3 py-2 bg-red-50 text-red-500 rounded-lg hover:bg-red-100 transition-colors";
 
-        // Specifications
-        let specIndex = {{ count($specs) }};
+        // 3. Project Specifications Logic
+        let specIndex = {{ count($oldSpecs) }};
+
         document.getElementById('add-spec-btn').addEventListener('click', function() {
             const wrapper = document.getElementById('specifications-wrapper');
             const div = document.createElement('div');
-            div.className = "flex gap-3 animate-fadeIn";
+            div.className = "flex gap-3 animate-fadeIn items-center";
             div.innerHTML = `
+            <input type="text" name="project_specifications[${specIndex}][icon]" placeholder="Icon class" class="${inputClasses}">
             <input type="text" name="project_specifications[${specIndex}][title]" placeholder="Label" class="${inputClasses}">
             <input type="text" name="project_specifications[${specIndex}][description]" placeholder="Value" class="${inputClasses}">
+            <button type="button" class="remove-row ${removeBtnClasses}"><i class="fas fa-trash"></i></button>
         `;
             wrapper.appendChild(div);
             specIndex++;
         });
 
-        // Key Features
-        let featureIndex = {{ count($features) }};
+        // 4. Key Features Logic
+        let featureIndex = {{ count($oldFeatures) }};
+
         document.getElementById('add-feature-btn').addEventListener('click', function() {
             const wrapper = document.getElementById('features-wrapper');
             const div = document.createElement('div');
-            div.className = "flex gap-3 animate-fadeIn";
-            div.innerHTML =
-                `<input type="text" name="key_features[${featureIndex}]" placeholder="Enter a feature..." class="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">`;
+            div.className = "flex gap-3 animate-fadeIn items-center";
+            div.innerHTML = `
+            <input type="text" name="key_features[${featureIndex}]" placeholder="Enter a feature..." class="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary">
+            <button type="button" class="remove-row ${removeBtnClasses}"><i class="fas fa-trash"></i></button>
+        `;
             wrapper.appendChild(div);
             featureIndex++;
+        });
+
+        // 5. Global Remove Row Logic
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.remove-row')) {
+                e.target.closest('.flex').remove();
+            }
         });
     </script>
 @endsection
