@@ -372,13 +372,13 @@
                             <div class="flex gap-1.5 flex-wrap">
                                 @if ($project->key_features)
                                     @foreach ($project->key_features as $feature)
-                                        <span class="text-[10px] text-blue-800 px-2 py-1 rounded border border-white/5">
+                                        <span class="text-[10px] text-blue-800 px-2 py-1 rounded border border-white/5 bg-blue-200">
                                             {{ $feature }}
                                         </span>
                                     @endforeach
                                 @endif
                             </div>
-                            <span class="text-blue-800 font-bold text-xs flex items-center gap-2">
+                            <span class="text-blue-800 font-bold text-xs flex items-center gap-2 pt-5">
                                 VIEW DETAILS <i class="fas fa-arrow-right text-[8px]"></i>
                             </span>
                         </div>

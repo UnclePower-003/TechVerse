@@ -41,38 +41,38 @@
             @endif
 
             <a href="{{ route('contact-submission.index') }}" @click="sidebarOpen = false"
-    class="relative flex items-center px-4 py-3 transition-all duration-200
-    {{ request()->routeIs('contact-submission.*')
-        ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
-        : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
+                class="relative flex items-center px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('contact-submission.*')
+                    ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
+                    : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
 
-    <i class="fas fa-envelope w-6"></i>
-    <span class="font-medium ml-2">Contact Messages</span>
+                <i class="fas fa-envelope w-6"></i>
+                <span class="font-medium ml-2">Contact Messages</span>
 
-    @if ($contactUnreadCount > 0)
-        <span
-            class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
-            {{ $contactUnreadCount }}
-        </span>
-    @endif
-</a>
+                @if ($contactUnreadCount > 0)
+                    <span
+                        class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+                        {{ $contactUnreadCount }}
+                    </span>
+                @endif
+            </a>
 
-<a href="{{ route('product-requirements.index') }}" @click="sidebarOpen = false"
-    class="relative flex items-center px-4 py-3 transition-all duration-200
-    {{ request()->routeIs('product-requirements.*')
-        ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
-        : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
+            <a href="{{ route('product-requirements.index') }}" @click="sidebarOpen = false"
+                class="relative flex items-center px-4 py-3 transition-all duration-200
+                {{ request()->routeIs('product-requirements.*')
+                    ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
+                    : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
 
-    <i class="fas fa-inbox w-6"></i>
-    <span class="font-medium ml-2">Product Requirements</span>
+                <i class="fas fa-inbox w-6"></i>
+                <span class="font-medium ml-2">Product Requirements</span>
 
-    @if ($productUnreadCount > 0)
-        <span
-            class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
-            {{ $productUnreadCount }}
-        </span>
-    @endif
-</a>
+                @if ($productUnreadCount > 0)
+                    <span
+                        class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+                        {{ $productUnreadCount }}
+                    </span>
+                @endif
+            </a>
 
             @php
                 $dropdowns = [
@@ -133,7 +133,7 @@
                     [
                         'title' => 'Projects',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['project-hero.*', 'project-header.*', 'project-quality.*'],
+                        'routes' => ['project-hero.*', 'project-header.*','projects.*', 'project-quality.*'],
                         'links' => [
                             [
                                 'route' => 'project-hero.index',
@@ -144,6 +144,11 @@
                                 'route' => 'project-header.index',
                                 'icon' => 'fa-solid fa-images',
                                 'text' => 'Project Header',
+                            ],
+                            [
+                                'route' => 'projects.index',
+                                'icon' => 'fa-solid fa-images',
+                                'text' => 'Project List',
                             ],
                             [
                                 'route' => 'project-quality.index',
@@ -172,7 +177,14 @@
                     [
                         'title' => 'About',
                         'icon' => 'fa-solid fa-house-chimney',
-                        'routes' => ['about-hero.*', 'about-header.*', 'about-expertise.*', 'about-drive.*', 'about-highlight.*', 'about-promise.*'],
+                        'routes' => [
+                            'about-hero.*',
+                            'about-header.*',
+                            'about-expertise.*',
+                            'about-drive.*',
+                            'about-highlight.*',
+                            'about-promise.*',
+                        ],
                         'links' => [
                             [
                                 'route' => 'about-hero.index',
@@ -286,9 +298,9 @@
                         @foreach ($dropdown['links'] as $link)
                             <a href="{{ route($link['route']) }}" @click="sidebarOpen = false"
                                 class="flex items-center px-4 py-2 rounded-lg hover:bg-[#266eb1] hover:text-black
-                                                        {{ request()->routeIs(explode('.', $link['route'])[0] . '.*')
-                                                            ? 'bg-[#266eb1]  text-black font-semibold'
-                                                            : 'text-white' }}">
+                                {{ request()->routeIs(explode('.', $link['route'])[0] . '.*')
+                                    ? 'bg-[#266eb1]  text-black font-semibold'
+                                    : 'text-white' }}">
                                 <i class="{{ $link['icon'] }} w-6"></i>
                                 <span class="font-medium">{{ $link['text'] }}</span>
                             </a>
