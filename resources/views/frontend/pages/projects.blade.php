@@ -303,7 +303,7 @@
             </div>
         </div>
         {{-- Card section --}}
-        <div class="mx-auto container max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8  w-full pt-10">
+        {{-- <div class="mx-auto container max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8  w-full pt-10">
             <!-- Project Card -->
             <a href="{{ route('cardsdetails') }}" target="_blank" rel="noopener noreferrer"
                 class=" shadow-xl rounded-2xl card-hover transition-all duration-500 group overflow-hidden block">
@@ -339,6 +339,54 @@
                     </div>
                 </div>
             </a>
+        </div> --}}
+
+        <div class="mx-auto container max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full pt-10">
+            @forelse($projects as $project)
+                <a href="{{ route('projects.show', $project) }}"
+                    class="shadow-xl rounded-2xl card-hover transition-all duration-500 group overflow-hidden block">
+
+                    {{-- Project Image --}}
+                    <div class="h-56 w-full overflow-hidden relative">
+                        <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        @if ($project->badge)
+                            <div class="absolute bottom-4 left-6">
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-slate-50 bg-black/50 px-2 py-1 rounded backdrop-blur-sm">
+                                    {{ $project->badge }}
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{-- Project Content --}}
+                    <div class="p-8 bg-white/20">
+                        <h3 class="text-2xl font-bold mb-3 text-blue-800 transition">{{ $project->title }}</h3>
+                        <p class="text-slate-400 mb-6 line-clamp-2 text-sm leading-relaxed">
+                            {{ $project->overview }}
+                        </p>
+
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="flex gap-1.5 flex-wrap">
+                                @if ($project->key_features)
+                                    @foreach ($project->key_features as $feature)
+                                        <span class="text-[10px] text-blue-800 px-2 py-1 rounded border border-white/5">
+                                            {{ $feature }}
+                                        </span>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <span class="text-blue-800 font-bold text-xs flex items-center gap-2">
+                                VIEW DETAILS <i class="fas fa-arrow-right text-[8px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            @empty
+                <p class="text-center col-span-3 text-gray-500 mt-10">No projects available at the moment.</p>
+            @endforelse
         </div>
 
     </section>

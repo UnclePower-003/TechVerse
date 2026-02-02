@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProjectHero;
 use App\Models\ProjectHeader;
 use App\Models\ProjectQuality;
+use App\Models\Project;
 
 class ProjectsController extends Controller
 {
@@ -18,6 +19,13 @@ class ProjectsController extends Controller
 
         $qualities = ProjectQuality::where('is_active', true)->orderBy('delay')->get();
 
-        return view('frontend.pages.projects', compact('hero', 'header', 'qualities'));
+        $projects = Project::orderBy('id', 'asc')->get(); // Get all projects, latest first
+
+        return view('frontend.pages.projects', compact('hero', 'header', 'qualities', 'projects'));
+    }
+
+    public function show(Project $project)
+    {
+        return view('frontend.pages.cardsdetails', compact('project'));
     }
 }

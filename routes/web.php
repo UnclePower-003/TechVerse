@@ -38,6 +38,7 @@ Route::get('/buildup', [BuildupController::class, 'index'])->name('buildup');
 
 Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
 Route::post('/product-requirements', [ProductsController::class, 'store'])->name('product-requirements.store');
+Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
 
 // projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
@@ -128,5 +129,13 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/admin/dashboard/product-requirements/{productRequirement}/unread', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'markUnread'])->name('product-requirements.unread');
 
         Route::delete('/admin/dashboard/product-requirements/{productRequirement}', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'destroy'])->name('product-requirements.destroy');
+
+        Route::get('/admin/dashboard/projects', [\App\Http\Controllers\Admin\ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/admin/dashboard/projects/create', [\App\Http\Controllers\Admin\ProjectController::class, 'create'])->name('projects.create');
+        Route::post('/admin/dashboard/projects', [\App\Http\Controllers\Admin\ProjectController::class, 'store'])->name('projects.store');
+        Route::get('/admin/dashboard/projects/{project}', [\App\Http\Controllers\Admin\ProjectController::class, 'show'])->name('projects.show');
+        Route::get('/admin/dashboard/projects/{project}/edit', [\App\Http\Controllers\Admin\ProjectController::class, 'edit'])->name('projects.edit');
+        Route::patch('/admin/dashboard/projects/{project}', [\App\Http\Controllers\Admin\ProjectController::class, 'update'])->name('projects.update');
+        Route::delete('/admin/dashboard/projects/{project}', [\App\Http\Controllers\Admin\ProjectController::class, 'destroy'])->name('projects.destroy');
     });
 });
