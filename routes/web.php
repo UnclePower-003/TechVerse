@@ -37,6 +37,7 @@ Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 Route::get('/buildup', [BuildupController::class, 'index'])->name('buildup');
 
 Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
+Route::post('/product-requirements', [ProductsController::class, 'store'])->name('product-requirements.store');
 
 // projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
@@ -117,5 +118,15 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/admin/dashboard/contact-submission/{contactSubmission}/read', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'markRead'])->name('contact-submission.read');
 
         Route::patch('/admin/dashboard/contact-submission/{contactSubmission}/unread', [\App\Http\Controllers\Admin\ContactSubmissionController::class, 'markUnread'])->name('contact-submission.unread');
+
+        Route::get('/admin/dashboard/product-requirements', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'index'])->name('product-requirements.index');
+
+        Route::get('/admin/dashboard/product-requirements/{productRequirement}', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'show'])->name('product-requirements.show');
+
+        Route::patch('/admin/dashboard/product-requirements/{productRequirement}/read', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'markRead'])->name('product-requirements.read');
+
+        Route::patch('/admin/dashboard/product-requirements/{productRequirement}/unread', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'markUnread'])->name('product-requirements.unread');
+
+        Route::delete('/admin/dashboard/product-requirements/{productRequirement}', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'destroy'])->name('product-requirements.destroy');
     });
 });

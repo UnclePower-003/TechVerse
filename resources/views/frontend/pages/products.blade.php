@@ -345,11 +345,9 @@
 
                         <div class="relative z-10">
                             <h2 class="text-3xl font-extrabold mb-4 tracking-tight">Partner With Us</h2>
-                            <p class="text-blue-100 mb-10 leading-relaxed font-light">Let's discuss your project.
-                                Whether it's a small office setup or a city-wide surveillance project, we provide the
-                                best tech support in Nepal.</p>
+                            <p class="text-blue-100 mb-10 leading-relaxed font-light">Let's discuss your project. Whether it's a small office setup or a city-wide surveillance project, we provide the best tech support in Nepal.</p>
 
-                            <div class="space-y-8">
+                            {{-- <div class="space-y-8">
                                 <div class="flex items-start gap-5 group">
                                     <div
                                         class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10">
@@ -380,10 +378,25 @@
                                         <p class="text-sm text-blue-100 opacity-80">info@premiumsolutions.com.np</p>
                                     </div>
                                 </div>
+                            </div> --}}
+
+                            <div class="space-y-8">
+                                @foreach ($info->items as $item)
+                                    <div class="flex items-start gap-5 group">
+                                        <div
+                                        class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/10">
+                                            <i class="{{ $item['icon'] }}"></i>
+                                        </div>
+                                        <div class="ml-5">
+                                            <h3 class="font-bold text-lg">{{ $item['title'] }}</h3>
+                                            <p class="text-sm text-blue-100 opacity-80">{{ $item['description'] ?? '' }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
-                        <div class="relative z-10 flex gap-4 mt-12">
+                        {{-- <div class="relative z-10 flex gap-4 mt-12">
                             <a href="#"
                                 class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-blue-700 transition-all"><i
                                     class="fab fa-facebook-f"></i></a>
@@ -393,12 +406,20 @@
                             <a href="#"
                                 class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-blue-700 transition-all"><i
                                     class="fab fa-instagram"></i></a>
+                        </div> --}}
+                        <div class="relative z-10 flex gap-4 mt-12">
+                            @foreach ($socialLinks as $link)
+                                <a href="{{ $link->url }}" target="_blank"
+                                    class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-{{ $link->hover_color }} hover:border-{{ $link->hover_color }} transition-all">
+                                    <i class="fab {{ $link->icon }} text-sm"></i>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 
                     <!-- Form Side -->
                     <div class="lg:w-3/5 p-8 md:p-12 bg-[#f1f5f9]">
-                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        {{-- <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Full
@@ -429,9 +450,8 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Your
-                                    Message</label>
-                                <textarea id="message-area" rows="4" placeholder="Tell us about your requirements..."
+                                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Your Message</label>
+                                <textarea id="message-area" rows="8" placeholder="Tell us about your requirements..."
                                     class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all resize-y placeholder:text-slate-400 text-slate-700"></textarea>
                             </div>
                             <button type="submit"
@@ -439,16 +459,95 @@
                                 <span>Send Message</span>
                                 <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
                             </button>
-                        </form>
+                        </form> --}}
+                        <form action="{{ route('product-requirements.store') }}" method="POST" class="space-y-6" id="productRequirementForm" >
+    @csrf
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                Full Name
+            </label>
+            <input type="text" name="full_name" required
+                placeholder="e.g. Ram Bahadur"
+                class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
+        </div>
+
+        <div class="space-y-2">
+            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                Phone Number
+            </label>
+            <input type="tel" name="phone" required
+                placeholder="+977-98..."
+                class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400 text-slate-700">
+        </div>
+    </div>
+
+    <div class="space-y-2">
+        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+            Interested In
+        </label>
+        <select name="interest"
+            class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none cursor-pointer appearance-none text-slate-700">
+            <option value="CCTV Systems">CCTV Systems</option>
+            <option value="Enterprise Networking">Enterprise Networking</option>
+            <option value="Computing Hardware">Computing Hardware</option>
+            <option value="Security Systems">Security Systems</option>
+            <option value="General Inquiry">General Inquiry</option>
+        </select>
+    </div>
+
+    <div class="space-y-2">
+        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+            Your Message
+        </label>
+        <textarea name="message" rows="8"
+            placeholder="Tell us about your requirements..."
+            class="w-full bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all resize-y placeholder:text-slate-400 text-slate-700"></textarea>
+    </div>
+
+    <button type="submit"
+        class="w-full bg-slate-900 hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-slate-900/10 hover:shadow-blue-600/20 transform hover:-translate-y-1 active:translate-y-0 duration-200 flex items-center justify-center gap-2 group">
+        <span>Send Message</span>
+        <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
+    </button>
+</form>
+
                     </div>
                 </div>
-
-
             </div>
         </section>
 
 
         @push('script')
+        <script>
+document.getElementById('productRequirementForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+
+    fetch("{{ route('product-requirements.store') }}", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            'Accept': 'application/json'
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status) {
+            form.reset();
+            alert(data.message); // replace with toast if you want
+        }
+    })
+    .catch(err => {
+        alert('Something went wrong. Please try again.');
+    });
+});
+</script>
+
             <script>
                 // Data Source
                 const products = [{
@@ -630,7 +729,7 @@
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        
+
                         <div class="flex-grow px-5 pt-5 pb-2">
                             <p class="text-blue-500 text-[10px] font-bold mb-1 tracking-wider uppercase">${product.model}</p>
                             <h3 class="text-lg font-bold leading-tight mb-3 text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">${product.title}</h3>

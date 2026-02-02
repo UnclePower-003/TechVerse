@@ -43,8 +43,8 @@
             <a href="{{ route('contact-submission.index') }}" @click="sidebarOpen = false"
     class="relative flex items-center px-4 py-3 transition-all duration-200
     {{ request()->routeIs('contact-submission.*')
-        ? 'bg-[#9a9a1e] text-black font-semibold rounded-lg shadow-sm'
-        : 'text-white hover:bg-[#9a9a1e] hover:text-black rounded-lg' }}">
+        ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
+        : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
 
     <i class="fas fa-envelope w-6"></i>
     <span class="font-medium ml-2">Contact Messages</span>
@@ -57,6 +57,22 @@
     @endif
 </a>
 
+<a href="{{ route('product-requirements.index') }}" @click="sidebarOpen = false"
+    class="relative flex items-center px-4 py-3 transition-all duration-200
+    {{ request()->routeIs('product-requirements.*')
+        ? 'bg-[#266eb1] text-black font-semibold rounded-lg shadow-sm'
+        : 'text-white hover:bg-[#266eb1] hover:text-black rounded-lg' }}">
+
+    <i class="fas fa-inbox w-6"></i>
+    <span class="font-medium ml-2">Product Requirements</span>
+
+    @if ($productUnreadCount > 0)
+        <span
+            class="absolute top-2 right-3 min-w-[18px] h-[18px] px-1 bg-[#ffe81a] text-black text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+            {{ $productUnreadCount }}
+        </span>
+    @endif
+</a>
 
             @php
                 $dropdowns = [

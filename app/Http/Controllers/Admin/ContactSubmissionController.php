@@ -22,7 +22,8 @@ class ContactSubmissionController extends Controller
     public function destroy(ContactSubmission $contactSubmission)
     {
         $contactSubmission->delete();
-        return back()->with('success', 'Submission deleted.');
+
+        return redirect()->route('contact-submission.index')->with('success', 'Submission deleted.');
     }
 
     public function markRead(ContactSubmission $contactSubmission)
