@@ -137,5 +137,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/dashboard/projects/{project}/edit', [\App\Http\Controllers\Admin\ProjectController::class, 'edit'])->name('projects.edit');
         Route::patch('/admin/dashboard/projects/{project}', [\App\Http\Controllers\Admin\ProjectController::class, 'update'])->name('projects.update');
         Route::delete('/admin/dashboard/projects/{project}', [\App\Http\Controllers\Admin\ProjectController::class, 'destroy'])->name('projects.destroy');
+
+        Route::resource('/admin/dashboard/categories', \App\Http\Controllers\Admin\CategoryController::class);
+        Route::resource('/admin/dashboard/products', \App\Http\Controllers\Admin\ProductController::class);
     });
 });

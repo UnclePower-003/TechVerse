@@ -38,7 +38,7 @@ color: #38CE3C;
 }
 
 .border-secondary {
-border-color: #38CE3C;
+border-color: #000000;
 }
 
 .bg-dark {
@@ -72,5 +72,5 @@ background: green; /* Slightly darker thumb on hover */
 /* Optional: For Firefox compatibility */
 .styled-scrollbar {
 scrollbar-width: thin;
-scrollbar-color: green #374151;
+scrollbar-color: rgb(0, 11, 54) #374151;
 }

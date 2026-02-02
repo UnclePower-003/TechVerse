@@ -265,7 +265,7 @@
 
                     <div id="dropdown-menu"
                         class="absolute right-0 mt-2 w-full md:w-[280px] bg-white rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 opacity-0 invisible scale-95 transition-all duration-200 transform origin-top-right z-50">
-                        <div class="py-2">
+                        {{-- <div class="py-2">
                             <button onclick="filterCategory('all', 'All Products')"
                                 class="w-full text-left px-5 py-3 hover:bg-slate-50 transition-colors flex items-center gap-3 group">
                                 <span
@@ -300,7 +300,30 @@
                                 <span class="text-sm font-medium text-slate-600 group-hover:text-slate-900">Security
                                     Systems</span>
                             </button>
+                        </div> --}}
+                        <div class="py-2">
+
+                            <!-- All -->
+                            <button onclick="filterCategory('all', 'All Products')"
+                                class="w-full text-left px-5 py-3 hover:bg-slate-50 flex items-center gap-3 group">
+                                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span class="text-sm font-medium text-slate-600">
+                                    All Products
+                                </span>
+                            </button>
+
+                            @foreach ($categories as $category)
+                                <button onclick="filterCategory('{{ $category->slug }}', '{{ $category->name }}')"
+                                    class="w-full text-left px-5 py-3 hover:bg-slate-50 flex items-center gap-3 group">
+                                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                    <span class="text-sm font-medium text-slate-600">
+                                        {{ $category->name }}
+                                    </span>
+                                </button>
+                            @endforeach
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -391,7 +414,8 @@
                                         </div>
                                         <div class="ml-5">
                                             <h3 class="font-bold text-lg">{{ $item['title'] }}</h3>
-                                            <p class="text-sm text-blue-100 opacity-80">{{ $item['description'] ?? '' }}</p>
+                                            <p class="text-sm text-blue-100 opacity-80">{{ $item['description'] ?? '' }}
+                                            </p>
                                         </div>
                                     </div>
                                 @endforeach
@@ -551,92 +575,93 @@
 
             <script>
                 // Data Source
-                const products = [{
-                        id: 1,
-                        category: 'cctv',
-                        model: 'DH-HAC-T1A21P-U-IL',
-                        title: '2MP Smart Dual Light HDCVI Eyeball',
-                        price: 'Rs. 2,070',
-                        image: '{{ asset('imagess/products/camera1.png') }}',
-                        badge: {
-                            text: 'Fixed-Focal',
-                            color: 'bg-[#0ea5e9]'
-                        },
-                        specs: [{
-                                icon: 'fa-microchip',
-                                text: '2.8 mm fixed lens'
-                            },
-                            {
-                                icon: 'fa-lightbulb',
-                                text: 'Smart Dual Light'
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        category: 'Xvrs',
-                        model: 'MODEL: DH-XVR1B08-I',
-                        title: '8CH XVR 1HDD',
-                        price: 'Rs. 6,990',
-                        image: '{{ asset('imagess/products/xvrs1.png') }}',
-                        badge: {
-                            text: 'Enterprise',
-                            color: 'bg-purple-500'
-                        },
-                        specs: [{
-                                icon: 'fa-hdd',
-                                text: 'Supports 1 SATA HDD'
-                            },
-                            {
-                                icon: 'fa-network-wired',
-                                text: 'H.265+/H.265'
-                            }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        category: 'hardware',
-                        model: 'Intel® Core™ Ultra 7 265KF CPU',
-                        title: 'Intel Core Ultra Gen Pro Gaming PC',
-                        price: 'coming soon',
-                        image: '{{ asset('imagess/products/hardware.png') }}',
-                        badge: {
-                            text: 'High Perf',
-                            color: 'bg-orange-500'
-                        },
-                        specs: [{
-                                icon: 'fa-microchip',
-                                text: 'Intel Core i5-10500T'
-                            },
-                            {
-                                icon: 'fa-memory',
-                                text: '8GB DDR4 RAM'
-                            }
-                        ]
-                    },
-                    {
-                        id: 4,
-                        category: 'cctv',
-                        model: 'MODEL: DH-HAC-B1A21P-U-IL',
-                        title: '2MP HDCVI IR Bullet Camera',
-                        price: 'Rs. 1,950',
-                        image: '{{ asset('imagess/products/camera2.png') }}',
-                        badge: {
-                            text: 'Outdoor',
-                            color: 'bg-[#0ea5e9]'
-                        },
-                        specs: [{
-                                icon: 'fa-eye',
-                                text: '20m IR Distance'
-                            },
-                            {
-                                icon: 'fa-shield-alt',
-                                text: 'IP67 Weatherproof'
-                            }
-                        ]
-                    },
-                ];
+                // const products = [{
+                //         id: 1,
+                //         category: 'cctv',
+                //         model: 'DH-HAC-T1A21P-U-IL',
+                //         title: '2MP Smart Dual Light HDCVI Eyeball',
+                //         price: 'Rs. 2,070',
+                //         image: '{{ asset('imagess/products/camera1.png') }}',
+                //         badge: {
+                //             text: 'Fixed-Focal',
+                //             color: 'bg-[#0ea5e9]'
+                //         },
+                //         specs: [{
+                //                 icon: 'fa-microchip',
+                //                 text: '2.8 mm fixed lens'
+                //             },
+                //             {
+                //                 icon: 'fa-lightbulb',
+                //                 text: 'Smart Dual Light'
+                //             }
+                //         ]
+                //     },
+                //     {
+                //         id: 2,
+                //         category: 'Xvrs',
+                //         model: 'MODEL: DH-XVR1B08-I',
+                //         title: '8CH XVR 1HDD',
+                //         price: 'Rs. 6,990',
+                //         image: '{{ asset('imagess/products/xvrs1.png') }}',
+                //         badge: {
+                //             text: 'Enterprise',
+                //             color: 'bg-purple-500'
+                //         },
+                //         specs: [{
+                //                 icon: 'fa-hdd',
+                //                 text: 'Supports 1 SATA HDD'
+                //             },
+                //             {
+                //                 icon: 'fa-network-wired',
+                //                 text: 'H.265+/H.265'
+                //             }
+                //         ]
+                //     },
+                //     {
+                //         id: 3,
+                //         category: 'hardware',
+                //         model: 'Intel® Core™ Ultra 7 265KF CPU',
+                //         title: 'Intel Core Ultra Gen Pro Gaming PC',
+                //         price: 'coming soon',
+                //         image: '{{ asset('imagess/products/hardware.png') }}',
+                //         badge: {
+                //             text: 'High Perf',
+                //             color: 'bg-orange-500'
+                //         },
+                //         specs: [{
+                //                 icon: 'fa-microchip',
+                //                 text: 'Intel Core i5-10500T'
+                //             },
+                //             {
+                //                 icon: 'fa-memory',
+                //                 text: '8GB DDR4 RAM'
+                //             }
+                //         ]
+                //     },
+                //     {
+                //         id: 4,
+                //         category: 'cctv',
+                //         model: 'MODEL: DH-HAC-B1A21P-U-IL',
+                //         title: '2MP HDCVI IR Bullet Camera',
+                //         price: 'Rs. 1,950',
+                //         image: '{{ asset('imagess/products/camera2.png') }}',
+                //         badge: {
+                //             text: 'Outdoor',
+                //             color: 'bg-[#0ea5e9]'
+                //         },
+                //         specs: [{
+                //                 icon: 'fa-eye',
+                //                 text: '20m IR Distance'
+                //             },
+                //             {
+                //                 icon: 'fa-shield-alt',
+                //                 text: 'IP67 Weatherproof'
+                //             }
+                //         ]
+                //     },
+                // ];
 
+                const products = @json($products);
 
                 // UI References
                 const productGrid = document.getElementById('product-grid');
