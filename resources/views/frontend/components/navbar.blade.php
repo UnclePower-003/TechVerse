@@ -69,21 +69,19 @@
     </div>
 
     <!-- Desktop Mega Menu -->
-    <div id="mega-menu" class="absolute left-0 top-20 w-full bg-[#d1e2f6] border-b border-gray-200 shadow-xl z-40">
+    {{-- <div id="mega-menu" class="absolute left-0 top-20 w-full bg-[#d1e2f6] border-b border-gray-200 shadow-xl z-40">
         <div class="max-w-7xl mx-auto px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Menu Columns -->
                 <div class="menu-column">
                     <h3 class="text-[#2563eb] font-bold uppercase text-xs tracking-wider mb-4">HDCVI CAMERAS</h3>
                     <ul class="space-y-3">
-                        <li><a href="#"
-                                class="text-stone-700 hover:text-[#2563eb] transition flex items-center">DAHUA</a></li>
-                        <li><a href="#"
-                                class="text-stone-700 hover:text-[#2563eb] transition flex items-center">IP CCTV Kit</a>
+                        <li><a href="#" class="text-stone-700 hover:text-[#2563eb] transition flex items-center">DAHUA</a></li>
+                        <li><a href="#" class="text-stone-700 hover:text-[#2563eb] transition flex items-center">IP CCTV Kit</a>
                         </li>
-                        <li><a href="#"
-                                class="text-stone-700 hover:text-[#2563eb] transition flex items-center">Bullet Camera
-                                8MP</a></li>
+                        <li><a href="#" class="text-stone-700 hover:text-[#2563eb] transition flex items-center">Bullet Camera
+                                8MP</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -126,7 +124,47 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div id="mega-menu" class="absolute left-0 top-20 w-full bg-[#d1e2f6] border-b border-gray-200 shadow-xl z-40">
+
+        <div class="max-w-7xl mx-auto px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                @foreach ($navCategories as $category)
+                    <div class="menu-column">
+                        <h3 class="text-[#2563eb] font-bold uppercase text-xs tracking-wider mb-4">
+                            {{ $category->name }}
+                        </h3>
+
+                        <ul class="space-y-3">
+                            @foreach ($category->products->take(5) as $product)
+                                <li>
+                                    <a href="#"
+                                        class="text-stone-700 hover:text-[#2563eb] transition flex items-center">
+                                        {{ $product->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+
+                <!-- CTA Section -->
+                <div class="bg-[#e5effa] p-6 rounded-xl border border-gray-100 shadow-2xl col-span-full lg:col-auto">
+                    <h3 class="text-gray-900 font-bold mb-2">All Products</h3>
+                    <p class="text-sm text-gray-500 mb-4">
+                        Explore our complete product catalog.
+                    </p>
+                    <a href="{{ route('products') }}"
+                        class="text-[#2563eb] text-sm font-bold hover:underline flex items-center gap-2">
+                        View All Products
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+
 </nav>
 
 <!-- Mobile Menu Overlay -->

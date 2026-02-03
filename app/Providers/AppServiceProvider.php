@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\SocialLink;
 use App\Models\ContactSubmission;
 use App\Models\ProductRequirement;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,10 +34,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('admin.layouts.*', function ($view) {
-        $view->with(
-            'productUnreadCount',
-            ProductRequirement::where('is_read', false)->count()
-        );
-    });
+            $view->with('productUnreadCount', ProductRequirement::where('is_read', false)->count());
+        });
+
+        View::composer('frontend.components.navbar', function ($view) {
+            $navCategories = Category::with('products')->whereHas('products')->get();
+
+            $view->with('navCategories', $navCategories);
+        });
     }
 }
