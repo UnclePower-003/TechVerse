@@ -51,22 +51,18 @@ Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('car
 Route::prefix('server-builder')
     ->name('api.server-builder.')
     ->group(function () {
+        Route::get('/categories', [BuildupController::class, 'getCategories'])->name('categories');
 
-        Route::get('/categories', [BuildupController::class, 'getCategories'])
-            ->name('categories');
+        Route::get('/components/{categoryId}', [BuildupController::class, 'getComponents'])->name('components');
 
-        Route::get('/components/{categoryId}', [BuildupController::class, 'getComponents'])
-            ->name('components');
+        Route::post('/submit', [BuildupController::class, 'submitConfiguration'])->name('submit');
 
-        Route::post('/submit', [BuildupController::class, 'submitConfiguration'])
-            ->name('submit');
-
-        Route::get('/configuration/{id}', [BuildupController::class, 'getConfiguration'])
-            ->name('configuration');
+        Route::get('/configuration/{id}', [BuildupController::class, 'getConfiguration'])->name('configuration');
     });
 
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminServerBuilderController;
 
 Route::middleware(['auth'])->group(function () {
     /*
@@ -162,5 +158,40 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/admin/dashboard/categories', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('/admin/dashboard/products', \App\Http\Controllers\Admin\ProductController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Server Builder Admin
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/admin/dashboard/server-builder', function () {
+            return view('admin.server-builder.server-builder');
+        })->name('admin.server-builder');
+
+        Route::prefix('admin/server-builder')
+            ->name('api.admin.server-builder.')
+            ->group(function () {
+                // Categories CRUD
+                Route::get('/categories', [AdminServerBuilderController::class, 'getCategoriesAdmin'])->name('categories.index');
+                Route::post('/categories', [AdminServerBuilderController::class, 'storeCategory'])->name('categories.store');
+                Route::put('/categories/{id}', [AdminServerBuilderController::class, 'updateCategory'])->name('categories.update');
+                Route::delete('/categories/{id}', [AdminServerBuilderController::class, 'deleteCategory'])->name('categories.destroy');
+
+                // Components CRUD
+                Route::get('/components', [AdminServerBuilderController::class, 'getComponentsAdmin'])->name('components.index');
+                Route::post('/components', [AdminServerBuilderController::class, 'storeComponent'])->name('components.store');
+                Route::put('/components/{id}', [AdminServerBuilderController::class, 'updateComponent'])->name('components.update');
+                Route::delete('/components/{id}', [AdminServerBuilderController::class, 'deleteComponent'])->name('components.destroy');
+                Route::post('/components/bulk', [AdminServerBuilderController::class, 'bulkUpdateComponents'])->name('components.bulk');
+
+                // Configurations Management
+                Route::get('/configurations', [AdminServerBuilderController::class, 'getConfigurationsAdmin'])->name('configurations.index');
+                Route::get('/configurations/{id}', [AdminServerBuilderController::class, 'getConfigurationAdmin'])->name('configurations.show');
+                Route::patch('/configurations/{id}/status', [AdminServerBuilderController::class, 'updateConfigurationStatus'])->name('configurations.status');
+                Route::delete('/configurations/{id}', [AdminServerBuilderController::class, 'deleteConfiguration'])->name('configurations.destroy');
+
+                // Statistics
+                Route::get('/statistics', [AdminServerBuilderController::class, 'getStatistics'])->name('statistics');
+            });
     });
 });

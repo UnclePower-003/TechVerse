@@ -30,6 +30,12 @@
                 <span class="font-medium">Dashboard</span>
             </a>
 
+            <a href="{{ route('admin.server-builder') }}" @click="sidebarOpen = false"
+                class="flex items-center px-4 py-3 transition-colors duration-200 hover:bg-[#266eb1] hover:text-white hover:rounded-lg {{ request()->routeIs('admin.server-builder') ? 'bg-[#266eb1] text-black font-semibold rounded-lg' : '' }}">
+                <i class="fas fa-server w-6"></i>
+                <span class="font-medium">Server Builder</span>
+            </a>
+
             {{-- Users (Super Admin Only) --}}
             @if (auth()->user()->role === 'super_admin')
                 <a href="{{ route('users.index') }}" @click="sidebarOpen = false"

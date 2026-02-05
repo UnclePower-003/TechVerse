@@ -22,6 +22,7 @@
     {{-- <script src="{{ asset('css/admin/admin.js') }}" defer></script> --}}
 
     {{-- @vite(['public/css/admin/app.css', 'public/css/admin/app.js']) --}}
+@stack('styles')
 
 
 </head>
@@ -42,6 +43,8 @@
         </div>
     </div>
 @stack('scripts')
+@stack('script')
+
 </body>
 
 </html>

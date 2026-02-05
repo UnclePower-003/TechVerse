@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    @stack('styles')
     @stack('style')
 
 
@@ -34,6 +35,7 @@
 
     <script src="{{ asset('js/navbar.js') }}"></script>
     @stack('scripts')
+    @stack('script')
 </body>
 
 </html>
