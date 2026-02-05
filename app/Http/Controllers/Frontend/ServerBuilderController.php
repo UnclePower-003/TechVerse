@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ServerCategory;
 use App\Models\ServerComponent;
@@ -10,13 +9,8 @@ use App\Models\ServerConfiguration;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
-class BuildupController extends Controller
+class ServerBuilderController extends Controller
 {
-    public function index()
-    {
-        return view('frontend.pages.buildup');
-    }
-
     /**
      * Get all server component categories
      */

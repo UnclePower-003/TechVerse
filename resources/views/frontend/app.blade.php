@@ -8,6 +8,9 @@
     {{-- <title>Document</title> --}}
     <link rel="icon" type="image/png" href="{{ asset('imagess/logo.svg') }}" />
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     <!-- Tailwind CSS (CDN for demonstration) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -30,7 +33,7 @@
 
 
     <script src="{{ asset('js/navbar.js') }}"></script>
-    @stack('script')
+    @stack('scripts')
 </body>
 
 </html>

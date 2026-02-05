@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\ProjectsController;
 use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServerBuilderController;
 
 // Route::get('welcom', function () {
 //     return view('welcome');
@@ -42,6 +43,27 @@ Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('pr
 
 // projects
 Route::get('/cardsdetails', [CardsDetailsController::class, 'index'])->name('cardsdetails');
+
+// Route::get('/buildup', function () {
+//     return view('buildup');
+// })->name('buildup');
+
+Route::prefix('server-builder')
+    ->name('api.server-builder.')
+    ->group(function () {
+
+        Route::get('/categories', [BuildupController::class, 'getCategories'])
+            ->name('categories');
+
+        Route::get('/components/{categoryId}', [BuildupController::class, 'getComponents'])
+            ->name('components');
+
+        Route::post('/submit', [BuildupController::class, 'submitConfiguration'])
+            ->name('submit');
+
+        Route::get('/configuration/{id}', [BuildupController::class, 'getConfiguration'])
+            ->name('configuration');
+    });
 
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\Admin\DashboardController;
